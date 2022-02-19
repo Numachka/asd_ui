@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for the ASDUI application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Nahum Kletkin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

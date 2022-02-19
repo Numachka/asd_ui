@@ -1,0 +1,1 @@
+This folder contains the routes and the corresponding functions.
