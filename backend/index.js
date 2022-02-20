@@ -1,15 +1,19 @@
-const express = require('express');
-const serverEndpoint = new EndPoints("localhost", 3000, "", "");
-const databaseEndpoint = new EndPoints("localhost", 1000, "", ""); //TODO create local db for testing.
-const applicationEndpoint = new EndPoints("localhost", 8080, "", "");
+'use strict';
 
-const app = express();
-app.set('views', 'views')
-app.use(express.static('public'));
+// const https = require('https');
 
-app.get('/', function (req, res) {
-    res.sendFile('index.html');
-});
+const EndPoint = require("./controllers/EndPoint.js");
+const MySQLController = require("./controllers/MySQLController.js");
 
-app.listen(serverEndpoint.port, serverEndpoint.host);
+const serverEndpoint = new EndPoint("localhost", 3000, "", "");
+const databaseEndpoint = new EndPoint("localhost", 3306, "", ""); //TODO create local db for testing.
+const applicationEndpoint = new EndPoint("localhost", 8080, "", "");
 
+// const server = https.createServer();
+//
+// server.listen(serverEndpoint.port, serverEndpoint.host, () => {
+//     console.log(`Server running at https://${serverEndpoint.host}:${serverEndpoint.port}/`);
+// });
+
+const database = new MySQLController(databaseEndpoint.host, "root", "hxnhiAsdui1994%", "users")
+database.getUsers();

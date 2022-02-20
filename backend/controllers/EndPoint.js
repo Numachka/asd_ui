@@ -1,4 +1,4 @@
-class EndPoints {
+module.exports = class EndPoint {
     constructor(host, port, username, password) {
         this._host = host;
         this._port = port;
@@ -37,4 +37,10 @@ class EndPoints {
     set password(value) {
         this._password = value;
     }
-}
+
+    getRequest(method, path, payload) {
+        fetch(this.host + this.port + path)
+            .then(response => response.json())
+            .then(data => console.log(data));
+    }
+};
