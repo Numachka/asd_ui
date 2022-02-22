@@ -1,19 +1,27 @@
 'use strict';
 
-// const https = require('https');
-
-const EndPoint = require("./controllers/EndPoint.js");
+const https = require('https');
 const MySQLController = require("./controllers/MySQLController.js");
+const ApplicationController = require("./controllers/MySQLController.js");
+const User = require("./models/User");
+const UserInterface = require("./models/UserInterface");
+const endpoints = require("./controllers/EndPoint.js");
 
-const serverEndpoint = new EndPoint("localhost", 3000, "", "");
-const databaseEndpoint = new EndPoint("localhost", 3306, "", ""); //TODO create local db for testing.
-const applicationEndpoint = new EndPoint("localhost", 8080, "", "");
+const database = new MySQLController(endpoints.databaseEndpoint);
+const app = new ApplicationController(endpoints.applicationEndpoint);
 
-// const server = https.createServer();
-//
-// server.listen(serverEndpoint.port, serverEndpoint.host, () => {
-//     console.log(`Server running at https://${serverEndpoint.host}:${serverEndpoint.port}/`);
-// });
+const server = https.createServer();
 
-const database = new MySQLController(databaseEndpoint.host, "root", "hxnhiAsdui1994%", "users")
-database.getUsers();
+// server.listen(endpoints.serverEndpoint.port, endpoints.serverEndpoint.host,
+//     () => {
+//         console.log(`Server running at https://${serverEndpoint.host}:${serverEndpoint.port}/`);
+//     });
+
+let userDetails = database.getUsers();
+console.log(userDetails);
+for (let userDetailsKey in userDetails) {
+    if (userDetailsKey.username.localeCompare('doctor')) {
+        console.log(`User ${userDetailsKey.username}  logged in!`);
+        console.log(`User Interface: ${ userDetailsKey.userInterface }`);
+    }
+}

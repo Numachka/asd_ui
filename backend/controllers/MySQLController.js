@@ -1,14 +1,16 @@
-const mysql = require('mysql');
-const EndPoint = require('EndPoint')
-const {createConnection} = require("mysql");
+class MySQLController {
+    constructor(databaseEndpoint) {
+        this._mysql = require('mysql');
+        this._host = databaseEndpoint.host;
+        this._port = databaseEndpoint.port;
+        this._user = databaseEndpoint.user;
+        this._password = databaseEndpoint.password;
+        this._database = databaseEndpoint.database;
+        this._queries = require('./Queries');
+    }
 
-module.exports = class MySQLController {
-
-    constructor(host, user, password, database) {
-        this._host = host;
-        this._user = user;
-        this._password = password;
-        this._database = database;
+    get mysql() {
+        return this._mysql;
     }
 
     get host() {
@@ -43,20 +45,34 @@ module.exports = class MySQLController {
         this._database = value;
     }
 
+    get port() {
+        return this._port;
+    }
+
+    set port(value) {
+        this._port = value;
+    }
+
+    get queries() {
+        return this._queries;
+    }
+
     createConnection() {
-        return mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            database: this.database
+        return this.mysql.createConnection({
+            host : this.host,
+            port : this.port,
+            user : this.user,
+            password : this.password,
+            database : this.database
         });
     }
 
-    getUsers() {
+    getUsers() { //TODO example function for a query to the database.
         const connection = this.createConnection();
+        const that = this;
         connection.connect(function (err) {
             if (err) throw err;
-            connection.query("SELECT * FROM users",
+            connection.query(that.queries.getAUser,
                 function (err, result) {
                     if (err) throw err;
                     console.log(result);
@@ -65,5 +81,6 @@ module.exports = class MySQLController {
     }
 }
 
+module.exports = MySQLController;
 
 

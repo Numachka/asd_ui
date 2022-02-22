@@ -29,3 +29,5 @@ class User {
         this._userInterface = value;
     }
 }
+
+module.exports = User;
