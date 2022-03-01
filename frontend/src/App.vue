@@ -17,7 +17,8 @@
 
 }
 body {
-  background-color:#ECEFF1;
+  -background-color:#ECEFF1;
+  background-color:#07689F;
 }
 #nav {
   padding: 30px;

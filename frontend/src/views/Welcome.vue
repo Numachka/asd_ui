@@ -1,37 +1,23 @@
 <template>
   <h1>Please login or register to continue</h1>
-  <button class="login">
-    <router-link :to="{name: 'Login'}">LOG IN</router-link>
-  </button>
+  <router-link :to="{name: 'Login'}"><WhiteButton text="Log in"/></router-link>
   <br><br><br>
-  <button class="register">
-    <router-link :to="{name: 'Register'}">REGISTER</router-link>
-  </button>
+  <router-link :to="{name: 'Register'}"><OrangeButton text="REGISTER"/></router-link>
 </template>
 
 <script>
+import OrangeButton from "../components/OrangeButton";
+import WhiteButton from "../components/WhiteButton";
 export default {
-  name: "Welcome"
+  name: "Welcome",
+  components: {OrangeButton, WhiteButton},
 }
 </script>
 
 <style scoped>
-a {
-  color: #07689F;
-  text-decoration: none;
+
+h1 {
+  color: #FFFFFF;
 }
-.register{
-  background: #FFFFFF;
-  width: 10vw;
-  height: 5vh;
-  border-radius: 5vh;
-  font-size: 25px;
-}
-.login{
-  background: #FFFFFF;
-  width: 10vw;
-  height: 5vh;
-  border-radius: 5vh;
-  font-size: 25px;
-}
+
 </style>
