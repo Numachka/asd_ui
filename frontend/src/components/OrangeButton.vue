@@ -1,6 +1,6 @@
 <template>
   <button>
-    <strong>{{text}}</strong>
+    {{text}}
   </button>
 </template>
 
@@ -16,12 +16,13 @@ export default {
 <style scoped>
 button {
   background-color: #FAA43E;
-  width: 10vw;
-  height: 5vh;
-  border-radius: 1vh;
-  font-size: 25px;
+  border-radius: 5px;
+  margin: 2vw;
+  padding: 1vw;
+  box-shadow: none;
 }
-button strong{
+
+button {
   color: #FFFFFF;
 }
 button:hover{
