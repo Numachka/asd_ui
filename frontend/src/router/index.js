@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NotFound from "../views/NotFound";
 import Home from '../views/Home.vue'
 import LoggedOut from "../views/LoggedOut.vue";
 import Login from "../views/Login";
@@ -7,9 +8,16 @@ import Register1 from "../views/Register1";
 import Register2 from "../views/Register2";
 import Register3 from "../views/Register3";
 import Register4 from "../views/Register4";
-import NotFound from "../views/NotFound";
+import Register5 from "../views/Register5";
+import Register6 from "../views/Register6";
+import Register7 from "../views/Register7";
 
 const routes = [
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  },
   {
     path: '/home',
     name: 'Home',
@@ -51,11 +59,20 @@ const routes = [
     component: Register4
   },
   {
-    path: '/:catchAll(.*)',
-    name: 'NotFound',
-    component: NotFound
-  }
-
+    path: '/register5',
+    name: 'Register5',
+    component: Register5
+  },
+  {
+    path: '/register6',
+    name: 'Register6',
+    component: Register6
+  },
+  {
+    path: '/register7',
+    name: 'Register7',
+    component: Register7
+  },
 ]
 
 const router = createRouter({
