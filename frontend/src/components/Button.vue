@@ -27,14 +27,10 @@ export default {
 </script>
 
 <style scoped>
-/*button {*/
-/*  color: white;*/
-/*  font-family: 'Comfortaa', cursive, sans-serif;*/
-/*  border-radius: 5px;*/
-/*  margin: 2vw;*/
-/*  padding: 1vw;*/
-/*  box-shadow: none;*/
-/*}*/
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+button {
+  font-family: 'Comfortaa', cursive, sans-serif;
+}
 button:hover{
   cursor: pointer;
 }
