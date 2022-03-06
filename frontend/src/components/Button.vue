@@ -17,7 +17,8 @@ export default {
         'color': this.textColor,
         'border-radius': '5px',
         'margin': '2vw',
-        'padding': '1vw'
+        'padding': '1vw',
+        'border': 'none'
       }
       return {design}
     }

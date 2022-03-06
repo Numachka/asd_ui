@@ -1,12 +1,14 @@
 <template>
   <div>
-    <img src="../assets/miniLogo.jpeg" alt="Couldn't load the image">
+    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
     <p>
       Now for the interesting bits.<br>
-      Behabioral questions to help us calculate a template and set up some design guidelines.<br>
+      Behavioral questions to help us calculate a template and set up some design guidelines.<br>
       Please answer the 10 following yes\no questions:
     </p>
-    <Button background-color="#FAA43E" text="Start" text-color="white"/>
+    <router-link :to="{name: 'Register4'}">
+      <Button background-color="#FAA43E" text="Start" text-color="white"/>
+    </router-link>
   </div>
 </template>
 
@@ -16,7 +18,6 @@ import Button from "../components/Button";
 export default {
   name: "Register3",
   components: {Button},
-
 }
 </script>
 

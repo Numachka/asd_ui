@@ -47,7 +47,6 @@ div {
   display: grid;
   justify-items: left;
 }
-
 p {
   text-align: left;
 }

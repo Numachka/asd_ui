@@ -6,6 +6,7 @@ import Register from "../views/Register";
 import Register1 from "../views/Register1";
 import Register2 from "../views/Register2";
 import Register3 from "../views/Register3";
+import Register4 from "../views/Register4";
 import NotFound from "../views/NotFound";
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
     path: '/register3',
     name: 'Register3',
     component: Register3
+  },
+  {
+    path: '/register4',
+    name: 'Register4',
+    component: Register4
   },
   {
     path: '/:catchAll(.*)',
