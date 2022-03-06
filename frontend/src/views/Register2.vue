@@ -1,6 +1,6 @@
 <template>
+  <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
   <div v-if="!isSubmit">
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
     <p>
       Enter your cared’s details,<br> We promise no to share.
     </p>
@@ -48,10 +48,5 @@ div {
 }
 p {
   text-align: left;
-}
-input {
-  border-radius: 5px;
-  padding: 1vw;
-  display: block;
 }
 </style>

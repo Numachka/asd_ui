@@ -20,5 +20,10 @@ body {
 img {
   border-radius: 5px;
 }
-
+input {
+  border-radius: 5px;
+  padding: 1vw;
+  display: block;
+  border: none;
+}
 </style>

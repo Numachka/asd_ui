@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NotFound from "../views/NotFound";
-import Home from '../views/Home.vue'
+import MainMenu from '../views/MainMenu.vue'
 import LoggedOut from "../views/LoggedOut.vue";
 import Login from "../views/Login";
 import Register from "../views/Register";
@@ -19,9 +19,9 @@ const routes = [
     component: NotFound
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/MainMenu',
+    name: 'MainMenu',
+    component: MainMenu
   },
   {
     path: '/',

@@ -1,46 +1,41 @@
 <template>
-  <form>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
-    <button type="submit">Submit</button>
-  </form>
+  <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+  <div>
+    <form>
+      <p>Email</p>
+      <input type="email" required>
+      <p>Password</p>
+      <input type="password" required>
+      <router-link :to="{name: 'MainMenu'}">
+        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" @click="toggleSubmit"/>
+      </router-link>
+    </form>
+  </div>
 </template>
 
 <script>
 import {ref} from 'vue'
+import Button from "@/components/Button";
+
 export default {
   name: "Login",
-  setup(){
-    let email = ''
-    let password = ''
-    return {email, password}
-  }
+  components: {Button},
+  setup() {
+      let correctDetails = ref(false);
+      const toggleSubmit = () => {
+          correctDetails.value = !correctDetails.value;
+      }
+      return {toggleSubmit, correctDetails}
+    }
 }
 </script>
 
 <style scoped>
-  form {
-    width: 50%;
-    margin: 5vh auto;
-    background: white;
-    padding: 5vh;
-    border-radius: 3%;
-  }
-  input {
-    font-size: 25px;
-    display: block;
-    padding: 10px 6px;
-    width: 80%;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    color: #555
-  }
-  button{
-    background: #FFFFFF;
-    width: 10vw;
-    height: 5vh;
-    border-radius: 5vh;
-    font-size: 25px;
-  }
+div {
+  display: grid;
+  justify-items: left;
+}
+p {
+  text-align: left;
+}
 </style>
