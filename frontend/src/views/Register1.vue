@@ -1,0 +1,40 @@
+<template>
+  <div>
+    <img src="../assets/miniLogo.jpeg" alt="Couldn't load the image">
+    <p>
+      Welcome, CaretakerName <br><br>
+      ASDUI tries it’s best to be customziable so that you can help
+      your cared use it as best as they can. <br><br>
+      Not every one is a designer though... <br><br>
+      We’ve studied the different behaviours and created some
+      template ideas to fit as close as possible to the general requirements as close as possible.<br><br>
+      All that’s left is to choose one and add for you to add the finishing touches in case you want to. <br><br>
+      The process includes some basic details about the cared including some behavioral questions.<br><br>
+      We promise not to share anything with anyone. It will only be used to generate the template.
+    </p>
+    <router-link :to="{name: 'Register2'}">
+      <Button background-color="#FAA43E" text="Next" text-color="white"/>
+    </router-link>
+  </div>
+</template>
+
+<script>
+import Button from "../components/Button";
+
+export default {
+  name: "Register1",
+  components: {Button},
+}
+</script>
+
+<style scoped>
+
+div {
+  display: grid;
+  justify-items: left;
+}
+
+p {
+  text-align: left;
+}
+</style>

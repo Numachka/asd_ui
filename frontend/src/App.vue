@@ -5,8 +5,9 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 #app {
-  font-family: Comfortaa, sans-serif;
+  font-family: 'Comfortaa', cursive, sans-serif;
   color: white;
 }
 body {
@@ -15,6 +16,9 @@ body {
   justify-items: center;
   align-items: center;
   height: 99vh;
+}
+img {
+  border-radius: 5px;
 }
 
 </style>

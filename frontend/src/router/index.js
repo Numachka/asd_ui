@@ -3,8 +3,10 @@ import Home from '../views/Home.vue'
 import LoggedOut from "../views/LoggedOut.vue";
 import Login from "../views/Login";
 import Register from "../views/Register";
-import Information from "../views/Information";
-import CaredDetails from "../views/CaredDetails";
+import Register1 from "../views/Register1";
+import Register2 from "../views/Register2";
+import Register3 from "../views/Register3";
+import NotFound from "../views/NotFound";
 
 const routes = [
   {
@@ -28,15 +30,25 @@ const routes = [
     component: Register
   },
   {
-    path: '/information',
-    name: 'Information',
-    component: Information
+    path: '/register1',
+    name: 'Register1',
+    component: Register1
   },
   {
-    path: '/caredDetails',
-    name: 'CaredDetails',
-    component: CaredDetails
+    path: '/register2',
+    name: 'Register2',
+    component: Register2
   },
+  {
+    path: '/register3',
+    name: 'Register3',
+    component: Register3
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  }
 
 ]
 
