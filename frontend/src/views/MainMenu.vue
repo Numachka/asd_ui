@@ -1,16 +1,21 @@
 <template>
   <div>
+    <Header/>
     <CareTakerCard/>
   </div>
 </template>
 
 <script>
 import CareTakerCard from "../components/CareTakerCard";
+import Header from "../components/Header";
+import EditButton from "../components/EditButton";
 
 export default {
   name: 'MainMenu',
   components: {
     CareTakerCard,
+    Header,
+    EditButton,
   }
 }
 </script>

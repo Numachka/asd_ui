@@ -1,5 +1,6 @@
 <template>
   <div class="card round">
+    <EditButton/>
     <img alt="failed to load the image" class="roundImg Image" src="../assets/dad.jpg">
     <p>
       Call Dad
@@ -9,9 +10,14 @@
 </template>
 
 <script>
+import {ref} from 'vue'
+import EditButton from "../components/EditButton";
 
 export default {
   name: "CareTakerCard",
+  components: {
+    EditButton,
+  },
 }
 </script>
 
@@ -48,4 +54,5 @@ export default {
 .round {
   border-radius: 3%;
 }
+
 </style>
