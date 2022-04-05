@@ -5,12 +5,12 @@
   <button class="glyphicon glyphicon-pencil" @click="editMenu"> Edit</button>
   <div v-if="editMode">
     <p>Color</p>
-    <select name="colorPick" id="colorPick" v-model="Color">
+    <select name="colorPick" id="colorPick" v-model="Color" @click="changeColor">
       <option v-for="color in colors" :value="color"> {{color}} </option>
     </select>
     <br> <br>
     <p>Font size</p>
-    <select name="sizePick" id="sizePick" v-model="Size">
+    <select name="sizePick" id="sizePick" v-model="fontSize" @click="changeFontSize">
       <option v-for="size in sizes" :value="size"> {{size}} </option>
     </select>
     <br> <br>  <br> <br>  <br> <br>
@@ -18,7 +18,7 @@
       {{Color}}
     </p>
     <p>
-      {{Size}}
+      {{fontSize}}
     </p>
     <br> <br>
   </div>
@@ -38,11 +38,21 @@ export default {
         11, 12, 14, 16, 18, 20
     ]);
     let Color = ref(null);
-    let Size = ref(null);
+    let fontSize = ref(null);
     let editMenu = () => {
       editMode.value = !editMode.value;
     }
-    return { editMode, editMenu, Color, colors, Size, sizes }
+    let changeColor = () => {
+      if(Color.value) {
+        document.getElementById("CTC").style.backgroundColor = Color.value;
+      }
+    };
+    let changeFontSize = () => {
+      if(fontSize.value) {
+        document.getElementById("CTCP").style.fontSize = fontSize.value+"px";
+      }
+    };
+    return { editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize }
   },
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <div class="card round">
+  <div id="CTC" class="card round">
     <EditButton/>
     <img alt="failed to load the image" class="roundImg Image" src="../assets/dad.jpg">
-    <p>
+    <p id="CTCP">
       Call Dad
     </p>
     <img alt="failed to load the image" class="smallImage" src="../assets/phone.png">
