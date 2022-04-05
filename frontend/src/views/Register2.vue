@@ -14,6 +14,7 @@
       <p>Phone Number</p>
       <input type="text"  required>
       <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" @click="toggleSubmit"/>
+      <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
     </form>
   </div>
   <div v-else>
@@ -26,11 +27,12 @@
 
 <script>
 import Button from "../components/Button";
+import Input from "../components/Input";
 import {ref} from 'vue'
 
 export default {
   name: "Register2",
-  components: {Button},
+  components: {Button, Input},
   setup() {
     let isSubmit = ref(false);
     const toggleSubmit = () => {

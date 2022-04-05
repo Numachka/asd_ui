@@ -7,19 +7,21 @@
       <p>Password</p>
       <input type="password" required>
       <router-link :to="{name: 'MainMenu'}">
-        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" @click="toggleSubmit"/>
+        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" />
       </router-link>
+      <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
     </form>
   </div>
 </template>
 
 <script>
 import {ref} from 'vue'
-import Button from "@/components/Button";
+import Input from "../components/Input";
+import Button from "../components/Button";
 
 export default {
   name: "Login",
-  components: {Button},
+  components: {Button, Input},
   setup() {
       let correctDetails = ref(false);
       const toggleSubmit = () => {
