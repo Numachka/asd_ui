@@ -21,11 +21,11 @@
         <option v-for="size in sizes" :value="size"> {{ size }}</option>
       </select>
       <div v-if="fontSize || Color ">
-        <Button background-color="#519872" text="Yes" text-color="black"/>
-        <Button background-color="#E84855" text="No" text-color="black"/>
-        <br>
-        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" />
-        <Button type="clear" background-color="#bbbbbb" text="Clear" text-color="white" />
+        <p>
+          Do you want to save the changes?
+        </p>
+        <Button type="submit" background-color="#519872" text="Yes" text-color="black"/>
+        <Button type="reset" background-color="#E84855" text="No" text-color="black"/>
       </div>
     </form>
   </div>
