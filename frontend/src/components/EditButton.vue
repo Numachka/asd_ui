@@ -4,26 +4,41 @@
   </head>
   <button class="glyphicon glyphicon-pencil" @click="editMenu"> Edit</button>
   <div v-if="editMode">
-    <p>Color</p>
-    <select name="colorPick" id="colorPick" v-model="Color" @click="changeColor('CTC')">
-      <option v-for="(color, colorName) in colors" :id="color" :value="color">
-        {{colorName}}
-      </option>
-    </select>
-    <br> <br>
-    <p>Font size</p>
-    <select name="sizePick" id="sizePick" v-model="fontSize" @click="changeFontSize('CTCP')">
-      <option v-for="size in sizes" :value="size"> {{size}} </option>
-    </select>
+    <form>
+      <p>
+        Color
+      </p>
+      <select id="colorPick" v-model="Color" name="colorPick" @click="changeColor('CTC')">
+        <option v-for="(color, colorName) in colors" :id="color" :value="color">
+          {{ colorName }}
+        </option>
+      </select>
+      <br> <br>
+      <p>
+        Font size
+      </p>
+      <select id="sizePick" v-model="fontSize" name="sizePick" @click="changeFontSize('CTCP')">
+        <option v-for="size in sizes" :value="size"> {{ size }}</option>
+      </select>
+      <div v-if="fontSize || Color ">
+        <Button background-color="#519872" text="Yes" text-color="black"/>
+        <Button background-color="#E84855" text="No" text-color="black"/>
+        <br>
+        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" />
+        <Button type="clear" background-color="#bbbbbb" text="Clear" text-color="white" />
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 import {ref} from 'vue'
+import Button from "../components/Button";
 
 export default {
   name: "EditButton",
-  setup(){
+  components: {Button},
+  setup() {
     let editMode = ref(false);
     let colors = ref({
       "Light Yellow": '#fdf498',
@@ -49,7 +64,7 @@ export default {
       "Turquoise": '#bdeaee',
     });
     let sizes = ref([
-        11, 12, 14, 16, 18, 20
+      11, 12, 14, 16, 18, 20
     ]);
     let Color = ref(null);
     let fontSize = ref(null);
@@ -57,22 +72,23 @@ export default {
       editMode.value = !editMode.value;
     }
     let changeColor = (id) => {
-      if(Color.value) {
+      if (Color.value) {
         document.getElementById(id).style.backgroundColor = Color.value;
       }
     };
     let changeFontSize = (id) => {
-      if(fontSize.value) {
-        document.getElementById(id).style.fontSize = fontSize.value+"px";
+      if (fontSize.value) {
+        document.getElementById(id).style.fontSize = fontSize.value + "px";
       }
     };
-    return { editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize, }
+    return {editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize,}
   },
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 button {
   font-family: 'Comfortaa', cursive, sans-serif;
   background-color: #bbbbbb;
@@ -82,7 +98,8 @@ button {
   padding: 1vw;
   border: none;
 }
-button:hover{
+
+button:hover {
   cursor: pointer;
 }
 
