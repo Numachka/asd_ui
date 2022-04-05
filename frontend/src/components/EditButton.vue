@@ -5,12 +5,14 @@
   <button class="glyphicon glyphicon-pencil" @click="editMenu"> Edit</button>
   <div v-if="editMode">
     <p>Color</p>
-    <select name="colorPick" id="colorPick" v-model="Color" @click="changeColor">
-      <option v-for="color in colors" :value="color"> {{color}} </option>
+    <select name="colorPick" id="colorPick" v-model="Color" @click="changeColor('CTC')">
+      <option v-for="(color, colorName) in colors" :id="color" :value="color">
+        {{colorName}}
+      </option>
     </select>
     <br> <br>
     <p>Font size</p>
-    <select name="sizePick" id="sizePick" v-model="fontSize" @click="changeFontSize">
+    <select name="sizePick" id="sizePick" v-model="fontSize" @click="changeFontSize('CTCP')">
       <option v-for="size in sizes" :value="size"> {{size}} </option>
     </select>
     <br> <br>  <br> <br>  <br> <br>
@@ -31,9 +33,21 @@ export default {
   name: "EditButton",
   setup(){
     let editMode = ref(false);
-    let colors = ref([
-        "Yellow", "Blue", "Red", "Green", "White","Black"
-    ]);
+    let colors = ref({
+      "Light Yellow": '#fdf498',
+      "Yellow": '#fed766',
+      "Light Blue": '#84c1ff',
+      "Blue": '#0057e7',
+      "Red": '#ff6f69',
+      "Light Green": '#a8e6cf',
+      "Green": '#009688',
+      "White": '#FFFFFF',
+      "Black": '#1e1f26',
+      "Pink": '#fec8c1',
+      "Grey": '#e6e6ea',
+      "Orange": '#ffa700',
+      "Beige": '#faebd7',
+    });
     let sizes = ref([
         11, 12, 14, 16, 18, 20
     ]);
@@ -42,17 +56,17 @@ export default {
     let editMenu = () => {
       editMode.value = !editMode.value;
     }
-    let changeColor = () => {
+    let changeColor = (id) => {
       if(Color.value) {
-        document.getElementById("CTC").style.backgroundColor = Color.value;
+        document.getElementById(id).style.backgroundColor = Color.value;
       }
     };
-    let changeFontSize = () => {
+    let changeFontSize = (id) => {
       if(fontSize.value) {
-        document.getElementById("CTCP").style.fontSize = fontSize.value+"px";
+        document.getElementById(id).style.fontSize = fontSize.value+"px";
       }
     };
-    return { editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize }
+    return { editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize, }
   },
 }
 </script>
