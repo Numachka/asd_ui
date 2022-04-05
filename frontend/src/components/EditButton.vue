@@ -15,14 +15,6 @@
     <select name="sizePick" id="sizePick" v-model="fontSize" @click="changeFontSize('CTCP')">
       <option v-for="size in sizes" :value="size"> {{size}} </option>
     </select>
-    <br> <br>  <br> <br>  <br> <br>
-    <p>
-      {{Color}}
-    </p>
-    <p>
-      {{fontSize}}
-    </p>
-    <br> <br>
   </div>
 </template>
 
@@ -83,7 +75,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 button {
   font-family: 'Comfortaa', cursive, sans-serif;
-  background-color: grey;
+  background-color: #bbbbbb;
   color: white;
   border-radius: 5px;
   margin: 1vw;
