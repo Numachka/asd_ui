@@ -20,7 +20,7 @@
       <select id="sizePick" v-model="fontSize" name="sizePick" @click="changeFontSize('CTCP')">
         <option v-for="size in sizes" :value="size"> {{ size }}</option>
       </select>
-      <div v-if="fontSize || Color ">
+      <div v-if="fontSize || Color">
         <p>
           Do you want to save the changes?
         </p>
@@ -36,32 +36,32 @@ import {ref} from 'vue'
 import Button from "../components/Button";
 
 export default {
-  name: "EditButton",
+  name: "EditButtonCard",
   components: {Button},
   setup() {
     let editMode = ref(false);
     let colors = ref({
-      "Light Yellow": '#fdf498',
-      "Yellow": '#fed766',
-      "Light Blue": '#84c1ff',
+      "Blue Light": '#84c1ff',
       "Blue": '#0057e7',
-      "Dark Blue": '#3b5998',
-      "Light Red": '#ff6f69',
+      "Blue Dark": '#3b5998',
+      "Turquoise": '#bdeaee',
+      "Yellow Light": '#fdf498',
+      "Yellow": '#fed766',
+      "Orange": '#ffa700',
+      "Red Light": '#ff6f69',
       "Red": '#d62d20',
       "Bordeaux": '#854442',
-      "Light Green": '#a8e6cf',
+      "Green Light": '#a8e6cf',
       "Green": '#009688',
-      "White": '#FFFFFF',
-      "Black": '#1e1f26',
-      "Light Pink": '#fec8c1',
+      "Pink Light": '#fec8c1',
       "Pink": '#ffbbee',
       "Lavender": '#E6E6FA',
       "Purple": '#7b68ee',
+      "White": '#FFFFFF',
       "Grey": '#e6e6ea',
-      "Orange": '#ffa700',
-      "Beige": '#faebd7',
       "Brown": '#be9b7b',
-      "Turquoise": '#bdeaee',
+      "Beige": '#faebd7',
+      "Black": '#1e1f26',
     });
     let sizes = ref([
       11, 12, 14, 16, 18, 20

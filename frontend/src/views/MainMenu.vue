@@ -8,6 +8,7 @@
 <script>
 import CareTakerCard from "../components/CareTakerCard";
 import Header from "../components/Header";
+import EditButtonCard from "../components/EditButtonCard";
 import EditButton from "../components/EditButton";
 
 export default {
@@ -16,6 +17,7 @@ export default {
     CareTakerCard,
     Header,
     EditButton,
+    EditButtonCard,
   }
 }
 </script>

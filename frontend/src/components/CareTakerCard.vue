@@ -1,6 +1,6 @@
 <template>
   <div id="CTC" class="card round">
-    <EditButton/>
+    <EditButtonCard/>
     <img alt="failed to load the image" class="roundImg Image" src="../assets/dad.jpg">
     <p id="CTCP">
       Call Dad
@@ -11,12 +11,12 @@
 
 <script>
 import {ref} from 'vue'
-import EditButton from "../components/EditButton";
+import EditButtonCard from "./EditButtonCard";
 
 export default {
   name: "CareTakerCard",
   components: {
-    EditButton,
+    EditButtonCard,
   },
 }
 </script>
