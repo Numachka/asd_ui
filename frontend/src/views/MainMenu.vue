@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header/>
-    <CareTakerCard/>
+    <CareTakerCard care-taker="dad.jpg"/>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <button class="glyphicon glyphicon-pencil" @click="editMenu"> Edit</button>
-  <div v-if="editMode">
+  <div v-if="editMode" id="EditMode">
     <form>
       <p>
         Color
@@ -81,7 +81,8 @@ export default {
         document.getElementById(id).style.fontSize = fontSize.value + "px";
       }
     };
-    return {editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize,}
+
+    return {editMode, editMenu, Color, colors, fontSize, sizes, changeColor, changeFontSize }
   },
 }
 </script>
