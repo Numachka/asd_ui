@@ -12,7 +12,7 @@
       The process includes some basic details about the cared including some behavioral questions.<br><br>
       We promise not to share anything with anyone. It will only be used to generate the template.
     </p>
-    <router-link :to="{name: 'Register2'}">
+    <router-link to="/register/page2">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
   </div>
