@@ -15,7 +15,6 @@ export default {
         'border-radius': '5px',
         'margin': '2vw',
         'padding': '1vw',
-        'border': 'none'
       }
       return {design}
     }
