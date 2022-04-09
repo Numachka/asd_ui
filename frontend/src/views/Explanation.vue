@@ -12,7 +12,7 @@
       The process includes some basic details about the cared including some behavioral questions.<br><br>
       We promise not to share anything with anyone. It will only be used to generate the template.
     </p>
-    <router-link to="/register/page2">
+    <router-link to="/register/details">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
   </div>
@@ -22,7 +22,7 @@
 import Button from "../components/Button";
 
 export default {
-  name: "Register1",
+  name: "Explanation",
   components: {Button},
 }
 </script>

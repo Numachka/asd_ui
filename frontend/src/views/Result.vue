@@ -1,6 +1,9 @@
 <template>
   <div>
     <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+    <h1>
+      Done!
+    </h1>
     <p>
       Based on your answers:<br><br>
       Your cared is of the hyper reactive type.<br>
@@ -22,15 +25,16 @@
 
       No vibration. <br>
     </p>
-    <Button background-color="#FAA43E" text="Next" text-color="white"/>
-  </div>
+    <router-link :to="{name: 'LoggedOut'}">
+      <Button background-color="#FAA43E" text="Next" text-color="white"/>
+    </router-link>  </div>
 </template>
 
 <script>
 import Button from "../components/Button";
 
 export default {
-  name: "Register7",
+  name: "Result",
   components: {Button},
 
 }

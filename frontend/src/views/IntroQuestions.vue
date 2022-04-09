@@ -6,7 +6,7 @@
       Behavioral questions to help us calculate a template and set up some design guidelines.<br>
       Please answer the 10 following yes\no questions:
     </p>
-    <router-link :to="{name: 'Register4'}">
+    <router-link to="/register/questions">
       <Button background-color="#FAA43E" text="Start" text-color="white"/>
     </router-link>
   </div>
@@ -16,7 +16,7 @@
 import Button from "../components/Button";
 
 export default {
-  name: "Register3",
+  name: "IntroQuestions",
   components: {Button},
 }
 </script>

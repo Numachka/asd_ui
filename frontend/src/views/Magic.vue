@@ -12,7 +12,7 @@
 import Button from "../components/Button";
 
 export default {
-  name: "Register5",
+  name: "Magic",
   components: {Button},
 
 }

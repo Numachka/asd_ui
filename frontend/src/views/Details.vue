@@ -19,7 +19,7 @@
   </div>
   <div v-else>
     <p>The details have been confirmed by the system</p>
-    <router-link :to="{name: 'Register3'}">
+    <router-link to="/register/IntroQuestions">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
   </div>
@@ -31,7 +31,7 @@ import Input from "../components/Input";
 import {ref} from 'vue'
 
 export default {
-  name: "Register2",
+  name: "Details",
   components: {Button, Input},
   setup() {
     let isSubmit = ref(false);

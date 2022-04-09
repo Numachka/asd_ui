@@ -7,7 +7,7 @@
     <br><br><br><br>Enter the caretaker’s name.<br> Tap next to continue
   </p>
   <input placeholder="Name here please">
-  <router-link to="/register/page1">
+  <router-link to="/register/explanation">
     <Button background-color="#FAA43E" text="Next" text-color="white"/>
   </router-link>
 </template>
@@ -15,8 +15,12 @@
 <script>
 import Button from "../components/Button";
 
+
 export default {
-  name: "RegPage0"
+  name: "Introduction",
+  components: {
+    Button,
+  }
 }
 </script>
 

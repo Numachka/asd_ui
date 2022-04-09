@@ -4,16 +4,14 @@ import MainMenu from '../views/MainMenu.vue'
 import LoggedOut from "../views/LoggedOut.vue";
 import Login from "../views/Login";
 import Register from "../views/Register";
-// import Register1 from "../components/RegPage1";
-import Register2 from "../views/RegPage2";
-import Register3 from "../views/Register3";
-import Register4 from "../views/Register4";
-import Register5 from "../views/Register5";
-import Register6 from "../views/Register6";
-import Register7 from "../views/Register7";
-import RegPage1 from "@/views/RegPage1";
-import RegPage2 from "@/views/RegPage2";
-import RegPage0 from "@/views/RegPage0";
+import Introduction from "../views/Introduction";
+import Explanation from "../views/Explanation";
+import Details from "../views/Details";
+import IntroQuestions from "../views/IntroQuestions";
+import Questions from "../views/Questions";
+import Magic from "../views/Magic";
+import Result from "../views/Result";
+
 
 const routes = [
   {
@@ -39,14 +37,18 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
+    component: Register,
     children: [
       // UserHome will be rendered inside User's <router-view>
       // when /users/:username is matched
-      { path: 'page0', component: RegPage0 },
-      { path: 'page1', component: RegPage1 },
-      { path: 'page2', component: RegPage2 }
+      { path: 'introduction', component: Introduction },
+      { path: 'explanation', component: Explanation },
+      { path: 'details', component: Details },
+      { path: 'IntroQuestions', component: IntroQuestions },
+      { path: 'Questions', component: Questions },
+      { path: 'Magic', component: Magic },
+      { path: 'Result', component: Result },
     ],
-    component: Register
   },
   // {
   //   path: '/register',
