@@ -1,5 +1,4 @@
 <template>
-  <img src="../assets/miniLogo.jpeg" alt="Couldn't load the image">
   <p>
     Hi there! <br> Welcome to ASDUI. <br><br> This app is made for you, the caretakers to customize and fit the user
     experience for

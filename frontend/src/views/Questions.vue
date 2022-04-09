@@ -1,38 +1,36 @@
 <template>
-<!--  <div>-->
-<!--    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">-->
-<!--    <div v-if=" i < questions.length">-->
-<!--      <p>-->
-<!--        {{ describes[i] }}-->
-<!--      </p>-->
-<!--      <h3>-->
-<!--        {{ questions[i] }}-->
-<!--      </h3>-->
-<!--      <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer('Yes')"/>-->
-<!--      <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer('No')"/>-->
-<!--    </div>-->
-<!--    <div v-else>-->
-<!--      <router-link to="/register/magic">-->
-<!--        <Button background-color="#FAA43E" text="Next" text-color="white"/>-->
-<!--      </router-link>-->
-<!--      {{ answers }}-->
-<!--    </div>-->
-<!--  </div>-->
   <div>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
-    <div v-for="(v,k) in describes1">
-      <div v-for="q in v">
-        <p>
-          {{k}}
-        </p>
-        <h3 >
-          {{q}}
-        </h3>
-        <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>
-        <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>
-      </div>
+    <div v-if=" i < questions.length">
+      <p>
+        {{ describes[i] }}
+      </p>
+      <h3>
+        {{ questions[i] }}
+      </h3>
+      <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>
+      <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>
+    </div>
+    <div v-else>
+      <router-link to="/register/magic">
+        <Button background-color="#FAA43E" text="Next" text-color="white"/>
+      </router-link>
+      {{ answers }}
     </div>
   </div>
+<!--  <div>-->
+<!--    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">-->
+<!--    <div v-for="(v,k) in describes1">-->
+<!--      <h1>-->
+<!--        {{k}}-->
+<!--      </h1>-->
+<!--      <h5 v-for="q in v">-->
+<!--        {{q}}-->
+<!--      <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>-->
+<!--      <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>-->
+<!--      </h5>-->
+<!--    </div>-->
+<!--  </div>-->
+
 </template>
 
 <script>
@@ -80,6 +78,11 @@ export default {
       "Lastly, tactile cues...",
       "Lastly, tactile cues..."
     ]);
+    let describes2 = ref([
+      "Some visual cues first...",
+      "Some auditory cues...",
+      "Lastly, tactile cues..."
+    ]);
     let questions = ref([
       "Is your cared sensitive to light?",
       "Is your cared easily distracted by movement?",
@@ -98,7 +101,7 @@ export default {
       i.value++;
       answers.value.push(answer);
     };
-    return {questions, describes, describes1, i, saveAnswer, answers}
+    return {questions, describes, describes1, describes2, i, saveAnswer, answers}
   }
 }
 </script>

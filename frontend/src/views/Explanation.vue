@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img src="../assets/miniLogo.jpeg" alt="Couldn't load the image">
     <p>
       Welcome, CaretakerName <br><br>
       ASDUI tries it’s best to be customziable so that you can help

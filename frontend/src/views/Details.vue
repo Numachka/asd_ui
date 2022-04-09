@@ -1,5 +1,4 @@
 <template>
-  <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
   <div v-if="!isSubmit">
     <p>
       Enter your cared’s details,<br> We promise no to share.

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
     <router-view></router-view>
   </div>
 </template>

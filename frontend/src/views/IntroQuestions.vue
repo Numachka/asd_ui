@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
     <p>
       Now for the interesting bits.<br>
       Behavioral questions to help us calculate a template and set up some design guidelines.<br>

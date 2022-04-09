@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
     <h1>
       Done!
     </h1>
