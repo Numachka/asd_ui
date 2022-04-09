@@ -1,6 +1,5 @@
 <template>
-  <input value="text" :style="style.design">
-
+  <input :style="style.design">
 </template>
 
 <script>
@@ -8,7 +7,6 @@ import {ref} from 'vue'
 
 export default {
   name: "Input",
-  props: ["text", "textColor", "backgroundColor"],
   computed: {
     style() {
       let design = {
