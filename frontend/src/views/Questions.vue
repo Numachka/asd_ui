@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <div v-if=" i < questions.length">
-      <p>
-        {{ describes[i] }}
-      </p>
-      <h3>
-        {{ questions[i] }}
-      </h3>
+  <div v-if=" i < questions.length">
+    <p>
+      {{ describes[i] }}
+    </p>
+    <h3>
+      {{ questions[i] }}
+    </h3>
+    <div>
       <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>
       <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>
     </div>
-    <div v-else>
-      <router-link to="/register/magic">
-        <Button background-color="#FAA43E" text="Next" text-color="white"/>
-      </router-link>
-      {{ answers }}
-    </div>
+  </div>
+  <div v-else>
+    <router-link to="/register/magic">
+      <Button background-color="#FAA43E" text="Next" text-color="white"/>
+    </router-link>
+    {{ answers }}
   </div>
 <!--  <div>-->
 <!--    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">-->
