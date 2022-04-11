@@ -5,11 +5,17 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+@font-face {
+  font-family: "Comfortaa";
+  src: local("Comfortaa"),
+  url("assets/Comfortaa/Comfortaa-VariableFont_wght.ttf") format("truetype");
+}
 #app {
-  font-family: 'Comfortaa', cursive, sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   color: white;
 }
+
 body {
   background: linear-gradient(90deg, #07689F 0%, #0988D0 100%);
   display: grid;
@@ -29,4 +35,5 @@ input {
 p {
   width: 25vw;
 }
+
 </style>

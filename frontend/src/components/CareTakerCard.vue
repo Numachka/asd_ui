@@ -4,12 +4,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <div id="CTC" class="card round">
+  <div id="CTC" class="card center roundCard">
     <EditButtonCard/>
-    <img alt="failed to load the image" class="roundImg Image" :src="require(`../assets/${careTaker}`)" >
-    <p id="CTCP">
+    <img alt="failed to load the image" class="Image" :src="require(`../assets/${careTaker}`)" >
+    <lable id="CTCP">
       Call Dad
-    </p>
+    </lable>
     <table>
       <tr>
         <td>
@@ -42,35 +42,30 @@ export default {
 </script>
 
 <style scoped>
-
-.card {
+.center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.card, .card p {
+  color: black;
   background: white;
   width: 95%;
   padding: 50px 0;
   margin: auto;
   border-radius: 10px;
-  display: grid;
-  justify-items: center;
-  align-items: center;
 }
-
-.card {
-  color: black;
-}
-
 
 .Image {
   width: 50%;
-}
-
-.roundImg {
   border-radius: 50%;
-}
 
-.round {
+}
+.roundCard {
   border-radius: 3%;
 }
 td {
   width: 4vh;
 }
+
 </style>

@@ -15,17 +15,4 @@ export default {
 
 <style scoped>
 
-input {
-  border-radius: 5px;
-  padding: 1vw;
-}
-
-div {
-  display: grid;
-  justify-items: left;
-}
-
-p {
-  text-align: left;
-}
 </style>

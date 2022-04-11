@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Header />
     <CareTakerCard care-taker="dad.jpg"/>
   </div>
 </template>
@@ -22,11 +22,5 @@ export default {
 }
 </script>
 <style scoped>
-body {
-  background: white;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 99vh;
-}
+
 </style>

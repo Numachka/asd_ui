@@ -4,10 +4,10 @@
       Some visual cues first...
     </p>
     <p v-else-if="i >= 4 && i <= 8">
-      "Some auditory cues...",
+      Some auditory cues...
     </p>
     <p v-else>
-      "Lastly, tactile cues..."
+      Lastly, tactile cues...
     </p>
     <h3>
       {{ questions[i] }}
@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
   h3 {
-    width: 30vw;
+    width: 25vw;
     height: 5vh;
   }
 </style>

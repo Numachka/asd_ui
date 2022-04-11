@@ -4,7 +4,7 @@
   </head>
   <button class="glyphicon glyphicon-pencil" @click="editMenu"> Edit</button>
   <div v-if="editMode">
-    <form>
+    <form class="center">
       <p>
         Color
       </p>
@@ -20,12 +20,15 @@
       <select id="sizePick" v-model="fontSize" name="sizePick" @click="changeFontSize('CTCP')">
         <option v-for="size in sizes" :value="size"> {{ size }}</option>
       </select>
-      <div v-if="fontSize || Color">
+      <br> <br>
+      <div v-if="fontSize || Color" class="center">
         <p>
           Do you want to save the changes?
         </p>
-        <Button type="submit" background-color="#519872" text="Yes" text-color="black"/>
-        <Button type="reset" background-color="#E84855" text="No" text-color="black"/>
+        <div>
+          <Button type="submit" background-color="#519872" text="Yes" text-color="black"/>
+          <Button type="reset" background-color="#E84855" text="No" text-color="black"/>
+        </div>
       </div>
     </form>
   </div>
@@ -90,7 +93,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 button {
-  font-family: 'Comfortaa', cursive, sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   background-color: #bbbbbb;
   color: white;
   border-radius: 5px;
@@ -103,4 +106,9 @@ button:hover {
   cursor: pointer;
 }
 
+p, .center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
 </style>
