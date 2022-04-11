@@ -1,21 +1,21 @@
 <template>
   <p>
-    Hi there! <br> Welcome to ASDUI. <br><br> This app is made for you, the caretakers to customize<br>
-    and fit the user experience for your cared and help <br> them use their mobile phone to their full potential.
+    Hi there! <br> Welcome to ASDUI. <br><br> This app is made for you, the caretakers to customize
+    and fit the user experience for your cared and help them use their mobile phone to their full potential.
   </p>
-  <form @submit="postData" method="post">
+  <form method="post" @submit="postData">
     <p>
       Please enter your name
     </p>
-    <input type="text" v-model="posts.Name" required>
+    <input v-model="posts.Name" required type="text">
     <p>
       Please enter your Email
     </p>
-    <input type="email" v-model="posts.Email" required>
-    <Button type="submit" background-color="#FAA43E" text="submit" text-color="white"/>
-  <router-link to="/register/explanation">
-    <Button type="submit" background-color="#FAA43E" text="Next" text-color="white"/>
-  </router-link>
+    <input v-model="posts.Email" required type="email">
+    <Button background-color="#FAA43E" text="submit" text-color="white" type="submit"/>
+    <router-link to="/register/explanation">
+      <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
+    </router-link>
   </form>
 </template>
 
@@ -30,20 +30,20 @@ export default {
     Button,
     Input,
   },
-  setup(){
+  setup() {
     let posts = ref({
       "Name": null,
       "Email": null
     });
     let postData = (e) => {
       this.axios.post("http://localhost:8080", posts.value)
-      .then((result) => {
-        console.log(result)
-      })
+          .then((result) => {
+            console.log(result)
+          })
       e.preventDefault();
     };
 
-    return { posts, postData }
+    return {posts, postData}
   },
 
 }

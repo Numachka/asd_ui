@@ -1,13 +1,13 @@
 <template>
   <div v-if= "i < questions.length">
     <p v-if="i <= 3">
-      {{ describes[0] }}
+      Some visual cues first...
     </p>
     <p v-else-if="i >= 4 && i <= 8">
-      {{ describes[1] }}
+      "Some auditory cues...",
     </p>
     <p v-else>
-      {{ describes[2] }}
+      "Lastly, tactile cues..."
     </p>
     <h3>
       {{ questions[i] }}
@@ -35,11 +35,6 @@ export default {
   setup() {
     let answers = ref([])
     let i = ref(0);
-    let describes = ref([
-      "Some visual cues first...",
-      "Some auditory cues...",
-      "Lastly, tactile cues..."
-    ]);
     let questions = ref([
       "Is your cared sensitive to light?",
       "Is your cared easily distracted by movement?",
@@ -58,11 +53,14 @@ export default {
       i.value++;
       answers.value.push(answer);
     };
-    return {questions, describes, i, saveAnswer, answers}
+    return {questions, i, saveAnswer, answers}
   }
 }
 </script>
 
 <style scoped>
-
+  h3 {
+    width: 30vw;
+    height: 5vh;
+  }
 </style>

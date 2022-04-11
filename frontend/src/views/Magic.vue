@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      ASDUI magic in the <br> backgrund....
+      ASDUI magic in the <br> background....
     </p>
 
   </div>

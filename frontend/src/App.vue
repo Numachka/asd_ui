@@ -26,4 +26,7 @@ input {
   display: block;
   border: none;
 }
+p {
+  width: 25vw;
+}
 </style>

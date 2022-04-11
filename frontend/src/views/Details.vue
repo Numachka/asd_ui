@@ -43,11 +43,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-  display: grid;
-  justify-items: center;
-}
-p {
-  text-align: left;
-}
+
 </style>
