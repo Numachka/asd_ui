@@ -21,7 +21,12 @@
     <router-link to="/register/magic">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
-    {{ answers }}
+    <p>
+      {{ answers }}
+    </p>
+    <p>
+      {{ answers_Json }}
+    </p>
   </div>
 </template>
 
@@ -33,7 +38,8 @@ export default {
   name: "Questions",
   components: {Button},
   setup() {
-    let answers = ref([])
+    let answers = ref([]);
+    let answers_Json = ref({});
     let i = ref(0);
     let questions = ref([
       "Is your cared sensitive to light?",
@@ -50,10 +56,10 @@ export default {
       "Does your cared make constant physical contact without noticing?"
     ]);
     const saveAnswer = (answer) => {
-      i.value++;
+      answers_Json.value[questions.value[i.value++]] = answer;
       answers.value.push(answer);
     };
-    return {questions, i, saveAnswer, answers}
+    return {questions, i, saveAnswer, answers, answers_Json}
   }
 }
 </script>
