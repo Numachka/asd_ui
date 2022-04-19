@@ -1,11 +1,14 @@
 <template>
   <div>
-    <p>
-      ASDUI magic in the <br> background....
-    </p>
-    <p>
-      {{$route.params.result}}
-    </p>
+    <h2>
+      ASDUI magic in the background....
+    </h2>
+    <div v-for="(answer, question) in JSON.parse(results)">
+      <p>
+        {{question}} <br>
+        Answer: {{answer}}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,11 @@ import {ref} from 'vue'
 export default {
   name: "Magic",
   components: {Button},
+  computed: {
+    results() {
+      return this.$route.params.result
+    }
+  }
   // setup() {
   //   let result = ref(null);
   //   if (this.$route.params.result)
