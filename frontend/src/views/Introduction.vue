@@ -13,7 +13,7 @@
     </p>
     <input v-model="posts.Email" required type="email">
     <Button background-color="#FAA43E" text="submit" text-color="white" type="submit"/>
-    <router-link to="/register/explanation">
+    <router-link :to="{name: 'Explanation'}">
       <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
     </router-link>
   </form>

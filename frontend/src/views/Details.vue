@@ -18,7 +18,7 @@
   </div>
   <div v-else>
     <p>The details have been confirmed by the system</p>
-    <router-link to="/register/IntroQuestions">
+    <router-link :to="{name: 'IntroQuestions'}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
   </div>

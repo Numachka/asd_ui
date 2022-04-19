@@ -5,7 +5,7 @@
     <router-link :to="{name: 'Login'}">
       <Button text="Log in" text-color="#07689F" background-color="white"/>
     </router-link>
-    <router-link to="/register/introduction">
+    <router-link :to="{name: 'Introduction'}">
       <Button text="REGISTER" text-color="white" background-color="#FAA43E"/>
     </router-link>
   </div>

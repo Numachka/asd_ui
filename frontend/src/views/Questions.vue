@@ -18,7 +18,7 @@
     </div>
   </div>
   <div v-else>
-    <router-link to="/register/magic">
+    <router-link :to="{name: 'Magic'}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
     <p>

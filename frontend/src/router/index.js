@@ -39,15 +39,13 @@ const routes = [
     name: 'Register',
     component: Register,
     children: [
-      // UserHome will be rendered inside User's <router-view>
-      // when /users/:username is matched
-      {path: 'introduction', component: Introduction},
-      {path: 'explanation', component: Explanation},
-      {path: 'details', component: Details},
-      {path: 'IntroQuestions', component: IntroQuestions},
-      {path: 'Questions', component: Questions},
-      {path: 'Magic', component: Magic},
-      {path: 'Result', component: Result},
+      {name:'Introduction', path: 'introduction', component: Introduction},
+      {name:'Explanation',path: 'explanation', component: Explanation},
+      {name:'Details',path: 'details', component: Details},
+      {name:'IntroQuestions',path: 'intro-questions', component: IntroQuestions},
+      {name:'Questions',path: 'Questions', component: Questions},
+      {name:'Magic',path: 'Magic', component: Magic},
+      {name:'Result',path: 'Result', component: Result},
     ],
   },
 ]
