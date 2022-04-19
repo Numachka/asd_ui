@@ -1,6 +1,6 @@
 <template>
   <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
-  <div>
+  <div class="ltr">
     <form>
       <p>Email</p>
       <input type="email" required>

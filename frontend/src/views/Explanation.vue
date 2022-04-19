@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <p class="ltr">
-      Welcome, {{$route.params.name}} <br><br>
-      ASDUI tries it’s best to be customziable so that you can help
+  <div class="ltr">
+    <h3>
+      Welcome, {{ $route.params.name }}
+    </h3>
+    <p>
+      ASDUI tries it’s best to be customizable so that you can help
       your cared use it as best as they can. <br><br>
       Not every one is a designer though... <br><br>
       We’ve studied the different behaviours and created some
@@ -11,9 +13,11 @@
       The process includes some basic details about the cared including some behavioral questions.<br><br>
       We promise not to share anything with anyone. It will only be used to generate the template.
     </p>
-    <router-link :to="{name: 'Details'}">
-      <Button background-color="#FAA43E" text="Next" text-color="white"/>
-    </router-link>
+    <div>
+      <router-link :to="{name: 'Details'}">
+        <Button background-color="#FAA43E" text="Next" text-color="white"/>
+      </router-link>
+    </div>
   </div>
 </template>
 

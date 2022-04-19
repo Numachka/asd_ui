@@ -32,7 +32,7 @@ body {
   justify-items: left;
 }
 div {
-  text-align: center
+  text-align: center;
 }
 
 img {
@@ -48,6 +48,9 @@ input {
 }
 p {
   width: 25vw;
+}
+form p {
+  width: auto;
 }
 .ltr {
   text-align: left;

@@ -1,10 +1,10 @@
 <template>
   <div v-if="!isSubmit">
     <h3>
-      Enter your cared’s details,<br> We promise not to share.
+      Please enter your cared’s details.<br>We promise not to share.
     </h3>
     <div>
-      <form>
+      <form class="ltr">
         <p>Name</p>
         <input required type="text">
         <p>Email</p>
@@ -13,9 +13,10 @@
         <input required type="password">
         <p>Phone Number</p>
         <input required type="text">
-        <br>
-        <Button background-color="#FAA43E" text="Submit" text-color="white" type="submit" @click="toggleSubmit"/>
-        <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
+        <div>
+          <Button background-color="#FAA43E" text="Submit" text-color="white" type="submit" @click="toggleSubmit"/>
+          <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
+        </div>
       </form>
     </div>
   </div>
