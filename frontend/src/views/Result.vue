@@ -3,7 +3,7 @@
     <h1>
       Done!
     </h1>
-    <p>
+    <p class="ltr">
       Based on your answers:<br><br>
       Your cared is of the hyper reactive type.<br>
       Visual:

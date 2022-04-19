@@ -23,12 +23,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-input {
-  font-family: 'Comfortaa', cursive, sans-serif;
-  text-decoration: none;
-}
-input:hover{
-  cursor: pointer;
-}
+
 </style>

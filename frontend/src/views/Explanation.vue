@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>
+    <p class="ltr">
       Welcome, {{$route.params.name}} <br><br>
       ASDUI tries it’s best to be customziable so that you can help
       your cared use it as best as they can. <br><br>
@@ -28,12 +28,4 @@ export default {
 
 <style scoped>
 
-div {
-  display: grid;
-  justify-items: left;
-}
-
-p {
-  text-align: left;
-}
 </style>

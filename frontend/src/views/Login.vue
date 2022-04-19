@@ -6,6 +6,7 @@
       <input type="email" required>
       <p>Password</p>
       <input type="password" required>
+      <br>
       <router-link :to="{name: 'MainMenu'}">
         <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" />
       </router-link>
@@ -33,11 +34,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-  display: grid;
-  justify-items: left;
-}
-p {
-  text-align: left;
-}
+
 </style>

@@ -1,22 +1,32 @@
 <template>
-  <p>
-    Hi there! <br> Welcome to ASDUI. <br><br> This app is made for you, the caretakers to customize
-    and fit the user experience for your cared and help them use their mobile phone to their full potential.
-  </p>
-  <form method="post" @submit="postData">
-    <p>
-      Please enter your name
+  <div>
+    <h3>
+      Hi there! <br> Welcome to ASDUI.
+    </h3>
+    <p class="ltr space">
+      This app is made for you, the caretakers to customize and fit the user experience
+      for your cared and help them use their mobile phone to their full potential.
     </p>
-    <input v-model="posts.name" required type="text">
-    <p>
-      Please enter your email
-    </p>
-    <input v-model="posts.email" required type="email">
-    <Button background-color="#FAA43E" text="submit" text-color="white" type="submit"/>
-    <router-link :to="{name: 'Explanation', params: {name: posts.name}}">
-      <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
-    </router-link>
-  </form>
+    <div>
+      <form method="post" @submit="postData">
+        <p>
+          Please enter your name
+        </p>
+        <input v-model="posts.name" required type="text">
+        <p>
+          Please enter your email
+        </p>
+        <input v-model="posts.email" required type="email">
+        <br>
+        <div >
+          <Button background-color="#FAA43E" text="Submit" text-color="white" type="submit"/>
+          <router-link :to="{name: 'Explanation', params: {name: posts.name}}">
+            <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
+          </router-link>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>

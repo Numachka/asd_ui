@@ -3,7 +3,7 @@
     <h2>
       ASDUI magic in the background....
     </h2>
-    <div v-for="(answer, question) in JSON.parse(results)">
+    <div class="ltr" v-for="(answer, question) in JSON.parse(results)">
       <p>
         {{question}} <br>
         Answer: {{answer}}

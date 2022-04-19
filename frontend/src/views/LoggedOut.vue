@@ -1,13 +1,15 @@
 <template>
   <div>
-    <img src="../assets/logo.jpeg" alt="Couldn't load the image">
+    <img alt="Couldn't load the image" src="../assets/logo.jpeg">
     <p>Please login or <br> register to continue</p>
-    <router-link :to="{name: 'Login'}">
-      <Button text="Log in" text-color="#07689F" background-color="white"/>
-    </router-link>
-    <router-link :to="{name: 'Introduction'}">
-      <Button text="REGISTER" text-color="white" background-color="#FAA43E"/>
-    </router-link>
+    <div>
+      <router-link :to="{name: 'Login'}">
+        <Button background-color="white" text="Login" text-color="#07689F"/>
+      </router-link>
+      <router-link :to="{name: 'Introduction'}">
+        <Button background-color="#FAA43E" text="Register" text-color="white"/>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -21,14 +23,5 @@ export default {
 </script>
 
 <style scoped>
-div {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
-p {
-  text-align: center;
-}
 
 </style>

@@ -1,20 +1,23 @@
 <template>
   <div v-if="!isSubmit">
-    <p>
-      Enter your cared’s details,<br> We promise no to share.
-    </p>
-    <form>
-      <p>Name</p>
-      <input type="text" required>
-      <p>Email</p>
-      <input type="email" required>
-      <p>Password</p>
-      <input type="password" required>
-      <p>Phone Number</p>
-      <input type="text"  required>
-      <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" @click="toggleSubmit"/>
-      <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
-    </form>
+    <h3>
+      Enter your cared’s details,<br> We promise not to share.
+    </h3>
+    <div>
+      <form>
+        <p>Name</p>
+        <input required type="text">
+        <p>Email</p>
+        <input required type="email">
+        <p>Password</p>
+        <input required type="password">
+        <p>Phone Number</p>
+        <input required type="text">
+        <br>
+        <Button background-color="#FAA43E" text="Submit" text-color="white" type="submit" @click="toggleSubmit"/>
+        <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
+      </form>
+    </div>
   </div>
   <div v-else>
     <p>The details have been confirmed by the system</p>
