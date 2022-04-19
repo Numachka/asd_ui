@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      Welcome, CaretakerName <br><br>
+      Welcome, {{$route.params.name}} <br><br>
       ASDUI tries it’s best to be customziable so that you can help
       your cared use it as best as they can. <br><br>
       Not every one is a designer though... <br><br>

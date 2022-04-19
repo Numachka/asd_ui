@@ -43,9 +43,9 @@ const routes = [
       {name:'Explanation',path: 'explanation', component: Explanation},
       {name:'Details',path: 'details', component: Details},
       {name:'IntroQuestions',path: 'intro-questions', component: IntroQuestions},
-      {name:'Questions',path: 'Questions', component: Questions},
-      {name:'Magic',path: 'Magic', component: Magic},
-      {name:'Result',path: 'Result', component: Result},
+      {name:'Questions',path: 'questions', component: Questions},
+      {name:'Magic',path: 'magic', component: Magic},
+      {name:'Result',path: 'result', component: Result},
     ],
   },
 ]

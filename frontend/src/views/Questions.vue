@@ -18,7 +18,7 @@
     </div>
   </div>
   <div v-else>
-    <router-link :to="{name: 'Magic'}">
+    <router-link :to="{name: 'Magic', params: {result: answers_Json}}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
     <p>

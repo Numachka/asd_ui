@@ -7,13 +7,13 @@
     <p>
       Please enter your name
     </p>
-    <input v-model="posts.Name" required type="text">
+    <input v-model="posts.name" required type="text">
     <p>
-      Please enter your Email
+      Please enter your email
     </p>
-    <input v-model="posts.Email" required type="email">
+    <input v-model="posts.email" required type="email">
     <Button background-color="#FAA43E" text="submit" text-color="white" type="submit"/>
-    <router-link :to="{name: 'Explanation'}">
+    <router-link :to="{name: 'Explanation', params: {name: posts.name}}">
       <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
     </router-link>
   </form>
@@ -32,8 +32,8 @@ export default {
   },
   setup() {
     let posts = ref({
-      "Name": null,
-      "Email": null
+      "name": null,
+      "email": null
     });
     let postData = (e) => {
       this.axios.post("http://localhost:8080", posts.value)
