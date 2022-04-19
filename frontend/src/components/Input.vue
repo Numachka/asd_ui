@@ -23,5 +23,7 @@ export default {
 </script>
 
 <style scoped>
-
+input:hover {
+  cursor: pointer;
+}
 </style>

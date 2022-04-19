@@ -38,13 +38,12 @@ div {
 img {
   border-radius: 5px;
 }
-
 input {
   border-radius: 5px;
   padding: 1vw;
   /*display: block;*/
+  /*align-items: center;*/
   border: none;
-  text-align: center;
   font-family: 'Comfortaa', sans-serif;
 }
 p {
@@ -56,10 +55,7 @@ p {
 .space {
   padding: 2vh;
 }
-.autoWidth{
-  width: auto;
-}
-input:hover, button:hover {
+button:hover {
   cursor: pointer;
 }
 </style>
