@@ -21,12 +21,6 @@
     <router-link :to="{name: 'Magic', params: {result: JSON.stringify(answers_Json)}}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
-    <p>
-      {{ answers }}
-    </p>
-    <p>
-      {{ answers_Json }}
-    </p>
   </div>
 </template>
 

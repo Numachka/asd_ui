@@ -3,7 +3,7 @@
     <h3>
       Please enter your cared’s details.<br>We promise not to share.
     </h3>
-    <div class="center">
+    <div>
       <form>
         <table>
           <tr>
@@ -122,5 +122,7 @@ select {
   width: 11.4vw;
   margin: 1vh;
 }
-
+td {
+  text-align: left;
+}
 </style>

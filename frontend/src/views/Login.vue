@@ -57,4 +57,7 @@ input:not(Input.reset) {
   margin: 1vh;
   width: 9vw;
 }
+td {
+  text-align: left;
+}
 </style>
