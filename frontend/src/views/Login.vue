@@ -1,16 +1,32 @@
 <template>
   <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
-  <div class="ltr">
+  <div>
+    <h1>
+      Login
+    </h1>
     <form>
-      <p>Email</p>
-      <input type="email" required>
-      <p>Password</p>
-      <input type="password" required>
-      <br>
+      <table>
+        <tr>
+          <td>
+            <h4>Email</h4>
+          </td>
+          <td>
+            <input type="email" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h4>Password</h4>
+          </td>
+          <td>
+            <input type="password" required>
+          </td>
+        </tr>
+      </table>
       <router-link :to="{name: 'MainMenu'}">
         <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white" />
       </router-link>
-      <Input background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
+      <Input class="reset" background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
     </form>
   </div>
 </template>
@@ -34,5 +50,11 @@ export default {
 </script>
 
 <style scoped>
-
+input:not(Input.reset) {
+  display: block;
+  height: 0.4vh;
+  padding: 2.5vh;
+  margin: 1vh;
+  width: 9vw;
+}
 </style>

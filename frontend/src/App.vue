@@ -12,7 +12,7 @@
   font-family: 'Comfortaa', sans-serif;
   color: white;
 }
-button {
+button, select, input {
   font-family: 'Comfortaa', sans-serif;
 }
 body {
@@ -41,10 +41,10 @@ img {
 input {
   border-radius: 5px;
   padding: 1vw;
-  /*display: block;*/
-  /*align-items: center;*/
   border: none;
-  font-family: 'Comfortaa', sans-serif;
+}
+select {
+  border-radius: 5px;
 }
 p {
   width: 25vw;

@@ -20,7 +20,7 @@ const routes = [
     component: NotFound
   },
   {
-    path: '/MainMenu',
+    path: '/main-menu',
     name: 'MainMenu',
     component: MainMenu
   },
