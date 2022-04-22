@@ -24,7 +24,7 @@
       <Button background-color="white" text="Previous Question" text-color="black" @click="prevQuest" />
   </div>
   <div v-else>
-    <router-link :to="{name: 'Magic', params: {result: JSON.stringify(answers_Json)}}">
+    <router-link :to="{name: 'Magic', params: {results_json: JSON.stringify(answers_Json), results_array: answers}}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
   </div>

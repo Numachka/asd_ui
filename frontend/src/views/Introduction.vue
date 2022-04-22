@@ -35,7 +35,7 @@
           </tr>
         </table>
         <div>
-          <router-link :to="{name: 'Explanation', params: {name: posts.name}}">
+          <router-link :to="{name: 'Explanation', params: {name: this.posts.name}}">
             <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
           </router-link>
           <Input background-color="#bbbbbb" class="reset" text="Clear" text-color="white" type="reset" value="Reset"/>
