@@ -1,13 +1,13 @@
 <template>
   <div class="card center roundCard">
-    <div>
-      <img alt="failed to load the image" class="Image" :src="require(`../assets/${image}`)">
-      <h3>
-        <a :href="url">
+    <a :href="url">
+      <div>
+        <img alt="failed to load the image" class="Image" :src="require(`../assets/${image}`)">
+        <h3>
           {{ header }}
-        </a>
-      </h3>
-    </div>
+        </h3>
+      </div>
+    </a>
   </div>
 </template>
 
