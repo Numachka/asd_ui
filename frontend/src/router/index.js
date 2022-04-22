@@ -11,6 +11,7 @@ import IntroQuestions from "../views/IntroQuestions";
 import Questions from "../views/Questions";
 import Magic from "../views/Magic";
 import Result from "../views/Result";
+import Settings from "../views/Settings";
 
 
 const routes = [
@@ -46,6 +47,7 @@ const routes = [
       {name:'Questions',path: 'questions', component: Questions},
       {name:'Magic',path: 'magic', component: Magic},
       {name:'Result',path: 'result', component: Result},
+      {name:'Settings',path: 'settings', component: Settings},
     ],
   },
 ]

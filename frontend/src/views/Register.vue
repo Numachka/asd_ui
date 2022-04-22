@@ -1,18 +1,39 @@
 <template>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
   <div>
+    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+  </div>
+  <div class="space center">
+    <table>
+      <tr>
+        <td>
+          <PreviousButton />
+        </td>
+        <td>
+          <NextButton />
+        </td>
+      </tr>
+    </table>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
+import NextButton from "../components/NextButton";
+import PreviousButton from "../components/PreviousButton";
+
+
 export default {
   name: "Register",
-  components: {}
-}
+  components: {
+    NextButton,
+    PreviousButton,
+  }}
 </script>
 
 <style scoped>
+span {
+  width: 5vw;
+}
 
 </style>

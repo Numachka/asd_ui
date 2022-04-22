@@ -1,4 +1,9 @@
 <template>
+  <div>
+    <router-link :to="{name: 'IntroQuestions'}">
+      <Button background-color="#bbbbbb" text="Answer again" text-color="white" />
+    </router-link>
+  </div>
   <div v-if= "i < questions.length">
     <p v-if="i <= 3">
       Some visual cues first...
@@ -16,6 +21,7 @@
       <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>
       <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>
     </div>
+      <Button background-color="white" text="Previous Question" text-color="black" @click="prevQuest" />
   </div>
   <div v-else>
     <router-link :to="{name: 'Magic', params: {result: JSON.stringify(answers_Json)}}">
@@ -53,7 +59,12 @@ export default {
       answers_Json.value[questions.value[i.value++]] = answer;
       answers.value.push(answer);
     };
-    return {questions, i, saveAnswer, answers, answers_Json}
+    const prevQuest = () => {
+      if (i.value > 0){
+        i.value--;
+      }
+    };
+    return {questions, i, saveAnswer, answers, answers_Json, prevQuest}
   }
 }
 </script>

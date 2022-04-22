@@ -9,6 +9,9 @@
         Answer: {{answer}}
       </p>
     </div>
+    <router-link :to="{name: 'Settings'}">
+      <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
+    </router-link>
   </div>
 </template>
 
@@ -24,13 +27,6 @@ export default {
       return this.$route.params.result
     }
   }
-  // setup() {
-  //   let result = ref(null);
-  //   if (this.$route.params.result)
-  //     result.value = this.$route.params.result;
-  //   console.log(result)
-  //   return { result }
-  // }
 }
 </script>
 

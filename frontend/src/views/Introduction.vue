@@ -3,7 +3,7 @@
     <h3>
       Hi there! <br> Welcome to ASDUI.
     </h3>
-    <p>
+    <p class="ltr">
       This app is made for you, the caretakers to customize and fit the user experience
       for your cared and help them use their mobile phone to their full potential.
     </p>
