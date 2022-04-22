@@ -112,19 +112,18 @@ export default {
 
 input:not(Input.reset) {
   display: block;
-  height: 0.4vh;
-  padding: 2.5vh;
-  margin: 1vh;
+  height: 0.5vh;
+  padding: 2vh;
+  margin: 0.5vh;
   width: 9vw;
 }
-
 select {
-  height: 5vh;
-  width: 11.4vw;
-  margin: 1vh;
+  height: 4.5vh;
+  margin: 0.5vh;
+  width: 11vw;
 }
-
 td {
   text-align: left;
+
 }
 </style>
