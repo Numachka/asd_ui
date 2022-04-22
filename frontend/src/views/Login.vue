@@ -5,18 +5,7 @@
     </router-link>
   </div>
   <div class="space center">
-    <table>
-      <tr>
-        <td>
-          <PreviousButton/>
-        </td>
-        <td>
-          <NextButton/>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div>
+    <PreviousButton/>
     <h1>
       Login
     </h1>
@@ -51,7 +40,6 @@
 import {ref} from 'vue'
 import Input from "../components/Input";
 import Button from "../components/Button";
-import NextButton from "../components/NextButton";
 import PreviousButton from "../components/PreviousButton";
 
 export default {
@@ -59,17 +47,15 @@ export default {
   components: {
     Button,
     Input,
-    NextButton,
     PreviousButton,
   },
-setup()
-{
-  let correctDetails = ref(false);
-  const toggleSubmit = () => {
-    correctDetails.value = !correctDetails.value;
+  setup() {
+    let correctDetails = ref(false);
+    const toggleSubmit = () => {
+      correctDetails.value = !correctDetails.value;
+    }
+    return {toggleSubmit, correctDetails}
   }
-  return {toggleSubmit, correctDetails}
-}
 }
 </script>
 
@@ -85,9 +71,11 @@ input:not(Input.reset) {
 td {
   text-align: left;
 }
+
 td span {
   text-align: center;
 }
+
 span {
   width: 5vw;
 }

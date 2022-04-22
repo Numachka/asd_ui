@@ -4,12 +4,15 @@
       ASDUI magic in the background....
     </h2>
     <h4 class="ltr">
-      The result of the questions is: {{classifyResult.maxScore.name}}
+      The result of the questions is: {{ classifyResult.maxScore.name }}
       <br>
-      Score: {{classifyResult.maxScore.score}}
+      Score: {{ classifyResult.maxScore.score }}
     </h4>
     <div>
       <Button background-color="#FAA43E" text="Show Results" text-color="white" @click="showResults"/>
+      <router-link :to="{name: 'Settings'}">
+        <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
+      </router-link>
     </div>
     <div v-if="isShow && results_json">
       <div class="ltr" v-for="(answer, question) in JSON.parse(results_json)">
@@ -19,9 +22,6 @@
         </p>
       </div>
     </div>
-    <router-link :to="{name: 'Settings'}">
-      <Button background-color="#FAA43E" text="Next" text-color="white" type="submit"/>
-    </router-link>
   </div>
 </template>
 
@@ -62,10 +62,10 @@ export default {
           {"name": "Tactile", "score": tactileScore},
         ];
 
-        let maxScore = scores.reduce(function(prev, current) {
+        let maxScore = scores.reduce(function (prev, current) {
           return (prev.score >= current.score) ? prev : current
         });
-        return { maxScore }
+        return {maxScore}
 
       } catch (err) {
         console.log(err.message)

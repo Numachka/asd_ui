@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import {ref} from 'vue'
 
 export default {
   name: "Input",
@@ -13,8 +12,10 @@ export default {
         'background-color': this.backgroundColor,
         'color': this.textColor,
         'border-radius': '5px',
-        'margin': '2vw',
+        'margin': '0.7vw',
         'padding': '1vw',
+        'width': '7vw',
+        'height': '6vh'
       }
       return {design}
     }

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import {ref} from 'vue'
 
 export default {
   name: "Button",
@@ -16,9 +15,11 @@ export default {
         'background-color': this.backgroundColor,
         'color': this.textColor,
         'border-radius': '5px',
-        'margin': '2vw',
-        'padding': '1vw',
-        'border': 'none'
+        'margin': '0.7vw',
+        'padding': '0.5vw',
+        'border': 'none',
+        'width': '7vw',
+        'height': '6vh'
       }
       return {design}
     }

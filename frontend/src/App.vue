@@ -61,4 +61,7 @@ form p {
 button:hover {
   cursor: pointer;
 }
+.marginTop {
+  margin-top: 1vh;
+}
 </style>

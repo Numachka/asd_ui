@@ -1,8 +1,8 @@
 <template>
   <div v-if="!isSubmit">
-    <h3>
+    <h4>
       Please enter your cared’s details.<br>We promise not to share.
-    </h3>
+    </h4>
     <div>
       <form>
         <table>
@@ -117,11 +117,13 @@ input:not(Input.reset) {
   margin: 1vh;
   width: 9vw;
 }
+
 select {
   height: 5vh;
   width: 11.4vw;
   margin: 1vh;
 }
+
 td {
   text-align: left;
 }

@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <router-link :to="{name: 'IntroQuestions'}">
-      <Button background-color="#bbbbbb" text="Answer again" text-color="white" />
-    </router-link>
-  </div>
-  <div v-if= "i < questions.length">
+  <div v-if="i < questions.length">
     <p v-if="i <= 3">
       Some visual cues first...
     </p>
@@ -21,9 +16,14 @@
       <Button background-color="#519872" text="Yes" text-color="black" @click="saveAnswer(true)"/>
       <Button background-color="#E84855" text="No" text-color="black" @click="saveAnswer(false)"/>
     </div>
-      <Button background-color="white" text="Previous Question" text-color="black" @click="prevQuest" />
+    <div>
+      <Button background-color="#bbbbbb" text="Previous Question" text-color="white" @click="prevQuest"/>
+    </div>
   </div>
   <div v-else>
+    <h4>
+      To answer the questionnaire again, click on the previous button
+    </h4>
     <router-link :to="{name: 'Magic', params: {results_json: JSON.stringify(answers_Json), results_array: answers}}">
       <Button background-color="#FAA43E" text="Next" text-color="white"/>
     </router-link>
@@ -60,7 +60,7 @@ export default {
       answers.value.push(answer);
     };
     const prevQuest = () => {
-      if (i.value > 0){
+      if (i.value > 0) {
         i.value--;
       }
     };
@@ -70,8 +70,8 @@ export default {
 </script>
 
 <style scoped>
-  h3 {
-    width: 25vw;
-    height: 5vh;
-  }
+h3 {
+  width: 25vw;
+  height: 6vh;
+}
 </style>
