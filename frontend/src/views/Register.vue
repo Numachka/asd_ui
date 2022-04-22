@@ -1,15 +1,17 @@
 <template>
   <div>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+    <router-link :to="{name: 'LoggedOut'}">
+      <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+    </router-link>
   </div>
   <div class="space center">
     <table>
       <tr>
         <td>
-          <PreviousButton />
+          <PreviousButton/>
         </td>
         <td>
-          <NextButton />
+          <NextButton/>
         </td>
       </tr>
     </table>
@@ -28,12 +30,12 @@ export default {
   components: {
     NextButton,
     PreviousButton,
-  }}
+  }
+}
 </script>
 
 <style scoped>
 span {
   width: 5vw;
 }
-
 </style>

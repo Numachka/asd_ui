@@ -12,7 +12,6 @@
       <Button background-color="#FAA43E" text="Show Results" text-color="white" @click="showResults"/>
     </div>
     <div v-if="isShow && results_json">
-      {{ results_array }}
       <div class="ltr" v-for="(answer, question) in JSON.parse(results_json)">
         <p>
           {{ question }} <br>
