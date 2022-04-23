@@ -1,1 +1,0 @@
-This folder contains the dynamic content shown in the UI.

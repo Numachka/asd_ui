@@ -1,1 +1,0 @@
-This folder contains the connection to the services per route.

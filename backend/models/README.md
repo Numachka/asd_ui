@@ -1,1 +1,0 @@
-This folder contains the code for interfacing with a database and the information in the app.
