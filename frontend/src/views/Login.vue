@@ -10,16 +10,11 @@
       Login
     </h1>
     <form>
-      <table>
-        <tr>
-          <td><h4>Email</h4></td>
-          <td><input v-model="email" type="email" required></td>
-        </tr>
-        <tr>
-          <td><h4>Password</h4></td>
-          <td><input v-model="password" type="password" required></td>
-        </tr>
-      </table>
+          <h4>Email</h4>
+          <input v-model="email" type="email" required>
+
+          <h4>Password</h4>
+          <input v-model="password" type="password" required>
       <Button @click="login" background-color="#FAA43E" text="Submit" text-color="white"/>
     </form>
   </div>
@@ -91,5 +86,11 @@ td span {
 
 span {
   width: 5vw;
+}
+
+form {
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 </style>
