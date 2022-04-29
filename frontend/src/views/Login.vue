@@ -10,52 +10,60 @@
       Login
     </h1>
     <form>
-      <table>
-        <tr>
-          <td>
-            <h4>Email</h4>
-          </td>
-          <td>
-            <input type="email" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <h4>Password</h4>
-          </td>
-          <td>
-            <input type="password" required>
-          </td>
-        </tr>
-      </table>
-      <router-link :to="{name: 'MainMenu'}">
-        <Button type="submit" background-color="#FAA43E" text="Submit" text-color="white"/>
-      </router-link>
-      <Input class="reset" background-color="#bbbbbb" text="Clear" text-color="white" type="reset" value="Reset"/>
+          <h4>Email</h4>
+          <input v-model="email" type="email" required>
+
+          <h4>Password</h4>
+          <input v-model="password" type="password" required>
+      <Button @click="login" background-color="#FAA43E" text="Submit" text-color="white"/>
     </form>
   </div>
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref} from "vue";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import PreviousButton from "../components/PreviousButton";
 
 export default {
   name: "Login",
+  loginSuccessful: false, /* When true will switch to the next page according to the user */
   components: {
     Button,
     Input,
     PreviousButton,
   },
   setup() {
-    let correctDetails = ref(false);
-    const toggleSubmit = () => {
-      correctDetails.value = !correctDetails.value;
+    const email = ref("")
+    const password = ref("")
+    const login = () => {
+      console.log(email.value + password.value)
+      const url = 'http://localhost:8081/asdui/login';
+      // const url = 'http://localhost:8081/asdui/register/introduction/email-check/' + email.value;
+      const body = {
+        headers: {
+          "content-type": "application/json"
+        },
+        body: {
+          username: email.value,
+          password: password.value
+        },
+        method: "POST"
+      }
+      fetch(url, body)
+          .then(data => {
+            return data.json()
+          })
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error)
+          })
     }
-    return {toggleSubmit, correctDetails}
-  }
+    return { email, password, login }
+  },
 }
 </script>
 
@@ -78,5 +86,11 @@ td span {
 
 span {
   width: 5vw;
+}
+
+form {
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 </style>

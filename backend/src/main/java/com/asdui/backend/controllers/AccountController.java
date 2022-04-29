@@ -8,6 +8,7 @@ import com.asdui.backend.repository.QuestionRepository;
 import com.asdui.backend.repository.UserInterfaceRepository;
 import com.asdui.backend.repository.UserRepository;
 import com.asdui.backend.repository.UserSettingsRepository;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/asdui")
+@Slf4j
 public class AccountController {
     @Autowired
     UserRepository userRepository;
@@ -32,8 +34,8 @@ public class AccountController {
     UserSettingsRepository userSettingsRepository;
 
     // -------------------------- Registration Methods------------------------ //
-    @GetMapping("/register/introduction/email-check")
-    public ResponseEntity<Boolean> checkUsernameInDatabase(@RequestBody String username) {
+    @GetMapping("/register/introduction/email-check/{username}")
+    public ResponseEntity<Boolean> checkUsernameInDatabase(@PathVariable String username) {
         List<User> users = userRepository.findAll();
         Optional<User> returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
         return new ResponseEntity<>(returnedUser.isPresent(), HttpStatus.OK);
@@ -60,7 +62,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<UserPackage> loginUser(@RequestBody Map<String, String> credentials) {
         try {
             String username = credentials.get("username");
@@ -75,6 +77,7 @@ public class AccountController {
                         uiRepository.findUserInterfaceByUserId(userId),
                         userSettingsRepository.findUserSettingsByUserId(userId));
             }
+            log.info(String.valueOf(userPackage));
             return new ResponseEntity<>(userPackage, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

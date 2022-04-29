@@ -1,5 +1,5 @@
 <template>
-  <button :style="style.design">
+  <button :style="style.design" type="button">
     {{text}}
   </button>
 </template>
