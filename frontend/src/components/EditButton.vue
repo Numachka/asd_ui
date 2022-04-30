@@ -33,7 +33,7 @@
 
 <script>
 import {ref} from 'vue'
-import Button from "../components/Button";
+import Button from "./AsduiButton";
 
 export default {
   name: "EditButton",

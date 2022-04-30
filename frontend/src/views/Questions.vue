@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Button from "../components/Button";
+import Button from "../components/AsduiButton";
 import {ref} from 'vue'
 
 export default {
