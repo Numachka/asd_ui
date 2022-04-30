@@ -25,6 +25,7 @@ import {ref} from "vue";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import PreviousButton from "../components/PreviousButton";
+import {asduiStore} from "@/stores/asdui";
 
 export default {
   name: "Login",
@@ -35,13 +36,13 @@ export default {
     PreviousButton,
   },
   setup() {
+    const asdui = asduiStore()
     const email = ref("")
     const password = ref("")
     const login = () => {
       console.log(email.value + password.value)
       const url = 'http://localhost:8081/asdui/login';
-
-      fetch(url, {
+      let returnedValue = fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -50,10 +51,9 @@ export default {
           username: email.value,
           password: password.value
         })
-      }).then(data => {
+      })
+          .then(data => {
             return data.json()
-        //TODO save state for the application
-        // TODO Move to homepage.
           })
           .then(response => {
             console.log(response)
@@ -61,8 +61,13 @@ export default {
           .catch(error => {
             console.log(error)
           })
+
+      console.log(returnedValue);
+      asdui.
+
     }
-    return {email, password, login}
+
+    return {asdui, email, password, login}
   },
 }
 </script>
