@@ -4,17 +4,17 @@
     <p>Please login or <br> register to continue</p>
     <div>
       <router-link :to="{name: 'Login'}">
-        <Button background-color="white" text="Login" text-color="#07689F"/>
+        <Button button-type="login"/>
       </router-link>
       <router-link :to="{name: 'Introduction'}">
-        <Button background-color="#FAA43E" text="Register" text-color="white"/>
+        <Button button-type="register"/>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import Button from "../components/Button";
+import Button from "../components/AsduiButton";
 
 export default {
   name: "LoggedOut",
@@ -23,5 +23,7 @@ export default {
 </script>
 
 <style scoped>
-
+div, p {
+  margin: 2vh;
+}
 </style>
