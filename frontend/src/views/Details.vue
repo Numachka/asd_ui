@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import Button from "../components/Button";
+import Button from "../components/AsduiButton";
 import Input from "../components/Input";
 import {ref} from 'vue'
 
