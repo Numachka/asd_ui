@@ -10,11 +10,11 @@
       Login
     </h1>
     <form>
-          <h4>Email</h4>
-          <input v-model="email" type="email" required>
+      <h4>Email</h4>
+      <input v-model="email" type="email" required>
 
-          <h4>Password</h4>
-          <input v-model="password" type="password" required>
+      <h4>Password</h4>
+      <input v-model="password" type="password" required>
       <Button @click="login" background-color="#FAA43E" text="Submit" text-color="white"/>
     </form>
   </div>
@@ -40,20 +40,20 @@ export default {
     const login = () => {
       console.log(email.value + password.value)
       const url = 'http://localhost:8081/asdui/login';
-      // const url = 'http://localhost:8081/asdui/register/introduction/email-check/' + email.value;
-      const body = {
+
+      fetch(url, {
+        method: 'POST',
         headers: {
-          "content-type": "application/json"
+          'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
           username: email.value,
           password: password.value
-        },
-        method: "POST"
-      }
-      fetch(url, body)
-          .then(data => {
+        })
+      }).then(data => {
             return data.json()
+        //TODO save state for the application
+        // TODO Move to homepage.
           })
           .then(response => {
             console.log(response)
@@ -62,7 +62,7 @@ export default {
             console.log(error)
           })
     }
-    return { email, password, login }
+    return {email, password, login}
   },
 }
 </script>

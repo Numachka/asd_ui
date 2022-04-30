@@ -1,9 +1,6 @@
 package com.asdui.backend.controllers;
 
-import com.asdui.backend.models.Question;
-import com.asdui.backend.models.User;
-import com.asdui.backend.models.UserInterface;
-import com.asdui.backend.models.UserPackage;
+import com.asdui.backend.models.*;
 import com.asdui.backend.repository.QuestionRepository;
 import com.asdui.backend.repository.UserInterfaceRepository;
 import com.asdui.backend.repository.UserRepository;
@@ -16,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*")
@@ -63,10 +59,10 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserPackage> loginUser(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<UserPackage> loginUser(@RequestBody Credentials credentials) {
         try {
-            String username = credentials.get("username");
-            String password = credentials.get("password");
+            String username = credentials.getUsername();
+            String password = credentials.getPassword();
             List<User> users = userRepository.findAll();
             UserPackage userPackage = null;
             Optional<User> returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();

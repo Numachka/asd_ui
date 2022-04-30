@@ -59,6 +59,7 @@ public class Question {
     @Column(name = "auditory_score", nullable = false)
     private Integer auditoryScore;
 
+    private Boolean tactileScore;
 
     public Question() {}
 
@@ -77,19 +78,18 @@ public class Question {
         Q10 = otherQuestion.getQ10();
         Q11 = otherQuestion.getQ11();
         Q12 = otherQuestion.getQ12();
-        setVisualScore(Q1, Q2, Q3, Q4);
-        setAuditoryScore(Q5, Q6, Q7, Q8);
+        setVisualScore(Q1, Q2, Q3, Q4, Q5);
+        setAuditoryScore(Q6, Q7, Q8, Q9, Q10);
+        tactileScore = otherQuestion.getTactileScore();
     }
 
-
-    private void setVisualScore(Boolean q1, Boolean q2, Boolean q3, Boolean q4) {
-        visualScore = (q1 ? 1 : 0) +  (q2 ? 1 : 0) + (q3 ? 1 : 0) +  (q4 ? 1 : 0);
+    private void setAuditoryScore(Boolean q6, Boolean q7, Boolean q8, Boolean q9, Boolean q10) {
+        auditoryScore = (q6 ? 1 : 0) +  (q7 ? 1 : 0) + (q8 ? 1 : 0) +  (q9 ? 1 : 0) + (q10 ? 1 : 0);
     }
 
-    private void setAuditoryScore(Boolean q5, Boolean q6, Boolean q7, Boolean q8) {
-        auditoryScore = (q5 ? 1 : 0) +  (q6 ? 1 : 0) + (q7 ? 1 : 0) +  (q8 ? 1 : 0);
+    private void setVisualScore(Boolean q1, Boolean q2, Boolean q3, Boolean q4, Boolean q5) {
+        visualScore = (q1 ? 1 : 0) +  (q2 ? 1 : 0) + (q3 ? 1 : 0) +  (q4 ? 1 : 0) + (q5? 1 : 0);
     }
-
 
 
     /* TODO the question will be generated as follows:
