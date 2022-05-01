@@ -1,32 +1,23 @@
 <template>
-  <div>
-    <router-link :to="{name: 'LoggedOut'}">
-      <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
-    </router-link>
-  </div>
-  <div>
-    <PreviousButton/>
-  </div>
-  <div class="center">
-    <router-view></router-view>
-  </div>
+  <asdui-logo/>
+  <asdui-button button-type="return" class="return"/>
+  <router-view></router-view>
 </template>
 
 <script>
-
-import PreviousButton from "../components/PreviousButton";
+import AsduiLogo from "@/components/AsduiLogo";
+import AsduiButton from "@/components/AsduiButton";
 
 
 export default {
   name: "Register",
   components: {
-    PreviousButton,
+    AsduiButton,
+    AsduiLogo,
   }
 }
 </script>
 
 <style scoped>
-span {
-  width: 5vw;
-}
+
 </style>

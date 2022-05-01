@@ -27,4 +27,9 @@ p {
   font-size: 1.5em;
 }
 
+.asduiWindow {
+  display: grid;
+  font-size: 1.2rem;
+}
+
 </style>

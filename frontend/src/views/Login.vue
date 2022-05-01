@@ -1,17 +1,17 @@
 <template>
-  <div clas="login-page">
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+  <div class="login-page asduiWindow">
+    <asdui-logo/>
     <p>Welcome back!</p>
     <i>Enter your credentials below</i>
-      <form @submit.prevent="login">
-        <label for="email">Email</label>
-        <input v-model="email" type="email" required>
-        <label for="password">Password</label>
-        <input v-model="password" type="password" required>
-      </form>
+    <form @submit.prevent="login">
+      <label for="email">Email</label>
+      <input v-model="email" type="email" required>
+      <label for="password">Password</label>
+      <input v-model="password" type="password" required>
+    </form>
     <span>
-      <asdui-button button-type="submit"/>
-      <asdui-button button-type="back"/>
+      <asdui-button button-type="submit" @click="login"/>
+      <asdui-button button-type="back" @click="$router.back()"/>
     </span>
   </div>
 </template>
@@ -19,25 +19,18 @@
 <script>
 import {ref} from "vue";
 import Input from "../components/Input";
-import PreviousButton from "../components/PreviousButton";
 import AsduiButton from "@/components/AsduiButton";
+import AsduiLogo from "@/components/AsduiLogo";
 import {asduiStore} from "@/stores/asdui";
+import router from "@/router";
 
 export default {
   name: "Login",
   loginSuccessful: false, /* When true will switch to the next page according to the user */
   components: {
     AsduiButton,
-    Button,
+    AsduiLogo,
     Input,
-    PreviousButton,
-  },
-  computed: {
-    moveToLogin() {
-      if (this.loginSuccessful) {
-        this.$router.push('MainMenu')
-      }
-    }
   },
   setup() {
     const asdui = asduiStore()
@@ -48,7 +41,7 @@ export default {
     const login = () => {
       console.log(email.value + password.value)
       const url = 'http://localhost:8081/asdui/login';
-      let returnedValue = fetch(url, {
+      fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,33 +56,21 @@ export default {
           })
           .then(response => {
             console.log(response)
-            loginSuccessful.value = true;
-            //TODO save state for the application
+            asdui.storeUser(response)
+            router.push('/main-menu')
           })
           .catch(error => {
             console.log(error)
           })
-
-      console.log(returnedValue);
     }
-    return {asdui, wrongCredential, loginSuccessful, email, password, login}
+    window.stores = { asdui }
+
+    return {asduiStore, wrongCredential, loginSuccessful, email, password, login}
   },
 }
 </script>
 
 <style scoped>
-div {
-  display: grid;
-  font-size: 1.2rem;
-}
-
-img {
-  margin: 0 1vh ;
-  width: 3vw;
-  height: 3vw;
-  border-radius: 8px;
-  justify-self: start;
-}
 
 i {
   margin: 1vh;
@@ -108,7 +89,7 @@ form label {
 form input {
   border: none;
   border-radius: 2px;
-  margin: 1vh 0 ;
+  margin: 1vh 0;
   padding: 1vh 2vh;
   width: 80%
 }

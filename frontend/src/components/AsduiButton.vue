@@ -1,5 +1,5 @@
 <template>
-  <button :class="this.buttonType" type="button">
+  <button :class="this.buttonType">
     {{ camelCase(this.buttonType) }}
   </button>
 </template>
@@ -54,6 +54,13 @@ button {
 .no {
   background-color: #FAA43E;
   color: #FFFFFF;
+}
+
+.return {
+  background-color: #FFFFFF;
+  color: #FAA43E;
+  justify-self: end;
+  align-self: start;
 }
 
 </style>
