@@ -19,7 +19,6 @@
 <script>
 import {ref} from "vue";
 import Input from "../components/Input";
-import Button from "../components/AsduiButton";
 import PreviousButton from "../components/PreviousButton";
 import AsduiButton from "@/components/AsduiButton";
 
@@ -27,7 +26,6 @@ export default {
   name: "Login",
   components: {
     AsduiButton,
-    Button,
     Input,
     PreviousButton,
   },

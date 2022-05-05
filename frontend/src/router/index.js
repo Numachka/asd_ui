@@ -12,6 +12,9 @@ import Questions from "../views/Questions";
 import Magic from "../views/Magic";
 import Result from "../views/Result";
 import Settings from "../views/Settings";
+import Profile from "../views/Profile";
+import UserInterface from "../views/UserInterface";
+import Credits from "../views/Profile";
 
 
 const routes = [
@@ -47,7 +50,16 @@ const routes = [
       {name:'Questions',path: 'questions', component: Questions},
       {name:'Magic',path: 'magic', component: Magic},
       {name:'Result',path: 'result', component: Result},
-      {name:'Settings',path: 'settings', component: Settings},
+    ],
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
+    children: [
+      {name:'Profile', path: 'profile', component: Profile},
+      {name:'Credits', path: 'credits', component: Credits},
+      {name:'UserInterface', path: 'user-interface', component: UserInterface},
     ],
   },
 ]
