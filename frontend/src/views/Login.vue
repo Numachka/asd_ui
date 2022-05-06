@@ -18,16 +18,12 @@
 
 <script>
 import {ref} from "vue";
-import Input from "../components/Input";
-import PreviousButton from "../components/PreviousButton";
 import AsduiButton from "@/components/AsduiButton";
 
 export default {
   name: "Login",
   components: {
     AsduiButton,
-    Input,
-    PreviousButton,
   },
   computed: {
     moveToLogin() {
