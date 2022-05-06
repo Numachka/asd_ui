@@ -1,71 +1,42 @@
 package com.asdui.backend.models;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "question")
 public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "q_id", nullable = false)
-    private Long id;
-
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
-    @Column(name = "q1", nullable = false)
+    /* The weights are predetermined and are in a position to change in the future */
+    public static final double[] VISUAL_WEIGHTS = {0.1, 0.05, 0.1, 0.1, 0.15, 0.1, 0.2, 0.2};
+    public static final double[] AUDITORY_WEIGHTS = {0.2, 0.2, 0.1, 0.15, 0.15, 0.2};
     private Boolean Q1;
-
-    @Column(name = "q2", nullable = false)
     private Boolean Q2;
-
-    @Column(name = "q3", nullable = false)
     private Boolean Q3;
-
-    @Column(name = "q4", nullable = false)
     private Boolean Q4;
-
-    @Column(name = "q5", nullable = false)
     private Boolean Q5;
-
-    @Column(name = "q6", nullable = false)
     private Boolean Q6;
-
-    @Column(name = "q7", nullable = false)
     private Boolean Q7;
-
-    @Column(name = "q8", nullable = false)
     private Boolean Q8;
-
-    @Column(name = "q9", nullable = false)
     private Boolean Q9;
-
-    @Column(name = "q10", nullable = false)
     private Boolean Q10;
-
-    @Column(name = "q11", nullable = false)
     private Boolean Q11;
-
-    @Column(name = "q12", nullable = false)
     private Boolean Q12;
-
-    @Column(name = "visual_score", nullable = false)
+    private Boolean Q13;
+    private Boolean Q14;
+    private Boolean Q15;
     private Integer visualScore;
-
-    @Column(name = "auditory_score", nullable = false)
     private Integer auditoryScore;
+    private Integer tactileScore;
 
-    private Boolean tactileScore;
-
-    public Question() {}
+    public Question() {
+    }
 
     public Question(Question otherQuestion) {
-        id = otherQuestion.id;
-        userId = otherQuestion.userId;
         Q1 = otherQuestion.getQ1();
         Q2 = otherQuestion.getQ2();
         Q3 = otherQuestion.getQ3();
@@ -78,27 +49,33 @@ public class Question {
         Q10 = otherQuestion.getQ10();
         Q11 = otherQuestion.getQ11();
         Q12 = otherQuestion.getQ12();
-        setVisualScore(Q1, Q2, Q3, Q4, Q5);
-        setAuditoryScore(Q6, Q7, Q8, Q9, Q10);
-        tactileScore = otherQuestion.getTactileScore();
+        Q13 = otherQuestion.getQ12();
+        Q14 = otherQuestion.getQ12();
+        Q15 = otherQuestion.getQ15();
+        visualScore = calculateScore("visual", Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8);
+        auditoryScore = calculateScore("auditory", Q9, Q10, Q11, Q12, Q13, Q14);
+        tactileScore = calculateScore("tactile", Q15);
     }
 
-    private void setAuditoryScore(Boolean q6, Boolean q7, Boolean q8, Boolean q9, Boolean q10) {
-        auditoryScore = (q6 ? 1 : 0) +  (q7 ? 1 : 0) + (q8 ? 1 : 0) +  (q9 ? 1 : 0) + (q10 ? 1 : 0);
+    private Integer calculateScore(String type, Boolean... questions) {
+        AtomicInteger index = new AtomicInteger(0);
+        switch (type) {
+            case "visual":
+                return Arrays.stream(questions)
+                        .map(item -> (item ? 1 : 0))
+                        .map(item -> item * VISUAL_WEIGHTS[index.getAndIncrement()] * VISUAL_WEIGHTS.length)
+                        .mapToInt(Double::intValue)
+                        .sum();
+            case "auditory":
+                return Arrays.stream(questions)
+                        .map(item -> (item ? 1 : 0))
+                        .map(item -> item * AUDITORY_WEIGHTS[index.getAndIncrement()] * AUDITORY_WEIGHTS.length)
+                        .mapToInt(Double::intValue)
+                        .sum();
+            case "tactile":
+                return questions[0] ? 1 : 0; /* Always one question */
+            default:
+                return 0;
+        }
     }
-
-    private void setVisualScore(Boolean q1, Boolean q2, Boolean q3, Boolean q4, Boolean q5) {
-        visualScore = (q1 ? 1 : 0) +  (q2 ? 1 : 0) + (q3 ? 1 : 0) +  (q4 ? 1 : 0) + (q5? 1 : 0);
-    }
-
-
-    /* TODO the question will be generated as follows:
-    *  Questions come in three directions - Auditory, Visual, Motor.
-    *  Every question will have 2 params which are summed up and then calculated
-    *
-    *  Cartesian products between the 2 params:
-    *   Visual | Auditory
-    *   Hypo | Hyper
-    *     */
-
 }

@@ -30,6 +30,7 @@ p {
 .asduiWindow {
   display: grid;
   font-size: 1.2rem;
+  height: 60vh;
 }
 
 </style>

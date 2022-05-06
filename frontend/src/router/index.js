@@ -3,13 +3,13 @@ import NotFound from "../views/NotFound";
 import MainMenu from '../views/MainMenu.vue'
 import LoggedOut from "../views/LoggedOut.vue";
 import Login from "../views/Login";
-import Register from "../views/Register";
-import Introduction from "../views/Introduction";
-import Explanation from "../views/Explanation";
-import Details from "../views/Details";
-import IntroQuestions from "../views/IntroQuestions";
-import Questions from "../views/Questions";
-import Magic from "../views/Magic";
+import Register from "../views/RegisterView";
+import Introduction from "../views/Register1_Introduction";
+import Explanation from "../views/Register2_Explanation";
+import Details from "../views/Register3_Details";
+import IntroQuestions from "../views/Register4_IntroQuestions";
+import Questions from "../views/Register5_Questions";
+import Magic from "../views/Register6_Magic";
 import Result from "../views/Result";
 import Settings from "../views/Settings";
 

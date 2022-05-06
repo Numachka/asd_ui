@@ -1,16 +1,16 @@
 <template>
-  <div class="login-page asduiWindow">
+  <div class="asduiWindow">
     <asdui-logo/>
     <p>Welcome back!</p>
     <i>Enter your credentials below</i>
     <form @submit.prevent="login">
       <label for="email">Email</label>
-      <input v-model="email" type="email" required>
+      <input v-model="email" type="email" required placeholder="asdui@mail.com">
       <label for="password">Password</label>
-      <input v-model="password" type="password" required>
+      <input v-model="password" type="password" required placeholder="******">
     </form>
     <span>
-      <asdui-button button-type="submit" @click="login"/>
+      <asdui-button button-type="submit"/>
       <asdui-button button-type="back" @click="$router.back()"/>
     </span>
   </div>
@@ -56,7 +56,6 @@ export default {
           })
           .then(response => {
             console.log(response)
-            asdui.storeUser(response)
             router.push('/main-menu')
           })
           .catch(error => {

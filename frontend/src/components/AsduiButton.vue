@@ -5,16 +5,15 @@
 </template>
 
 <script>
+import {camelCase} from "@/utils/utils"
+import Register from "@/views/RegisterView";
 
-import Register from "@/views/Register";
 export default {
   name: "AsduiButton",
   components: {Register},
   props: ["buttonType"],
   methods: {
-    camelCase(string) {
-      return string.substring(0, 1).toUpperCase() + string.substring(1) /* hello -> Hello */
-    }
+    camelCase
   }
 }
 
@@ -29,38 +28,47 @@ button:hover {
 
 button {
   border-radius: 5px;
-  margin: 1vw 1vw ;
+  margin: 1vw 1vw;
   padding: 1vw;
   border: none;
   width: 10vw;
   transition: 0.5s;
 }
 
+/*ALl of the below classes are added via props*/
+
 .login, .back {
   background-color: #FFFFFF;
   color: #07689F;
 }
 
-.register, .submit{
+.register, .submit, .next {
   background-color: #FAA43E;
   color: #FFFFFF;
 }
 
 .yes {
-  background-color: #FAA43E;
-  color: #FFFFFF;
+  background-color: #519872;
+  color: #000000;
 }
 
 .no {
-  background-color: #FAA43E;
-  color: #FFFFFF;
+  background-color: #E84855;
+  color: #000000;
+}
+
+.previous {
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 .return {
   background-color: #FFFFFF;
-  color: #FAA43E;
+  color: #000000;
   justify-self: end;
   align-self: start;
+  grid-row-start: 1;
+  width: 10vw;
 }
 
 </style>
