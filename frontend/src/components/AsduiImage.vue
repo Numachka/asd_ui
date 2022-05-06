@@ -26,7 +26,7 @@ export default {
 
 img {
   width: 30vw;
-  height: 30vh;
+  height: 10vh;
   border-radius: 50%;
 }
 </style>

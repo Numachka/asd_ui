@@ -1,26 +1,12 @@
 <template>
+  <i>Card</i>
   <div>
-    <h3>
-      Background Color
-    </h3>
+    <label>Background Color</label>
     <select v-model="Color" name="colorPick" @click="changeColor('card')">
       <option v-for="(color, colorName) in colors" :id="color" :value="color">
         {{ colorName }}
       </option>
     </select>
-    <h3>
-      Font size
-    </h3>
-    <select v-model="fontSize" name="sizePick" @click="changeFontSize('header')">
-      <option v-for="size in sizes" :value="size"> {{ size }} </option>
-    </select>
-    <h3>
-      Picture size
-    </h3>
-    <select v-model="imageSize" name="imageSize" @click="changeImageSize('image')">
-      <option v-for="size in sizes" :value="size"> {{ size }} </option>
-    </select>
-
   </div>
 </template>
 
@@ -54,10 +40,6 @@ export default {
       "Black": '#1e1f26',
     });
 
-    const sizes = ref([
-      11, 12, 14, 16, 18, 20
-    ]);
-
     const color = ref(null);
     const fontSize = ref(null);
     const imageSize = ref(null);
@@ -78,19 +60,41 @@ export default {
         document.getElementById(id).style.height = imageSize.value + "vh";
       }
     };
-    return { Color: color, colors, fontSize, sizes, imageSize, changeColor, changeFontSize, changeImageSize }
+    return {Color: color, colors, fontSize, imageSize, changeColor, changeFontSize, changeImageSize}
   }
 }
 </script>
 
 <style scoped>
 div {
-  color: black;
-  background: white;
-  width: 10vw;
-  height: 30vh;
-  padding: 50px 0;
-  margin: auto;
-  border-radius: 10px;
+  display: grid;
+  justify-items: center;
+  border-radius: 5px;
 }
+
+label {
+  font-size: 1rem;
+  margin: 0.5vh;
+  padding: 0 2vw;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  border: none;
+  width: 60%;
+  background: #FFFFFF url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat calc(100% - 0.75rem) center;
+  padding: 0.2vh 0.2vh;
+}
+
+i {
+  position: absolute;
+  top: -1vh;
+  left: 1vh;
+  background-color: #FAA43E;
+  border-radius: 5px;
+  padding: 0 0.2vh;
+}
+
+
 </style>

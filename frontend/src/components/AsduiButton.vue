@@ -47,7 +47,7 @@ button {
   color: #FFFFFF;
 }
 
-.yes {
+.yes, .accept {
   background-color: #519872;
   color: #000000;
 }
