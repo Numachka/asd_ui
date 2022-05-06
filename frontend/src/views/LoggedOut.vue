@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import Button from "../components/AsduiButton";
+import AsduiButton from "../components/AsduiButton";
 
 export default {
   name: "LoggedOut",
-  components: {Button},
+  components: {AsduiButton},
 }
 </script>
 
