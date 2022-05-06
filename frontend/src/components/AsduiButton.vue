@@ -1,17 +1,17 @@
 <template>
   <button :class="this.buttonType">
-    {{ camelCase(this.buttonType) }}
+    {{ (typeof this.buttonText === "undefined" ? camelCase(this.buttonType) : this.buttonText)}}
   </button>
 </template>
 
 <script>
 import {camelCase} from "@/utils/utils"
-import Register from "@/views/RegisterView";
+import Register from "@/views/UserCreation/RegisterView";
 
 export default {
   name: "AsduiButton",
   components: {Register},
-  props: ["buttonType"],
+  props: ["buttonType", "buttonText"],
   methods: {
     camelCase
   }

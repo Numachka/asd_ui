@@ -20,15 +20,13 @@
 </template>
 
 <script>
-import AsduiButton from "@/components/AsduiButton";
-import Input from "../components/Input"
-import {inject, ref} from 'vue'
+import AsduiButton from "../../components/AsduiButton";
+import {ref} from 'vue'
 import router from "@/router";
 
 export default {
   name: "Introduction",
   components: {
-    Input,
     AsduiButton
   },
   setup() {

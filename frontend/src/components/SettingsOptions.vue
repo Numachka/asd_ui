@@ -53,17 +53,18 @@ export default {
       "Beige": '#faebd7',
       "Black": '#1e1f26',
     });
+
     const sizes = ref([
       11, 12, 14, 16, 18, 20
     ]);
 
-    const Color = ref(null);
+    const color = ref(null);
     const fontSize = ref(null);
     const imageSize = ref(null);
 
     const changeColor = (id) => {
-      if (Color.value) {
-        document.getElementById(id).style.backgroundColor = Color.value;
+      if (color.value) {
+        document.getElementById(id).style.backgroundColor = color.value;
       }
     };
     const changeFontSize = (id) => {
@@ -77,7 +78,7 @@ export default {
         document.getElementById(id).style.height = imageSize.value + "vh";
       }
     };
-    return { Color, colors, fontSize, sizes, imageSize, changeColor, changeFontSize, changeImageSize }
+    return { Color: color, colors, fontSize, sizes, imageSize, changeColor, changeFontSize, changeImageSize }
   }
 }
 </script>

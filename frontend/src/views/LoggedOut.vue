@@ -4,17 +4,17 @@
     <p>Please login or <br> register to continue</p>
     <div>
       <router-link :to="{name: 'Login'}">
-        <Button button-type="login"/>
+        <asdui-button button-type="login"/>
       </router-link>
       <router-link :to="{name: 'Introduction'}">
-        <Button button-type="register"/>
+        <asdui-button button-type="register"/>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import AsduiButton from "../components/AsduiButton";
+import AsduiButton from "@/components/AsduiButton";
 
 export default {
   name: "LoggedOut",

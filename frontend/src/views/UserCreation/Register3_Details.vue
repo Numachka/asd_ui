@@ -28,13 +28,12 @@
 
 <script>
 import {ref} from 'vue'
-import Input from "../components/Input";
 import AsduiButton from "@/components/AsduiButton";
 import router from "@/router";
 
 export default {
   name: "Details",
-  components: {AsduiButton, Input},
+  components: {AsduiButton},
   setup() {
     let user = ref({
       firstName: "",

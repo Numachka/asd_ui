@@ -17,19 +17,13 @@
 </template>
 
 <script>
-import CareTakerCard from "../components/CareTakerCard";
-import Header from "../components/Header";
-import EditButtonCard from "../components/EditButtonCard";
-import EditButton from "../components/EditButton";
-import AppCard from "../components/AppCard";
+import CareTakerCard from "../../components/CareTakerCard";
+import AppCard from "../../components/AppCard";
 
 export default {
   name: 'MainMenu',
   components: {
     CareTakerCard,
-    Header,
-    EditButton,
-    EditButtonCard,
     AppCard,
   }
 }

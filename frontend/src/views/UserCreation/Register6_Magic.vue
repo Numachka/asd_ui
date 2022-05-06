@@ -2,7 +2,7 @@
   <div @load="calculateUI">
     <div v-if="isLoading">
       <p>ASDUI magic in the background</p>
-      <img src="../assets/loaders/magicLoader.svg" >
+      <img src="../../assets/loaders/magicLoader.svg" >
     </div>
     <div v-else>
       <p>Done!</p>
@@ -12,12 +12,35 @@
       <p>Tactile - {{ tactileScore }}</p>
 
       <p v-if="!isLoading && visualScore > auditoryScore">
-        The generated interface will feature a more visual flow utilizing colors and less sounds to guide.
+        Based on your answers:<br><br>
+        Your cared is of the hyper reactive with visual sensitivity<br>
+        Visual:
+        Sensitivity to lights and sudden movements. <br>
+        Auditory:
+        Sensitive to sharp and loud noises. Tendency to tap to make some repeating noises.<br>
+        Tactile:
+        Sensitivity to touch <br>
+        In our design we will try to keep it mild and comfortable...<br>
+        One card at a time.<br>
+        Easy, natural colors. No sudden movements and pop ups.<br>
+        Mellow sounds, no sharp notifications.<br>
+        No vibration. <br>
       </p>
       <p v-else>
-        The generated interface will feature a less visual flow with enhanced sounds as a guide.
+        Based on your answers:<br><br>
+        Your cared is of the hypo reactive with auditory sensitivity<br>
+        Visual:
+        numbness to lights and sudden movements. <br>
+        Auditory:
+        numbness to sharp and loud noises.<br>
+        Tactile:
+        Insensitive to touch <br>
+        In our design we will try to keep it colorful and vibrant...<br>
+        One card at a time.<br>
+        Pop ups to attract attention.<br>
+        Sounds included to attract attention.<br>
+        Vibration on.<br>
       </p>
-
       <i>Click to move on to editing the generated interface</i>
       <div>
         <asdui-button button-type="next"/>
@@ -27,7 +50,7 @@
 </template>
 
 <script>
-import AsduiButton from "../components/AsduiButton";
+import AsduiButton from "../../components/AsduiButton";
 import {ref} from 'vue'
 import {useRoute} from "vue-router";
 

@@ -18,7 +18,6 @@
 
 <script>
 import {ref} from "vue";
-import Input from "../components/Input";
 import AsduiButton from "@/components/AsduiButton";
 import AsduiLogo from "@/components/AsduiLogo";
 import {asduiStore} from "@/stores/asdui";
@@ -30,7 +29,6 @@ export default {
   components: {
     AsduiButton,
     AsduiLogo,
-    Input,
   },
   setup() {
     const asdui = asduiStore()

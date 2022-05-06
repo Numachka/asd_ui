@@ -1,14 +1,14 @@
 <template>
+  <div v-if="isUploadImageTapped" class="image-settings">
+    <label for="file" class="upload-file">Upload image</label>
+    <input id="file" type="file" @change="onFileChange">
+  </div>
   <div id="card" class="card">
-    <div v-if="isUploadImageTapped">
-      <label for="file" class="upload-file">Upload image</label>
-      <input id="file" type="file" @change="onFileChange">
-    </div>
-    <div v-if="isButtonTapped">
+    <div v-if="isButtonTapped" class="button-settings">
 
     </div>
     <asdui-image v-if="!url" class="emptyImage" :url="url" @click="isUploadImageTapped=!isUploadImageTapped"/>
-    <asdui-button button-type="submit" button-text="Hello World!" @click="isButtonTapped=!isButtonTapped"/>
+    <asdui-button button-type="submit" button-text="Tap to edit" @click="isButtonTapped=!isButtonTapped"/>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import AsduiButton from "../components/AsduiButton";
 import AsduiImage from "@/components/AsduiImage";
 
 export default {
-  name: "Card",
+  name: "SettingsCard",
   components: {
     AsduiButton,
     AsduiImage
