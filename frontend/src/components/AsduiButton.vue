@@ -1,5 +1,5 @@
 <template>
-  <button :class="this.buttonType">
+  <button :class="this.buttonType" class="asdui-button">
     {{ (typeof this.buttonText === "undefined" ? camelCase(this.buttonType) : this.buttonText)}}
   </button>
 </template>
@@ -69,6 +69,12 @@ button {
   align-self: start;
   grid-row-start: 1;
   width: 10vw;
+}
+
+.edit {
+  background-color: #e0e0e0;
+  color: #000000;
+  width: 90%;
 }
 
 </style>

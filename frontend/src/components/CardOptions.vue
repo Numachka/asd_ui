@@ -2,7 +2,7 @@
   <i>Card</i>
   <div>
     <label>Background Color</label>
-    <select v-model="Color" name="colorPick" @click="changeColor('card')">
+    <select v-model="Color" name="colorPick" @click="changeColor($event)">
       <option v-for="(color, colorName) in colors" :id="color" :value="color">
         {{ colorName }}
       </option>
@@ -39,28 +39,19 @@ export default {
       "Beige": '#faebd7',
       "Black": '#1e1f26',
     });
-
     const color = ref(null);
-    const fontSize = ref(null);
-    const imageSize = ref(null);
-
-    const changeColor = (id) => {
+    const changeColor = (event) => {
       if (color.value) {
-        document.getElementById(id).style.backgroundColor = color.value;
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target) ) {
+            card.style.backgroundColor = color.value
+          }
+        }
       }
     };
-    const changeFontSize = (id) => {
-      if (fontSize.value) {
-        document.getElementById(id).style.fontSize = fontSize.value * 0.1 + "rem";
-      }
-    };
-    const changeImageSize = (id) => {
-      if (imageSize.value) {
-        document.getElementById(id).style.width = imageSize.value + "vw";
-        document.getElementById(id).style.height = imageSize.value + "vh";
-      }
-    };
-    return {Color: color, colors, fontSize, imageSize, changeColor, changeFontSize, changeImageSize}
+
+    return {Color: color, colors, changeColor}
   }
 }
 </script>

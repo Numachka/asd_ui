@@ -1,7 +1,6 @@
 <template>
-
-  <div class="image-container">
-    <img v-if="url" alt="failed to load the image" :src="url">
+  <div class="image-container asdui-image">
+    <img class="asdui-image-inner" alt="failed to load the image">
   </div>
 </template>
 
@@ -14,8 +13,9 @@ export default {
 
 <style scoped>
 .image-container {
-  width: 60%;
+  width: 90%;
   border: solid 1px #000000;
+  border-radius: 7px;
 }
 
 .image-container:hover {
@@ -25,8 +25,9 @@ export default {
 }
 
 img {
-  width: 30vw;
-  height: 10vh;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
+
 </style>

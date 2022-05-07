@@ -1,16 +1,80 @@
 <template>
   <i>Image</i>
   <label for="file" class="upload-file ">Upload image</label>
-  <input id="file" type="file" @change="onFileChange">
+  <input id="file" type="file" @change="onFileChange($event)">
   <label>Image size</label>
-  <select v-model="imageSize" name="imageSize" @click="changeImageSize('image')">
-    <option v-for="size in sizes" :value="size"> {{ size }}</option>
+  <select v-model="imageSize" name="imageSize" @click="changeImageSize($event)">
+    <option v-for="size in sizes" :value="size">{{ size }}</option>
   </select>
 </template>
 
 <script>
+import {ref} from "vue";
+
 export default {
-  name: "ImageOptions"
+  name: "ImageOptions",
+  setup() {
+    const sizes = ref([
+      'very small', 'small', 'medium', 'large', 'very large'
+    ]);
+    const imageSize = ref(null);
+    const url = ref(null);
+    const changeImageSize = (event) => {
+      if (imageSize.value) {
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target)) {
+            let innerImage = card.querySelector('div.asdui-image')
+            setStyleBySizeName(innerImage, imageSize.value);
+          }
+        }
+      }
+
+      function setStyleBySizeName(image, value) {
+        switch (value) {
+          case 'very small':
+            image.style.width = '40%';
+            image.style.height = '35%';
+            break;
+          case 'small':
+            image.style.width = '50%';
+            image.style.height = '45%';
+            break;
+          case 'medium':
+            image.style.width = '60%';
+            image.style.height = '55%';
+            break;
+          case 'large':
+            image.style.width = '70%';
+            image.style.height = '65%';
+            break;
+          case 'very large':
+            image.style.width = '80%';
+            image.style.height = '75%';
+            break;
+          default:
+            image.style.width = '60%';
+            image.style.height = '55%';
+        }
+      }
+    };
+
+    const onFileChange = (event) => {
+      const file = event.target.files[0];
+      let cards = document.getElementsByClassName('card-container');
+      for (let card of cards) {
+        console.log(card)
+        if (card.contains(event.target)) {
+          let innerImage = card.querySelector('img.asdui-image-inner')
+          innerImage.src = URL.createObjectURL(file);
+          innerImage.parentElement.style.border = 'none';
+        }
+      }
+    }
+
+    return {sizes, url, onFileChange, imageSize, changeImageSize}
+  }
+
 }
 </script>
 

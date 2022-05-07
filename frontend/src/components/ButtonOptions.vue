@@ -1,18 +1,31 @@
 <template>
   <i>Button</i>
   <label>Background Color</label>
-  <select v-model="Color" name="colorPick" @click="changeColor('card')">
+  <select v-model="backgroundColor" name="colorPick" @click="changeBackgroundColor($event)">
     <option v-for="(color, colorName) in colors" :id="color" :value="color">
       {{ colorName }}
     </option>
   </select>
-  <label for="button-type">Text</label>
-  <input id="button-type" type="text">
-  <label>Button size</label>
-  <select v-model="imageSize" name="imageSize" @click="changeImageSize('image')">
+
+  <label for="button-content">Content</label>
+  <input id="button-content" type="text" v-model="buttonContent" @keyup="changeButtonContent($event)">
+
+  <label>Text Color</label>
+  <select v-model="contentColor" name="colorPick" @click="changeContentColor($event)">
+    <option v-for="(color, colorName) in colors" :id="color" :value="color">
+      {{ colorName }}
+    </option>
+  </select>
+
+  <label>Content size</label>
+  <select v-model="contentSize" name="imageSize" @click="changeContentSize($event)">
     <option v-for="size in sizes" :value="size"> {{ size }}</option>
   </select>
-  <asdui-button button-type="accept" button-text="Accept"/>
+
+  <label>Button size</label>
+  <select v-model="buttonSize" name="imageSize" @click="changeButtonSize($event)">
+    <option v-for="size in sizes" :value="size"> {{ size }}</option>
+  </select>
 </template>
 
 <script>
@@ -20,6 +33,7 @@ import {ref} from 'vue';
 
 export default {
   name: "ButtonOptions",
+
   setup() {
     const colors = ref({
       "Blue Light": '#84c1ff',
@@ -44,12 +58,135 @@ export default {
       "Beige": '#faebd7',
       "Black": '#1e1f26',
     });
+    const changeBackgroundColor = (event) => {
+      if (backgroundColor.value) {
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target)) {
+            let innerButton = card.querySelector('button.asdui-button')
+            innerButton.style.backgroundColor = backgroundColor.value
+          }
+        }
+      }
+    };
+    const changeContentColor = (event) => {
+      if (contentColor.value) {
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target)) {
+            let innerButton = card.querySelector('button.asdui-button')
+            innerButton.style.color = contentColor.value
+          }
+        }
+      }
+    };
+    const backgroundColor = ref(null);
+    const contentColor = ref(null);
+
+    const buttonContent = ref("")
+    const changeButtonContent = (event) => {
+      let cards = document.getElementsByClassName('card-container');
+      for (let card of cards) {
+        if (card.contains(event.target)) {
+          let innerButton = card.querySelector('button.asdui-button')
+          innerButton.textContent = buttonContent.value;
+        }
+      }
+    }
+
     const sizes = ref([
-      11, 12, 14, 16, 18, 20
+      'very small', 'small', 'medium', 'large', 'very large'
     ]);
-    const color = ref(null);
-    const fontSize = ref(null);
-    return {sizes, color, fontSize, colors}
+    const contentSize = ref(null);
+    const buttonSize = ref(null);
+    const changeContentSize = (event) => {
+      if (contentSize.value) {
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target)) {
+            let innerButton = card.querySelector('button.asdui-button')
+            setStyleBySizeName(innerButton, contentSize.value)
+          }
+        }
+      }
+
+      function setStyleBySizeName(innerButton, value) {
+        switch (value) {
+          case 'very small':
+            innerButton.style.fontSize = '1rem';
+            break;
+          case 'small':
+            innerButton.style.fontSize = '1.2rem';
+            break;
+          case 'medium':
+            innerButton.style.fontSize = '1.4rem';
+            break;
+          case 'large':
+            innerButton.style.fontSize = '1.6rem';
+            break;
+          case 'very large':
+            innerButton.style.fontSize = '1.8rem';
+            break;
+          default:
+            innerButton.style.fontSize = '2rem';
+        }
+      }
+    };
+    const changeButtonSize = (event) => {
+      if (buttonSize.value) {
+        let cards = document.getElementsByClassName('card-container');
+        for (let card of cards) {
+          if (card.contains(event.target)) {
+            let innerButton = card.querySelector('button.asdui-button')
+            setStyleBySizeName(innerButton, buttonSize.value)
+          }
+        }
+      }
+
+      function setStyleBySizeName(innerButton, value) {
+        switch (value) {
+          case 'very small':
+            innerButton.style.width = '40%';
+            innerButton.style.height = '35%';
+            break;
+          case 'small':
+            innerButton.style.width = '50%';
+            innerButton.style.height = '45%';
+            break;
+          case 'medium':
+            innerButton.style.width = '60%';
+            innerButton.style.height = '55%';
+            break;
+          case 'large':
+            innerButton.style.width = '70%';
+            innerButton.style.height = '65%';
+            break;
+          case 'very large':
+            innerButton.style.width = '80%';
+            innerButton.style.height = '75%';
+            break;
+          default:
+            innerButton.style.width = '60%';
+            innerButton.style.height = '55%';
+        }
+      }
+    };
+
+
+    return {
+      contentColor,
+      backgroundColor,
+      changeContentColor,
+      buttonContent,
+      changeButtonSize,
+      buttonSize,
+      changeButtonContent,
+      changeBackgroundColor,
+      sizes,
+      contentSize,
+      changeContentSize,
+      colors
+    }
   }
 }
 </script>

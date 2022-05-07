@@ -2,8 +2,11 @@
   <div class="asduiWindow">
     <asdui-logo/>
     <p>Setting the Cards</p>
-    <div id="cardWorkspace" class="cardWorkspace">
+    <div class="cardWorkspace">
       <settings-card class="card-1"/>
+      <div id="cardWorkspace" v-for="card in cards">
+        <component :is="card"/>
+      </div>
       <span class="addCard" @click="addCard">+</span>
     </div>
   </div>
@@ -25,14 +28,12 @@ export default {
     AsduiLogo
   },
   setup() {
+    let cards = ref([]);
     const addCard = () => {
-      let workspace = document.getElementById("cardWorkspace");
-      let card = workspace.firstChild;
-      let duplicateCard = card.cloneNode(true);
-      card.after(duplicateCard);
+      cards.value.push(SettingsCard);
     }
 
-    return {addCard}
+    return {cards, addCard}
   }
 }
 </script>
@@ -41,11 +42,12 @@ export default {
 .cardWorkspace {
   height: 70vh;
   overflow: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0);
 
 }
+
 .cardWorkspace::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
