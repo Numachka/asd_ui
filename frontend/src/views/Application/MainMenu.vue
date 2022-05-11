@@ -1,35 +1,75 @@
 <template>
-  <div>
-    <CareTakerCard care-taker="dad.jpg"/>
-  </div>
-  <div>
-    <AppCard image="Youtube.svg" header="YouTube" url="https://www.youtube.com/" />
-  </div>
-  <div>
-    <AppCard image="WhatsApp.svg" header="WhatsApp" url="https://www.whatsApp.com/" />
-  </div>
-  <div>
-    <AppCard image="Facebook.svg" header="Facebook" url="https://www.facebook.com/" />
-  </div>
-  <div>
-    <AppCard image="Spotify.svg" header="Spotify" url="https://www.spotify.com/" />
+  <div v-for="card in cards" class="card-workspace">
+    <component
+        :is="card.component"
+        :cardBackgroundColor="card.card.backgroundColor"
+        :imageUrl="card.image.url"
+        :imageSize="card.image.size"
+        :buttonBackgroundColor="card.button.backgroundColor"
+        :buttonSize="card.button.size"
+        :buttonContent="card.button.content"
+        :buttonContentColor="card.button.contentColor"
+        :buttonContentSize="card.button.contentSize"
+        :buttonAction="card.button.action"
+    />
   </div>
 </template>
 
 <script>
-import CareTakerCard from "../../components/CareTakerCard";
-import AppCard from "../../components/AppCard";
+import {ref} from "vue";
+import AsduiCard from "@/components/General/AsduiCard";
 
 export default {
   name: 'MainMenu',
   components: {
-    CareTakerCard,
-    AppCard,
+    AsduiCard
+  },
+  mounted() {
+    this.displayCards();
+  },
+  setup() {
+    const cards = ref([])
+    const displayCards = () => {
+      console.log('started!')
+      //TODO fetch from db or pinia and fill cards array for displaying the cards.
+      // Input -> json object containing the cards.
+      // Iterate over the json objects, getting the props for the card from it -
+      // imageURL, buttonType, buttonContent,
+      cards.value.push({
+        component: AsduiCard,
+        cardBackgroundColor: "card.card.backgroundColor",
+        imageUrl: "card.image.url",
+        imageSize: "card.image.size",
+        buttonBackgroundColor: "card.button.backgroundColor",
+        buttonSize: "card.button.size",
+        buttonContent: "card.button.content",
+        buttonContentColor: "card.button.contentColor",
+        buttonContentSize: "card.button.contentSize",
+        buttonAction: "card.button.action",
+      })
+    }
+    return {cards, displayCards}
   }
 }
 </script>
 <style scoped>
+
+.card-workspace {
+  height: 70vh;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  transition: 0.5s;
+}
+
+.card-workspace::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 div {
-  margin: 5vh;
+  display: grid;
+  justify-items: center;
+  width: 70vw;
 }
 </style>

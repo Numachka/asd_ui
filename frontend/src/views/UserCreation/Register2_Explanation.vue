@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import AsduiButton from "@/components/AsduiButton";
-import AsduiLogo from "@/components/AsduiLogo";
+import AsduiButton from "@/components/General/AsduiButton";
+import AsduiLogo from "@/components/General/AsduiLogo";
 import {camelCase} from "@/utils/utils"
 
 

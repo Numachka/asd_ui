@@ -1,4 +1,4 @@
-package com.asdui.backend.models;
+package com.asdui.backend.models.db;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +8,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_settings")
+@Table(name = "user_setting")
 public class UserSettings {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "set_id", nullable = false)
-    private Long setID;
+    @Column(name = "id", nullable = false)
+    private Long ID;
     @Column(name = "user_id", nullable = false)
     private Long userID;
     @Column(name = "is_active", nullable = false)

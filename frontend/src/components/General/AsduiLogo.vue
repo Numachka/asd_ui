@@ -1,5 +1,5 @@
 <template>
-    <img alt="Couldn't load the image" src="../assets/miniLogo.jpeg">
+    <img alt="Couldn't load the image" src="../../assets/miniLogo.jpeg">
 </template>
 
 <script>

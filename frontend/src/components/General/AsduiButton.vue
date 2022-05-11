@@ -49,12 +49,12 @@ button {
 
 .yes, .accept {
   background-color: #519872;
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .no {
   background-color: #E84855;
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .previous {

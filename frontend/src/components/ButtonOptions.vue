@@ -10,6 +10,9 @@
   <label for="button-content">Content</label>
   <input id="button-content" type="text" v-model="buttonContent" @keyup="changeButtonContent($event)">
 
+  <label for="button-action">Action</label>
+  <input id="button-action" type="text" v-model="buttonAction" @keyup="changeButtonAction($event)">
+
   <label>Text Color</label>
   <select v-model="contentColor" name="colorPick" @click="changeContentColor($event)">
     <option v-for="(color, colorName) in colors" :id="color" :value="color">
@@ -92,6 +95,11 @@ export default {
           innerButton.textContent = buttonContent.value;
         }
       }
+    }
+
+    const buttonAction = ref("")
+    const changeButtonAction = (event) => {
+      //TODO connect to pinia.
     }
 
     const sizes = ref([
@@ -185,7 +193,9 @@ export default {
       sizes,
       contentSize,
       changeContentSize,
-      colors
+      colors,
+      buttonAction,
+      changeButtonAction
     }
   }
 }

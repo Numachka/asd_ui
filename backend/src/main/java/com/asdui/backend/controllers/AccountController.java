@@ -1,6 +1,9 @@
 package com.asdui.backend.controllers;
 
-import com.asdui.backend.models.*;
+import com.asdui.backend.models.db.User;
+import com.asdui.backend.models.db.UserInterface;
+import com.asdui.backend.models.responses.Credentials;
+import com.asdui.backend.models.responses.UserPackage;
 import com.asdui.backend.repository.UserInterfaceRepository;
 import com.asdui.backend.repository.UserRepository;
 import com.asdui.backend.repository.UserSettingsRepository;
@@ -45,16 +48,6 @@ public class AccountController {
         }
     }
 
-    @PostMapping("/register/magic/calculate-ui")
-    public ResponseEntity<Question> createQuestionData(@RequestBody Question question) {
-        try {
-            Question newQuestion = new Question(question);
-            return new ResponseEntity<>(newQuestion, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     // --------------------------- Login Methods ---------------------------- //
 
     @PostMapping("/login")
@@ -66,9 +59,10 @@ public class AccountController {
             UserPackage userPackage = null;
             Optional<User> returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
             if (returnedUser.isPresent() && returnedUser.get().getPassword().equals(password)) {
-                val userId = returnedUser.get().getId();
+                val userId = returnedUser.get().getID();
                 userPackage = new UserPackage(
                         userRepository.getById(userId),
+                        //TODO need to join these with the correct tables.
                         uiRepository.findUserInterfaceByUserId(userId),
                         userSettingsRepository.findUserSettingsByUserId(userId));
             }

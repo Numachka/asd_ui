@@ -43,8 +43,8 @@
 
 <script>
 import {ref} from 'vue'
-import Button from "../../components/AsduiButton";
-import AsduiButton from "@/components/AsduiButton";
+import Button from "../../components/General/AsduiButton";
+import AsduiButton from "@/components/General/AsduiButton";
 
 export default {
   name: "Questions",

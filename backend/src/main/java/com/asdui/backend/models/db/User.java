@@ -1,4 +1,4 @@
-package com.asdui.backend.models;
+package com.asdui.backend.models.db;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -14,8 +14,8 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id", nullable = false)
-    private Long id;
+    @Column(name = "id", nullable = false)
+    private Long ID;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -30,7 +30,7 @@ public class User {
     public User() {}
 
     public User(User otherUser) {
-        this.id = otherUser.getId();
+        this.ID = otherUser.getID();
         this.firstName = otherUser.getFirstName();
         this.lastName = otherUser.getLastName();
         this.email = otherUser.getEmail();
@@ -43,7 +43,7 @@ public class User {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
+        return ID != null && Objects.equals(ID, user.ID);
     }
 
     @Override

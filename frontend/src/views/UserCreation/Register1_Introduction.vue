@@ -20,8 +20,9 @@
 </template>
 
 <script>
-import AsduiButton from "../../components/AsduiButton";
 import {ref} from 'vue'
+import {useAsduiStore} from "@/stores/asduiStore";
+import AsduiButton from "../../components/General/AsduiButton";
 import router from "@/router";
 
 export default {
@@ -30,31 +31,25 @@ export default {
     AsduiButton
   },
   setup() {
+    const asduiStore = useAsduiStore()
+
     let name = ref("")
     let email = ref("")
+
     let existingUserMessage = ref(false)
-    let checkUsername = () => {
-      const url = 'http://localhost:8081/asdui/register/introduction/email-check/' + email.value;
-      fetch(url, {
-        method: 'GET',
-      })
-          .then(data => {
-            return data.json()
-          })
-          .then(response => {
-            console.log(response)
-            if (response === false) {
-              router.push({name: 'Explanation', params: {name: name.value}})
-            } else {
-              existingUserMessage.value = true;
-              setTimeout(() => {existingUserMessage.value=false}, 2000)
-            }
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    return {asduiStore, existingUserMessage, name, email}
+  },
+  methods: {
+    checkUsername() {
+      if (this.asduiStore.checkUsername(this.email)) {
+        this.existingUserMessage = true;
+        setTimeout(() => {
+          this.existingUserMessage = false
+        }, 2000)
+      } else {
+        router.push({name: 'Explanation', params: {name: this.name}})
+      }
     }
-    return {existingUserMessage, name, email, checkUsername}
   }
 }
 </script>

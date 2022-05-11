@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AsduiButton from "@/components/AsduiButton";
+import AsduiButton from "@/components/General/AsduiButton";
 
 export default {
   name: "LoggedOut",

@@ -1,12 +1,9 @@
-package com.asdui.backend.models;
+package com.asdui.backend.models.db;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter

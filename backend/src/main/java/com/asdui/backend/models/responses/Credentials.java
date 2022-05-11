@@ -1,4 +1,4 @@
-package com.asdui.backend.models;
+package com.asdui.backend.models.responses;
 
 import lombok.Data;
 

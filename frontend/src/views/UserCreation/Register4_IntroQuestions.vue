@@ -1,5 +1,5 @@
 <template>
-  <div class="asduiWindow">
+  <div class="asdui-window">
     <p>Now for the interesting bits..</p>
     <p>Behavioral questions help us calculate a template and set up some design guidelines.</p>
     <i>Please answer the 15 following yes\no questions:</i>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import AsduiButton from "@/components/AsduiButton";
+import AsduiButton from "@/components/General/AsduiButton";
 
 export default {
   name: "IntroQuestions",

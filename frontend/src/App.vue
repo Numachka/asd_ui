@@ -27,7 +27,7 @@ p {
   font-size: 1.5em;
 }
 
-.asduiWindow {
+.asdui-window {
   display: grid;
   font-size: 1.2rem;
   height: 60vh;

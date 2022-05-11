@@ -1,13 +1,20 @@
 <template>
   <div class="image-container asdui-image">
-    <img class="asdui-image-inner" alt="failed to load the image">
+    <img class="asdui-image-inner" alt="failed to load the image" :src="getImgUrl(url)">
   </div>
 </template>
 
 <script>
 export default {
   name: "Image",
-  props: ["url"]
+  props: ["url"],
+  setup() {
+    const getImgUrl = (url) => {
+      return require('@/assets/' + url);
+    }
+
+    return {getImgUrl}
+  }
 }
 </script>
 

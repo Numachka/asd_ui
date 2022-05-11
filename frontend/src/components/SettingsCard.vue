@@ -19,8 +19,8 @@
 
 <script>
 import {ref} from 'vue'
-import AsduiButton from "../components/AsduiButton";
-import AsduiImage from "@/components/AsduiImage";
+import AsduiButton from "./General/AsduiButton";
+import AsduiImage from "@/components/General/AsduiImage";
 import CardOptions from "@/components/CardOptions";
 import ImageOptions from "@/components/ImageOptions";
 import ButtonOptions from "@/components/ButtonOptions";

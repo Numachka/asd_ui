@@ -2,7 +2,7 @@
   <div @load="calculateUI">
     <div v-if="isLoading">
       <p>ASDUI magic in the background</p>
-      <img src="../../assets/loaders/magicLoader.svg" >
+      <img src="../../assets/loaders/magicLoader.svg">
     </div>
     <div v-else>
       <p>Done!</p>
@@ -43,16 +43,20 @@
       </p>
       <i>Click to move on to editing the generated interface</i>
       <div>
-        <asdui-button button-type="next"/>
+        <router-link :to="{name:'UserInterface'}">
+          <asdui-button button-type="next"/>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AsduiButton from "../../components/AsduiButton";
 import {ref} from 'vue'
 import {useRoute} from "vue-router";
+import {useAsduiStore} from "@/stores/asduiStore";
+import AsduiButton from "../../components/General/AsduiButton";
+
 
 export default {
   name: "Magic",
@@ -62,55 +66,47 @@ export default {
   },
   setup() {
     const route = useRoute()
+    const asduiStore = useAsduiStore()
+
+    let answers = ref({
+      q1: route.params.resultsArray[0],
+      q2: route.params.resultsArray[1],
+      q3: route.params.resultsArray[2],
+      q4: route.params.resultsArray[3],
+      q5: route.params.resultsArray[4],
+      q6: route.params.resultsArray[5],
+      q7: route.params.resultsArray[6],
+      q8: route.params.resultsArray[7],
+      q9: route.params.resultsArray[8],
+      q10: route.params.resultsArray[9],
+      q11: route.params.resultsArray[10],
+      q12: route.params.resultsArray[11],
+      q13: route.params.resultsArray[12],
+      q14: route.params.resultsArray[13],
+      q15: route.params.resultsArray[14],
+    })
     let visualScore = ref(0)
     let auditoryScore = ref(0)
     let tactileScore = ref(0)
+
     let isLoading = ref(true);
-    let isShow = ref(true);
-    let startLoad = () => {
-      setTimeout(calculateUI, 5000)
-    }
-    let calculateUI = () => {
-      const url = "http://localhost:8081/asdui/register/magic/calculate-ui";
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          q1: route.params.resultsArray[0],
-          q2: route.params.resultsArray[1],
-          q3: route.params.resultsArray[2],
-          q4: route.params.resultsArray[3],
-          q5: route.params.resultsArray[4],
-          q6: route.params.resultsArray[5],
-          q7: route.params.resultsArray[6],
-          q8: route.params.resultsArray[7],
-          q9: route.params.resultsArray[8],
-          q10: route.params.resultsArray[9],
-          q11: route.params.resultsArray[10],
-          q12: route.params.resultsArray[11],
-          q13: route.params.resultsArray[12],
-          q14: route.params.resultsArray[13],
-          q15: route.params.resultsArray[14],
-        })
-      })
-          .then(data => {
-            return data.json()
-          })
-          .then(response => {
-            console.log(response)
-            visualScore.value = response.visualScore
-            auditoryScore.value = response.auditoryScore
-            tactileScore.value = response.tactileScore
-            isLoading.value = false
-          })
-          .catch(error => {
-            console.log(error)
-          })
-    }
-    return {startLoad, visualScore, auditoryScore, tactileScore, calculateUI, isLoading, isShow}
+
+    return {asduiStore, answers, visualScore, auditoryScore, tactileScore, isLoading}
   },
+  methods: {
+    startLoad() {
+      setTimeout(this.calculateUI, 5000)
+    },
+    calculateUI() {
+      let scores = this.asduiStore.calculateUIScore(this.answers);
+      if (scores.size !== 0) {
+        this.visualScore = scores.visualScore;
+        this.auditoryScore = scores.auditoryScore;
+        this.tactileScore = scores.tactileScore;
+        this.isLoading = false;
+      }
+    }
+  }
 }
 </script>
 

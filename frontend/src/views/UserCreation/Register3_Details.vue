@@ -20,6 +20,7 @@
   </div>
   <div v-else>
     <p>The details have been confirmed by the system</p>
+    <i>Tap submit to continue</i>
     <router-link :to="{name: 'IntroQuestions', params: { userID: userID.value }}">
       <asdui-button button-type="submit"/>
     </router-link>
@@ -28,50 +29,33 @@
 
 <script>
 import {ref} from 'vue'
-import AsduiButton from "@/components/AsduiButton";
-import router from "@/router";
+import {useAsduiStore} from "@/stores/asduiStore";
+import AsduiButton from "@/components/General/AsduiButton";
 
 export default {
   name: "Details",
   components: {AsduiButton},
   setup() {
+    const asduiStore = useAsduiStore()
+
     let user = ref({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      phoneNumber: "",
-    });
+       firstName: '',
+       lastName: '',
+       email: '',
+       password: '',
+       phoneNumber: ''
+    })
     let userID = ref("")
     let isSubmit = ref(false);
-    const toggleSubmit = () => {
-      const url = 'http://localhost:8081/asdui/register/details/create-user'
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName: user.value.firstName,
-          lastName: user.value.lastName,
-          email: user.value.email,
-          password: user.value.password,
-          phoneNumber: user.value.phoneNumber,
-        })
-      })
-          .then(data => {
-            return data.json()
-          })
-          .then(response => {
-            console.log(response)
-            userID = response.id;
-            isSubmit.value = true;
-          })
-          .catch(error => {
-            console.log(error)
-          })
+
+    return {asduiStore, isSubmit, user, userID}
+  },
+  methods: {
+    toggleSubmit() {
+      if (this.asduiStore.registerUser(this.user) > -1) {
+        this.isSubmit = true;
+      }
     }
-    return {toggleSubmit, isSubmit, user, userID}
   }
 }
 </script>
