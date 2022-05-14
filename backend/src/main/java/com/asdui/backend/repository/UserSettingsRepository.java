@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserSettingsRepository extends JpaRepository<UserSettings, Long> {
-    @Query(value = "SELECT * FROM user_settings WHERE user_id = :userID", nativeQuery = true)
+    @Query(value = Queries.GET_USER_SETTING_BY_ID, nativeQuery = true)
     UserSettings findUserSettingsByUserId(@Param("userID") Long userID);
 }

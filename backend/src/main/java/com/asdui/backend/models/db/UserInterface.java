@@ -3,10 +3,7 @@ package com.asdui.backend.models.db;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -15,24 +12,33 @@ import javax.persistence.Table;
 public class UserInterface {
     @Id
     @Column(name = "id", nullable = false)
-    private Integer ID;
-    @Column(name = "user_id", nullable = false)
-    private Integer userID;
-    @Column(name = "card_id", nullable = false)
-    private Integer cardID;
-    @Column(name = "image_id", nullable = false)
-    private Integer imageID;
-    @Column(name = "button_id", nullable = false)
-    private Integer buttonID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
+    @Column(name="user_id")
+    private Long user;
+    @ManyToOne(targetEntity = Card.class)
+    @JoinColumn(name="card_id", referencedColumnName = "id")
+    private Card card;
+    @ManyToOne(targetEntity = Image.class)
+    @JoinColumn(name="image_id", referencedColumnName = "id")
+    private Image image;
+    @ManyToOne(targetEntity = Button.class)
+    @JoinColumn(name="button_id", referencedColumnName = "id")
+    private Button button;
 
-    public UserInterface(UserInterface otherUserInterface) {
-        ID = otherUserInterface.getID();
-        userID = otherUserInterface.getUserID();
-        cardID = otherUserInterface.getCardID();
-        buttonID = otherUserInterface.getButtonID();
+    public UserInterface() {}
+
+    public UserInterface(UserInterface other) {
+        this.user = other.getUser();
+        this.card = other.getCard();
+        this.image = other.getImage();
+        this.button = other.getButton();
     }
 
-    public UserInterface() {
-
+    public UserInterface(Long userID, Card card, Image image, Button button) {
+        this.user = userID;
+        this.card = card;
+        this.image = image;
+        this.button = button;
     }
 }

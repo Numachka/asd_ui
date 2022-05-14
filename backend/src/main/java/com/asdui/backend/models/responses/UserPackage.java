@@ -11,6 +11,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserPackage {
     private User user;
-    private UserInterface userInterface;
+    private UserInterface[] userInterface;
     private UserSettings userSettings;
 }

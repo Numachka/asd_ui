@@ -13,20 +13,29 @@ public class Button {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer ID;
-
-    @Column(name="background_color")
+    private Long ID;
+    @Column(name = "background_color")
     private String backgroundColor;
-
-    @Column(name="content")
+    @Column(name = "size")
+    private String size;
+    @Column(name = "content")
     private String content;
-
-    @Column(name="content_color")
+    @Column(name = "content_color")
     private String contentColor;
-
-    @Column(name="content_size")
+    @Column(name = "content_size")
     private String contentSize;
-
-    @Column(name="content_action")
+    @Column(name = "content_action")
     private String contentAction;
+
+    public Button() {
+    }
+
+    public Button(Button other) {
+        this.ID = other.getID();
+        this.backgroundColor = other.getBackgroundColor();
+        this.content = other.getContent();
+        this.contentColor = other.getContentColor();
+        this.contentSize = other.getContentSize();
+        this.contentAction = other.getContentAction();
+    }
 }

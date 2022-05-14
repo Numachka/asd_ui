@@ -13,7 +13,7 @@ import java.util.Objects;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long ID;
     @Column(name = "first_name")
@@ -33,7 +33,7 @@ public class User {
         this.ID = otherUser.getID();
         this.firstName = otherUser.getFirstName();
         this.lastName = otherUser.getLastName();
-        this.email = otherUser.getEmail();
+        this.email = otherUser.getEmail().toLowerCase();
         this.password = otherUser.getPassword();
         this.phoneNumber = otherUser.getPhoneNumber();
     }

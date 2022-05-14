@@ -1,6 +1,6 @@
 package com.asdui.backend.controllers;
 
-import com.asdui.backend.models.db.Question;
+import com.asdui.backend.models.responses.Question;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

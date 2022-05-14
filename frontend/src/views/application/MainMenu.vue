@@ -1,0 +1,98 @@
+<template>
+  <asdui-logo/>
+  <router-link :to="{name: 'Profile'}">
+    <asdui-button button-type="submit" button-text="Settings"/>
+  </router-link>
+  <div class="card-workspace">
+    <div v-if="!isLoaded">
+      <img src="@/assets/loaders/magicLoader.svg" alt="no image found">
+    </div>
+    <div v-for="card in cards">
+      <component
+          :is="card.component"
+          :cardBackgroundColor="card.backgroundColor"
+          :imageUrl="card.imageUrl"
+          :imageSize="card.imageSize"
+          :buttonBackgroundColor="card.buttonBackgroundColor"
+          :buttonSize="card.buttonSize"
+          :buttonContent="card.buttonContent"
+          :buttonContentColor="card.buttonContentColor"
+          :buttonContentSize="card.buttonContentSize"
+          :buttonAction="card.buttonAction"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import {ref} from "vue";
+import {useAsduiStore} from "@/stores/asduiStore";
+import AsduiCard from "@/components/general/AsduiCard";
+import AsduiButton from "@/components/general/MenuButton";
+import CardButton from "@/components/general/CardButton";
+import AsduiLogo from "@/components/general/AsduiLogo";
+
+export default {
+  name: 'MainMenu',
+  components: {
+    AsduiLogo,
+    CardButton,
+    AsduiButton,
+    AsduiCard,
+  },
+  created() {
+    this.setIsLoaded()
+  },
+  setup() {
+    const asduiStore = useAsduiStore()
+    const component = AsduiCard;
+    const isLoaded = false;
+    const cards = ref([])
+    return {asduiStore, cards, component, isLoaded}
+  },
+  methods: {
+    setIsLoaded() {
+      console.log("SetIsLoaded");
+      setTimeout(this.displayCards, 1000);
+      this.isLoaded = true;
+    },
+    displayCards() {
+      console.log("displayCards!");
+      const returnedCards = this.asduiStore.getActiveUserInterface;
+      const thisCards = this.cards;
+      if (returnedCards.cards.length !== 0) {
+        returnedCards.cards.forEach(card => {
+          const tempCard = {
+            component: AsduiCard,
+            cardBackgroundColor: card.backgroundColor,
+            imageUrl: card.image.url,
+            imageSize: card.image.size,
+            buttonBackgroundColor: card.button.backgroundColor,
+            buttonSize: card.button.size,
+            buttonContent: card.button.content,
+            buttonContentColor: card.button.contentColor,
+            buttonContentSize: card.button.contentSize,
+            buttonAction: card.button.action
+          }
+          thisCards.push(tempCard);
+        })
+      }
+    }
+  }
+}
+</script>
+<style scoped>
+
+.card-workspace {
+  height: 70vh;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  transition: 0.5s;
+}
+
+.card-workspace::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+</style>

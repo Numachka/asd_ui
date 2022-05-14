@@ -15,12 +15,12 @@ const postConstants = {
     login: '/login', /* When posting login information */
     createUser: '/register/details/create-user', /* When posting the user information form */
     calculateUI: '/register/magic/calculate-ui', /* When answering the questions while registering */
-    saveUI: '/settings/user-interface' /* When editing the UI */
+    saveUI: '/settings/user-interface', /* When editing the UI */
 }
 
 const getConstants = {
     checkUsername: '/register/introduction/email-check/{username}', /* When entering email on register */
-    ui: '/settings/user-interface/{id}' /* When ?*/
+    ui: '/settings/user-interface/{id}' /* When getting visual or auditory card*/
 }
 
 const baseURL = serverConstants.protocol + serverConstants.back.hostname

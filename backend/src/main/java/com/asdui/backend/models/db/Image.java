@@ -1,5 +1,6 @@
 package com.asdui.backend.models.db;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,11 +14,19 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer ID;
-
+    private Long ID;
     @Column(name="url")
     private String url;
-
     @Column(name="size")
     private String size;
+
+    public Image() {}
+
+    public Image(Image other) {
+        this.ID = other.getID();
+        this.url = other.getUrl();
+        this.size = other.getSize();
+    }
+
+
 }

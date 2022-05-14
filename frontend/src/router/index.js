@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NotFound from "../views/NotFound";
-import MainMenu from '../views/Application/MainMenu.vue'
-import LoggedOut from "../views/LoggedOut.vue";
-import Login from "../views/Application/Login";
-import Register from "../views/UserCreation/RegisterView";
-import Introduction from "../views/UserCreation/Register1_Introduction";
-import Explanation from "../views/UserCreation/Register2_Explanation";
-import Details from "../views/UserCreation/Register3_Details";
-import IntroQuestions from "../views/UserCreation/Register4_IntroQuestions";
-import Questions from "../views/UserCreation/Register5_Questions";
-import Magic from "../views/UserCreation/Register6_Magic";
-import Settings from "../views/Settings/Settings";
-import Profile from "../views/Settings/Profile";
-import UserInterface from "../views/Settings/UserInterface";
-import Credits from "../views/Settings/Profile";
+import NotFound from "../views/application/NotFound";
+import MainMenu from '../views/application/MainMenu.vue'
+import LoggedOut from "../views/application/LoggedOut.vue";
+import Login from "../views/application/Login";
+import Register from "../views/userCreation/RegisterView";
+import Introduction from "../views/userCreation/Register1_Introduction";
+import Explanation from "../views/userCreation/Register2_Explanation";
+import Details from "../views/userCreation/Register3_Details";
+import IntroQuestions from "../views/userCreation/Register4_IntroQuestions";
+import Questions from "../views/userCreation/Register5_Questions";
+import Magic from "../views/userCreation/Register6_Magic";
+import Settings from "../views/settings/Settings";
+import Profile from "../views/settings/Settings1_Profile";
+import UserInterface from "../views/settings/Settings2_UserInterface";
+import Credits from "../views/settings/Settings1_Profile";
 
 
 const routes = [

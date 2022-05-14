@@ -1,7 +1,20 @@
 <template>
-  <router-view/>
+  <div class="logo">
+    <asdui-logo/>
+  </div>
+  <router-view class="asdui-window"/>
 </template>
+<script>
+import AsduiLogo from "@/components/general/AsduiLogo";
 
+export default {
+  name: 'App',
+  components: {
+    AsduiLogo
+  }
+}
+
+</script>
 <style>
 
 @font-face {
@@ -11,12 +24,14 @@
 }
 
 body {
+  position: relative;
   background: linear-gradient(90deg, #07689F 0%, #0988D0 100%);
   display: grid;
-  justify-content: center;
-  align-content: center;
+  justify-items: center;
+  align-items: center;
   text-align: center;
   height: 99vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
   font-family: 'Comfortaa', sans-serif;
@@ -29,6 +44,9 @@ p {
 
 .asdui-window {
   display: grid;
+  justify-items: center;
+  align-items: center;
+  width: 80%;
   font-size: 1.2rem;
   height: 60vh;
 }
