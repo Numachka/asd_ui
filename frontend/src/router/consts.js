@@ -16,6 +16,7 @@ const postConstants = {
     createUser: '/register/details/create-user', /* When posting the user information form */
     calculateUI: '/register/magic/calculate-ui', /* When answering the questions while registering */
     saveUI: '/settings/user-interface', /* When editing the UI */
+    saveImage: '/settings/save-image', /* When editing the UI with new image */
 }
 
 const getConstants = {

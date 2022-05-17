@@ -85,7 +85,7 @@ export const useAsduiStore = defineStore({
                             },
                             image: {
                                 id: uiElement.image.id,
-                                url: userInformation.id + '-' + userInformation.firstName + userInformation.firstName + '/' + uiElement.image.url,
+                                url: userInformation.id + '-' + userInformation.firstName + userInformation.lastName + '/' + uiElement.image.url,
                                 size: uiElement.image.size
                             },
                             button: {
@@ -191,13 +191,16 @@ export const useAsduiStore = defineStore({
             cards.forEach(card => {
                 const tempCard = {
                     card: {
+                        id: card.cardId,
                         backgroundColor: card.cardBackgroundColor,
                     },
                     image: {
+                        id: card.imageId,
                         url: card.imageUrl,
-                        size: card.imageSize
+                        size: card.imageSize,
                     },
                     button: {
+                        id: card.buttonId,
                         backgroundColor: card.buttonBackgroundColor,
                         size: card.buttonSize,
                         content: card.buttonContent,
@@ -209,6 +212,11 @@ export const useAsduiStore = defineStore({
                 activeUserState.userInterface.cards.push(tempCard);
             })
             await this.sendCardRequest();
+        },
+        async saveImage(file) {
+            const formData = new FormData();
+            formData.append('myFile', file);
+            await this.saveFile(formData);
         },
         async sendRequest(email, password) {
             const url = baseURL + postConstants.login;
@@ -341,6 +349,20 @@ export const useAsduiStore = defineStore({
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        async saveFile(formData) {
+            const url = baseURL + postConstants.saveImage;
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    return data.path
+                })
+                .catch(error => {
+                    console.error(error)
+                })
         },
         saveLocalState() {
             window.localStorage.setItem('asduiState', this.state);

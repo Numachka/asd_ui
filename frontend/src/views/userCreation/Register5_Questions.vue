@@ -1,5 +1,5 @@
 <template>
-  <div class="question-window" v-if="i < questions.length">
+  <div v-if="i < questions.length">
     <p class="counter">{{ i + 1 }} / 15</p>
     <i v-if="i < 8">
       Some visual cues first...
@@ -10,7 +10,7 @@
     <i v-else>
       Lastly, tactile cues...
     </i>
-    <p>
+    <p class="question">
       {{ questions[i] }}
     </p>
     <div>
@@ -34,7 +34,8 @@
     </i>
     <div>
       <asdui-button button-type="previous" @click="prevQuest"/>
-      <router-link :to="{name: 'Magic', params: {userID: $route.params.userId ,resultsJson: JSON.stringify(answers_Json), resultsArray: answers}}">
+      <router-link
+          :to="{name: 'Magic', params: {userID: $route.params.userId ,resultsJson: JSON.stringify(answers_Json), resultsArray: answers}}">
         <asdui-button button-type="next"/>
       </router-link>
     </div>
@@ -87,6 +88,10 @@ export default {
 </script>
 
 <style scoped>
+p.question {
+  height: 8vh;
+  margin: 5vh auto 0
+}
 
 .summary {
   display: grid;
@@ -102,11 +107,4 @@ i {
   margin: 1vh;
 }
 
-.counter {
-  align-self: end;
-}
-
-p {
-  margin: 1vh;
-}
 </style>

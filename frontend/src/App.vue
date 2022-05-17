@@ -42,13 +42,4 @@ p {
   font-size: 1.5em;
 }
 
-.asdui-window {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  width: 80%;
-  font-size: 1.2rem;
-  height: 60vh;
-}
-
 </style>

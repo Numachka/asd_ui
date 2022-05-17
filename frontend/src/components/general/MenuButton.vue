@@ -32,6 +32,8 @@ button {
   width: 10vw;
   min-width: 120px;
   min-height: 40px;
+  max-width: 180px;
+  max-height: 60px;
   transition: 0.5s;
 }
 

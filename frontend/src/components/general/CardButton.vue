@@ -1,14 +1,13 @@
 <template>
-  <button @click="performAction(action)" :style="calculateStyling" class="card-button">
+  <button :style="calculateStyling" class="card-button" @click="performAction">
     {{ content }}
   </button>
 </template>
 
 <script>
-
 export default {
   name: "AsduiButton",
-  props: ["backgroundColor", "size", "content", "contentColor", "contentSize", "action"],
+  props: ["backgroundColor", "size", "content", "contentColor", "contentSize", "contentAction"],
   computed: {
     calculateStyling() {
       let height = '', width = '', fontSize = '';
@@ -63,20 +62,29 @@ export default {
               height: ${height};
               color: ${this.contentColor};
               font-size: ${fontSize};`
+    },
+    isMainMenu() {
+      return this.$route.name === 'MainMenu';
     }
   },
-  setup() {
-    const performAction = (action) => {
-      switch (action) {
-        default:
-          console.log(action);
-          break;
+  methods: {
+    performAction() {
+      if (this.isMainMenu) {
+        console.log(this.contentAction)
+        const actionParts = this.contentAction.split(' ');
+        if (actionParts[0].includes('visit')) {
+          window.location.href = actionParts[1];
+          console.log(actionParts[1]);
+        } else if (actionParts[0].startsWith('call')) {
+          window.open('tel:+972' + actionParts[1].substring(1), '_self');
+          console.log(actionParts[1]);
+        } else {
+          console.log('Sorry! This action is not supported yet');
+        }
       }
     }
-    return {performAction};
-  }
+  },
 }
-
 </script>
 
 <style scoped>

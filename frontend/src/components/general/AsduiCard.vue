@@ -1,5 +1,5 @@
 <template>
-  <div id="card" class="card">
+  <div id="card" class="card" :style="calculateStyling">
     <card-image
         :url="imageUrl"
         :size="imageSize"/>
@@ -9,7 +9,7 @@
         :content="buttonContent"
         :contentColor="buttonContentColor"
         :contentSize="buttonContentSize"
-        :action="buttonAction"/>
+        :contentAction="buttonContentAction"/>
   </div>
 </template>
 
@@ -22,11 +22,16 @@ export default {
   props: [
     "cardBackgroundColor", "imageUrl", "imageSize",
     "buttonBackgroundColor", "buttonSize", "buttonContent",
-    "buttonContentColor", "buttonContentSize", "buttonAction"
+    "buttonContentColor", "buttonContentSize", "buttonContentAction"
   ],
   components: {
     CardButton,
     CardImage
+  },
+  computed: {
+    calculateStyling() {
+      return `background-color: ${this.cardBackgroundColor};`
+    }
   },
 }
 </script>
@@ -34,7 +39,6 @@ export default {
 <style scoped>
 
 .card {
-  background: #FFFFFF;
   width: 30vw;
   max-width: 400px;
   height: 50vh;

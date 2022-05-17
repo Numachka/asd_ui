@@ -33,8 +33,8 @@ public class AccountController {
 
     @GetMapping("/register/introduction/email-check/{username}")
     public ResponseEntity<Boolean> checkUsernameInDatabase(@PathVariable String username) {
-        List<User> users = userRepository.findAll();
-        Optional<User> returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
+        val users = userRepository.findAll();
+        val returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
         log.info("Found email : " + returnedUser);
         return new ResponseEntity<>(returnedUser.isPresent(), HttpStatus.OK);
     }
@@ -42,7 +42,7 @@ public class AccountController {
     @PostMapping("/register/details/create-user")
     public ResponseEntity<User> createUserInDatabase(@RequestBody User user) {
         try {
-            User newUser = userRepository.save(new User(user));
+            val newUser = userRepository.save(new User(user));
             userSettingsRepository.save(new UserSettings(newUser.getID(), true));
             log.info("Created user: " + newUser);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
@@ -56,11 +56,11 @@ public class AccountController {
     @PostMapping("/login")
     public ResponseEntity<UserPackage> loginUser(@RequestBody Credentials credentials) {
         try {
-            String username = credentials.getUsername().toLowerCase();
-            String password = credentials.getPassword();
-            List<User> users = userRepository.findAll();
+            val username = credentials.getUsername().toLowerCase();
+            val password = credentials.getPassword();
+            val users = userRepository.findAll();
             UserPackage userPackage = null;
-            Optional<User> returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
+            val returnedUser = users.stream().filter(user -> user.getEmail().equals(username)).findFirst();
             if (returnedUser.isPresent() && returnedUser.get().getPassword().equals(password)) {
                 val userId = returnedUser.get().getID();
                 userPackage = new UserPackage(
@@ -79,7 +79,7 @@ public class AccountController {
     @GetMapping("/settings/user-interface/{id}")
     public ResponseEntity<UserInterface> getUserInterface(@PathVariable Integer id) {
         try {
-            UserInterface userInterface = new UserInterface(uiRepository.getById((long)id));
+            val userInterface = new UserInterface(uiRepository.getById((long)id));
             log.info("Found user interface " + userInterface);
             return new ResponseEntity<>(userInterface, HttpStatus.OK);
         } catch (Exception e) {
@@ -91,15 +91,16 @@ public class AccountController {
     public ResponseEntity<Boolean> updateUserInterface(@RequestBody UserInterface[] userInterface) {
         try {
             Arrays.stream(userInterface).forEach(ui -> {
-                Card card = new Card(ui.getCard());
-                Image image = new Image(ui.getImage());
-                Button button = new Button(ui.getButton());
-                Optional<User> userOption = Optional.of(userRepository.getById(ui.getUser()));
-                User user = new User(userOption.get());
+                val card = new Card(ui.getCard());
+                val image = new Image(ui.getImage());
+                val button = new Button(ui.getButton());
+                val userOption = Optional.of(userRepository.getById(ui.getUser()));
+                val user = new User(userOption.get());
 
                 cardRepository.save(card);
                 imageRepository.save(image);
                 buttonRepository.save(button);
+
                 uiRepository.save(new UserInterface(user.getID(), card, image, button));
             });
             return new ResponseEntity<>(true, HttpStatus.OK);

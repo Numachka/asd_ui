@@ -11,8 +11,8 @@ export default {
 <style scoped>
 img {
   position: absolute;
-  top: 3vh;
-  left: 3vh;
+  top: 10vh;
+  left: 10vh;
   margin: 0 1vh;
   width: 3vw;
   height: 3vw;

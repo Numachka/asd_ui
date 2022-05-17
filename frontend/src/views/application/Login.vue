@@ -1,9 +1,10 @@
 <template>
   <div>
-    <asdui-logo/>
-    <p>Welcome back!</p>
-    <i>Enter your credentials below</i>
-    <div v-if="wrongCredential">The entered username or password is incorrect! <b @click="wrongCredential=false">X</b>
+    <div>
+      <p>Welcome back!</p>
+      <i>Enter your credentials below</i>
+      <i v-if="wrongCredential">The entered username or password is incorrect!
+        <b @click="wrongCredential=false">X</b></i>
     </div>
     <form @submit.prevent="login">
       <label for="email">Email</label>
@@ -11,9 +12,9 @@
       <label for="password">Password</label>
       <input v-model="password" type="password" required placeholder="******">
       <span>
-      <asdui-button button-type="submit"/>
-      <asdui-button button-type="back" @click="$router.back()"/>
-    </span>
+        <asdui-button button-type="submit"/>
+        <asdui-button button-type="back" @click="$router.back()"/>
+      </span>
     </form>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default {
       console.log("login")
       const response = await this.asduiStore.loginUser(this.email, this.password);
       console.log(response)
-      if(response) {
+      if (response) {
         await this.router.push({path: '/main-menu'});
       } else {
         this.wrongCredential = true
@@ -65,14 +66,13 @@ export default {
 
 <style scoped>
 div {
-  display: grid;
-  justify-items: center;
-  align-items: center;
+margin-bottom: 4vh;
 }
 
 form {
   display: grid;
   justify-items: center;
+  align-items: center;
 }
 
 form label {

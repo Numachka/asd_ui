@@ -20,7 +20,7 @@
             :buttonContent="card.buttonContent"
             :buttonContentColor="card.buttonContentColor"
             :buttonContentSize="card.buttonContentSize"
-            :buttonAction="card.buttonAction"
+            :buttonContentAction="card.buttonContentAction"
         />
       </div>
     </div>
@@ -59,7 +59,7 @@ export default {
     const asduiStore = useAsduiStore();
     let cards = ref([]);
     let isSaved = ref(false);
-    return {cards, asduiStore, isSaved}
+    return { cards, asduiStore, isSaved}
   },
   methods: {
     setIsLoaded() {
@@ -71,6 +71,7 @@ export default {
         cardBackgroundColor: '#ffffff',
         imageUrl: '',
         imageSize: 'medium',
+        imageFile: '',
         buttonBackgroundColor: '#bbbbbb',
         buttonSize: 'medium',
         buttonContent: 'Action Name',
@@ -90,15 +91,18 @@ export default {
         returnedCards.cards.forEach(card => {
           const tempCard = {
             component: SettingsCard,
-            cardBackgroundColor: card.backgroundColor,
+            cardId: card.card.id,
+            cardBackgroundColor: card.card.backgroundColor,
+            imageId: card.image.id,
             imageUrl: card.image.url,
             imageSize: card.image.size,
+            buttonId: card.button.id,
             buttonBackgroundColor: card.button.backgroundColor,
             buttonSize: card.button.size,
             buttonContent: card.button.content,
             buttonContentColor: card.button.contentColor,
             buttonContentSize: card.button.contentSize,
-            buttonAction: card.button.action
+            buttonContentAction: card.button.contentAction
           }
           thisCards.push(tempCard);
         })
@@ -106,6 +110,7 @@ export default {
     },
     saveResults() {
       this.asduiStore.saveCards(this.cards);
+      // this.asduiStore.saveImage(this.fileData);
       this.isSaved = true;
     }
   }

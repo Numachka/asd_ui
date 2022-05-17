@@ -1,6 +1,6 @@
 <template>
   <div class="cardWindow">
-    <div class="card-container" @click.self="isCardTapped=!isCardTapped;">
+    <div class="card-container" @click.self="isCardTapped=!isCardTapped;" :style="calculateStyle">
       <div v-if="isCardTapped" class="settings card-settings">
         <card-options/>
       </div>
@@ -21,7 +21,7 @@
           :content="buttonContent"
           :contentColor="buttonContentColor"
           :contentSize="buttonContentSize"
-          :action="buttonAction"
+          :contentAction="buttonContentAction"
           @click="isButtonTapped=!isButtonTapped"/>
     </div>
   </div>
@@ -47,8 +47,13 @@ export default {
   props: [
     "cardBackgroundColor", "imageUrl", "imageSize",
     "buttonBackgroundColor", "buttonSize", "buttonContent",
-    "buttonContentColor", "buttonContentSize", "buttonAction"
+    "buttonContentColor", "buttonContentSize", "buttonContentAction"
   ],
+  computed: {
+    calculateStyle() {
+      return `background-color: ${this.cardBackgroundColor}`;
+    }
+  },
   setup() {
     const isUploadImageTapped = ref(false)
     const isButtonTapped = ref(false)
@@ -67,7 +72,6 @@ export default {
 }
 
 .card-container {
-  background: #FFFFFF;
   width: 15vw;
   min-width: 350px;
   height: 40vh;

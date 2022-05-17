@@ -12,9 +12,9 @@ export default {
     const getImgUrl = (url) => {
       try {
         if (!url) {
-          return require('@/assets/userCardImages/1-admin/woman-svgrepo-com.svg');
+          return require('../../../../backend/src/main/resources/userImages/0-admin/temp-woman');
         }
-        return require('@/assets/userCardImages/' + url);
+        return require('../../../../backend/src/main/resources/userImages/' + url);
       } catch (exc) {
         return ""
       }

@@ -10,7 +10,7 @@
     <div v-for="card in cards">
       <component
           :is="card.component"
-          :cardBackgroundColor="card.backgroundColor"
+          :cardBackgroundColor="card.cardBackgroundColor"
           :imageUrl="card.imageUrl"
           :imageSize="card.imageSize"
           :buttonBackgroundColor="card.buttonBackgroundColor"
@@ -18,7 +18,7 @@
           :buttonContent="card.buttonContent"
           :buttonContentColor="card.buttonContentColor"
           :buttonContentSize="card.buttonContentSize"
-          :buttonAction="card.buttonAction"
+          :buttonContentAction="card.buttonContentAction"
       />
     </div>
   </div>
@@ -52,19 +52,17 @@ export default {
   },
   methods: {
     setIsLoaded() {
-      console.log("SetIsLoaded");
       setTimeout(this.displayCards, 1000);
       this.isLoaded = true;
     },
     displayCards() {
-      console.log("displayCards!");
       const returnedCards = this.asduiStore.getActiveUserInterface;
       const thisCards = this.cards;
       if (returnedCards.cards.length !== 0) {
         returnedCards.cards.forEach(card => {
           const tempCard = {
             component: AsduiCard,
-            cardBackgroundColor: card.backgroundColor,
+            cardBackgroundColor: card.card.backgroundColor,
             imageUrl: card.image.url,
             imageSize: card.image.size,
             buttonBackgroundColor: card.button.backgroundColor,
@@ -72,7 +70,7 @@ export default {
             buttonContent: card.button.content,
             buttonContentColor: card.button.contentColor,
             buttonContentSize: card.button.contentSize,
-            buttonAction: card.button.action
+            buttonContentAction: card.button.contentAction
           }
           thisCards.push(tempCard);
         })

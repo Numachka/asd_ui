@@ -3,7 +3,7 @@ import NotFound from "../views/application/NotFound";
 import MainMenu from '../views/application/MainMenu.vue'
 import LoggedOut from "../views/application/LoggedOut.vue";
 import Login from "../views/application/Login";
-import Register from "../views/userCreation/RegisterView";
+import Register from "../views/userCreation/Register";
 import Introduction from "../views/userCreation/Register1_Introduction";
 import Explanation from "../views/userCreation/Register2_Explanation";
 import Details from "../views/userCreation/Register3_Details";
