@@ -1,6 +1,6 @@
 import {defineStore, acceptHMRUpdate} from 'pinia'
 import {hashPassword} from "@/utils/utils";
-import {baseURL, postConstants, getConstants} from "@/router/consts";
+import {baseURL, postConstants, getConstants, deleteConstants} from "@/router/consts";
 
 export const useAsduiStore = defineStore({
     id: 'asdui',
@@ -120,6 +120,10 @@ export const useAsduiStore = defineStore({
             } else {
                 this.user.userID = response.id;
                 this.userSettings.isActive = true;
+                this.user.email = userDetails.email
+                this.user.firstName = userDetails.firstName
+                this.user.lastName = userDetails.lastName
+                this.user.phoneNumber = userDetails.phoneNumber
                 return response.id;
             }
 
@@ -174,7 +178,9 @@ export const useAsduiStore = defineStore({
             cards.forEach(card => {
                 card.user = this.user.userID
                 if (card.card.identifier < 0) {
-                    card.card.identifier = null;
+                    card.card.identifier = '';
+                    card.image.identifier = '';
+                    card.button.identifier = '';
                 }
                 /* Fix for id mismatching and un-definition.*/
                 card.card.id = card.card.identifier;
@@ -369,9 +375,23 @@ export const useAsduiStore = defineStore({
                 }
             })
         },
-        removeCardById(cardId) {
-            //TODO implement this.
-            console.log(cardId);
+        async removeCardById(cardId) {
+            await this.removeCardRequest(cardId);
+        },
+        async removeCardRequest(cardId) {
+            const url = baseURL + deleteConstants.deleteUI.replace('{id}', cardId);
+            return fetch(url, {
+                method: 'DELETE',
+            })
+                .then(data => {
+                    return data.json()
+                })
+                .then(response => {
+                    return response
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
     },
 })

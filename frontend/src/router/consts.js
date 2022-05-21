@@ -24,7 +24,11 @@ const getConstants = {
     ui: '/settings/user-interface/{id}' /* When getting visual or auditory card*/
 }
 
+const deleteConstants = {
+    deleteUI: '/settings/user-interface/{id}' /* When removing a card by id */
+}
+
 const baseURL = serverConstants.protocol + serverConstants.back.hostname
     + serverConstants.back.port + serverConstants.appRoot;
 
-export {baseURL, postConstants, getConstants}
+export {baseURL, postConstants, getConstants, deleteConstants}

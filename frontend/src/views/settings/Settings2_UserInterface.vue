@@ -11,20 +11,19 @@
     <div class="card-workspace" v-if="!isSaved">
       <div v-for="card in displayCards">
         <component
-            :is="card.component"
-            :cardId = "card.cardId"
-            :cardBackgroundColor="card.cardBackgroundColor"
-            :imageId = "card.imageId"
-            :imageUrl="card.imageUrl"
-            :imageSize="card.imageSize"
-            :buttonId = "card.buttonId"
-            :buttonBackgroundColor="card.buttonBackgroundColor"
-            :buttonSize="card.buttonSize"
-            :buttonContent="card.buttonContent"
-            :buttonContentColor="card.buttonContentColor"
-            :buttonContentSize="card.buttonContentSize"
-            :buttonContentAction="card.buttonContentAction"
-        />
+            is="SettingsCard"
+            :cardId="card.card.identifier"
+            :cardBackgroundColor="card.card.backgroundColor"
+            :imageId="card.image.identifier"
+            :imageUrl="card.image.url"
+            :imageSize="card.image.size"
+            :buttonId="card.button.identifier"
+            :buttonBackgroundColor="card.button.backgroundColor"
+            :buttonSize="card.button.size"
+            :buttonContent="card.button.content"
+            :buttonContentColor="card.button.contentColor"
+            :buttonContentSize="card.button.contentSize"
+            :buttonContentAction="card.button.contentAction"/>
       </div>
     </div>
     <div v-else>
@@ -63,60 +62,57 @@ export default {
     let latestButtonId = ref(0);
     let latestImageId = ref(0);
     const displayCards = computed(() => {
-      const returnedCards = asduiStore.getActiveUserInterface;
-      const thisCards = cards.value;
-      if (returnedCards.cards.length !== 0) {
-        returnedCards.cards.forEach(card => {
-          const tempCard = {
-            component: SettingsCard,
-            cardId: card.card.identifier,
-            cardBackgroundColor: card.card.backgroundColor,
-            imageId: card.image.identifier,
-            imageUrl: card.image.url,
-            imageSize: card.image.size,
-            buttonId: card.button.identifier,
-            buttonBackgroundColor: card.button.backgroundColor,
-            buttonSize: card.button.size,
-            buttonContent: card.button.content,
-            buttonContentColor: card.button.contentColor,
-            buttonContentSize: card.button.contentSize,
-            buttonContentAction: card.button.contentAction
-          }
-          thisCards.push(tempCard);
-        })
-      }
-      return thisCards;
+      return asduiStore.getActiveUserInterface.cards;
     })
     const addCard = () => {
       const tempCard = {
-        component: SettingsCard,
-        cardId: --latestCardId.value,
-        cardBackgroundColor: '#ffffff',
-        imageId: --latestImageId.value,
-        imageUrl: '',
-        imageSize: 'medium',
-        imageFile: '',
-        buttonId: --latestButtonId.value,
-        buttonBackgroundColor: '#bbbbbb',
-        buttonSize: 'medium',
-        buttonContent: 'Action Name',
-        buttonContentColor: '#000000',
-        buttonContentSize: 'medium',
-        buttonAction: ''
+        card: {
+          identifier: --latestCardId.value,
+          backgroundColor: '#ffffff',
+        },
+        image: {
+          identifier: --latestImageId.value,
+          url: '',
+          size: 'medium',
+        },
+        button: {
+          identifier: --latestButtonId.value,
+          backgroundColor: '#bbbbbb',
+          size: 'medium',
+          Content: 'Action Name',
+          contentColor: '#000000',
+          contentSize: 'medium',
+          contentAction: ''
+        }
       }
-      cards.value.push(tempCard);
+      asduiStore.userInterface.cards.push(tempCard);
     };
     const removeCard = () => {
       //Implement remove from pinia as well.
-      cards.value.pop();
-      asduiStore.removeCardById(latestCardId.value);
+      asduiStore.userInterface.cards.pop();
+      const currentCard = cards.value[cards.value.length - 1].cardId;
+      console.log(currentCard);
+      if (currentCard > 0) {
+        asduiStore.removeCardById(currentCard);
+      }
     };
     const saveResults = () => {
       asduiStore.saveCards();
       // this.asduiStore.saveImage(this.fileData);
       isSaved.value = true;
     };
-    return { cards, asduiStore, isSaved, latestCardId, latestImageId, latestButtonId, displayCards, addCard, removeCard, saveResults }
+    return {
+      cards,
+      asduiStore,
+      isSaved,
+      latestCardId,
+      latestImageId,
+      latestButtonId,
+      displayCards,
+      addCard,
+      removeCard,
+      saveResults
+    }
   },
 }
 </script>

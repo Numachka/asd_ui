@@ -6,16 +6,16 @@
   <div class="card-workspace">
     <div v-for="card in displayCards">
       <component
-          :is="card.component"
-          :cardBackgroundColor="card.cardBackgroundColor"
-          :imageUrl="card.imageUrl"
-          :imageSize="card.imageSize"
-          :buttonBackgroundColor="card.buttonBackgroundColor"
-          :buttonSize="card.buttonSize"
-          :buttonContent="card.buttonContent"
-          :buttonContentColor="card.buttonContentColor"
-          :buttonContentSize="card.buttonContentSize"
-          :buttonContentAction="card.buttonContentAction"
+          is="AsduiCard"
+          :cardBackgroundColor="card.card.backgroundColor"
+          :imageUrl="card.image.url"
+          :imageSize="card.image.size"
+          :buttonBackgroundColor="card.button.backgroundColor"
+          :buttonSize="card.button.size"
+          :buttonContent="card.button.content"
+          :buttonContentColor="card.button.contentColor"
+          :buttonContentSize="card.button.contentSize"
+          :buttonContentAction="card.button.contentAction"
       />
     </div>
   </div>
@@ -41,26 +41,7 @@ export default {
     const asduiStore = useAsduiStore();
     const cards = ref([]);
     const displayCards = computed(() => {
-      const returnedCards = asduiStore.getActiveUserInterface;
-      const thisCards = cards.value;
-      if (returnedCards.cards.length !== 0) {
-        returnedCards.cards.forEach(card => {
-          const tempCard = {
-            component: AsduiCard,
-            cardBackgroundColor: card.card.backgroundColor,
-            imageUrl: card.image.url,
-            imageSize: card.image.size,
-            buttonBackgroundColor: card.button.backgroundColor,
-            buttonSize: card.button.size,
-            buttonContent: card.button.content,
-            buttonContentColor: card.button.contentColor,
-            buttonContentSize: card.button.contentSize,
-            buttonContentAction: card.button.contentAction
-          }
-          thisCards.push(tempCard);
-        })
-      }
-      return thisCards;
+      return asduiStore.getActiveUserInterface.cards;
     })
     return {asduiStore, cards, displayCards}
   }

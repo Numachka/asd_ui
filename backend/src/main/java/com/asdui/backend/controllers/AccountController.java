@@ -13,6 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,12 +27,18 @@ import java.util.Optional;
 @RequestMapping("/asdui")
 @Slf4j
 public class AccountController {
-    @Autowired UserRepository userRepository;
-    @Autowired UserInterfaceRepository uiRepository;
-    @Autowired UserSettingsRepository userSettingsRepository;
-    @Autowired CardRepository cardRepository;
-    @Autowired ImageRepository imageRepository;
-    @Autowired ButtonRepository buttonRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    UserInterfaceRepository uiRepository;
+    @Autowired
+    UserSettingsRepository userSettingsRepository;
+    @Autowired
+    CardRepository cardRepository;
+    @Autowired
+    ImageRepository imageRepository;
+    @Autowired
+    ButtonRepository buttonRepository;
 
     // -------------------------- Registration Methods------------------------ //
 
@@ -44,9 +55,17 @@ public class AccountController {
         try {
             val newUser = userRepository.save(new User(user));
             userSettingsRepository.save(new UserSettings(newUser.getID(), true));
+            String root = Paths.get("").toAbsolutePath().toString();
+            Path path = Files.createDirectories(Paths.get(root + "/backend/src/main/resources/userImages/"
+                    + newUser.getID() + "-" + newUser.getFirstName() + newUser.getLastName())).toAbsolutePath();
+            Path source = Paths.get(root + "/backend/src/main/resources/userImages/0-admin/temp.svg");
+            Path destination = Paths.get(path + "/temp.svg");
+            Files.copy(source, destination);
+
             log.info("Created user: " + newUser);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -79,7 +98,7 @@ public class AccountController {
     @GetMapping("/settings/user-interface/{id}")
     public ResponseEntity<UserInterface> getUserInterface(@PathVariable Integer id) {
         try {
-            val userInterface = new UserInterface(uiRepository.getById((long)id));
+            val userInterface = new UserInterface(uiRepository.getById((long) id));
             log.info("Found user interface " + userInterface);
             return new ResponseEntity<>(userInterface, HttpStatus.OK);
         } catch (Exception e) {
@@ -103,6 +122,16 @@ public class AccountController {
 
                 uiRepository.save(new UserInterface(user.getID(), card, image, button));
             });
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/settings/user-interface/{id}")
+    public ResponseEntity<Boolean> removeUserInterface(@PathVariable Integer id) {
+        try {
+            uiRepository.deleteById((long) id);
             return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
