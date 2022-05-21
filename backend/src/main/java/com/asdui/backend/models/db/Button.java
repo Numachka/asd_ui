@@ -13,7 +13,7 @@ public class Button {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long ID;
+    private Long id;
     @Column(name = "background_color")
     private String backgroundColor;
     @Column(name = "size")
@@ -31,7 +31,7 @@ public class Button {
     }
 
     public Button(Button other) {
-        this.ID = other.getID();
+        this.id = other.getId();
         this.backgroundColor = other.getBackgroundColor();
         this.content = other.getContent();
         this.contentColor = other.getContentColor();

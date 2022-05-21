@@ -13,12 +13,12 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long ID;
+    private Long id;
     @Column(name = "background_color")
     private String backgroundColor;
     public Card() {}
     public Card(Card other) {
-        this.ID = other.getID();
+        this.id = other.getId();
         this.backgroundColor = other.getBackgroundColor();
     }
 

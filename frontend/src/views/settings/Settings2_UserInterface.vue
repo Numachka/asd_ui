@@ -9,12 +9,15 @@
       <div class="removeCard manipulator" @click="removeCard">Remove</div>
     </div>
     <div class="card-workspace" v-if="!isSaved">
-      <div v-for="card in cards">
+      <div v-for="card in displayCards">
         <component
             :is="card.component"
+            :cardId = "card.cardId"
             :cardBackgroundColor="card.cardBackgroundColor"
+            :imageId = "card.imageId"
             :imageUrl="card.imageUrl"
             :imageSize="card.imageSize"
+            :buttonId = "card.buttonId"
             :buttonBackgroundColor="card.buttonBackgroundColor"
             :buttonSize="card.buttonSize"
             :buttonContent="card.buttonContent"
@@ -34,14 +37,13 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import {computed, ref} from 'vue'
 import {useAsduiStore} from "@/stores/asduiStore";
 import Card from "../../components/general/AsduiCard";
 import SettingsCard from "@/components/interfaceEditor/SettingsCard";
 import CardOptions from "../../components/interfaceEditor/CardOptions";
 import AsduiLogo from "@/components/general/AsduiLogo";
 import AsduiButton from "@/components/general/MenuButton";
-import AsduiCard from "@/components/general/AsduiCard";
 
 export default {
   name: "UserInterface",
@@ -52,51 +54,27 @@ export default {
     SettingsCard,
     AsduiLogo
   },
-  created() {
-    this.setIsLoaded()
-  },
   setup() {
     const asduiStore = useAsduiStore();
     let cards = ref([]);
     let isSaved = ref(false);
-    return { cards, asduiStore, isSaved}
-  },
-  methods: {
-    setIsLoaded() {
-      setTimeout(this.displayCard, 1000);
-    },
-    addCard() {
-      const tempCard = {
-        component: SettingsCard,
-        cardBackgroundColor: '#ffffff',
-        imageUrl: '',
-        imageSize: 'medium',
-        imageFile: '',
-        buttonBackgroundColor: '#bbbbbb',
-        buttonSize: 'medium',
-        buttonContent: 'Action Name',
-        buttonContentColor: '#000000',
-        buttonContentSize: 'medium',
-        buttonAction: ''
-      }
-      this.cards.push(tempCard);
-    },
-    removeCard() {
-      this.cards.pop()
-    },
-    displayCard() {
-      const returnedCards = this.asduiStore.getActiveUserInterface;
-      const thisCards = this.cards;
+    /* Counting backwards for new cards to avoid duplication of ID's. The database will generate the IDs.*/
+    let latestCardId = ref(0);
+    let latestButtonId = ref(0);
+    let latestImageId = ref(0);
+    const displayCards = computed(() => {
+      const returnedCards = asduiStore.getActiveUserInterface;
+      const thisCards = cards.value;
       if (returnedCards.cards.length !== 0) {
         returnedCards.cards.forEach(card => {
           const tempCard = {
             component: SettingsCard,
-            cardId: card.card.id,
+            cardId: card.card.identifier,
             cardBackgroundColor: card.card.backgroundColor,
-            imageId: card.image.id,
+            imageId: card.image.identifier,
             imageUrl: card.image.url,
             imageSize: card.image.size,
-            buttonId: card.button.id,
+            buttonId: card.button.identifier,
             buttonBackgroundColor: card.button.backgroundColor,
             buttonSize: card.button.size,
             buttonContent: card.button.content,
@@ -107,13 +85,39 @@ export default {
           thisCards.push(tempCard);
         })
       }
-    },
-    saveResults() {
-      this.asduiStore.saveCards(this.cards);
+      return thisCards;
+    })
+    const addCard = () => {
+      const tempCard = {
+        component: SettingsCard,
+        cardId: --latestCardId.value,
+        cardBackgroundColor: '#ffffff',
+        imageId: --latestImageId.value,
+        imageUrl: '',
+        imageSize: 'medium',
+        imageFile: '',
+        buttonId: --latestButtonId.value,
+        buttonBackgroundColor: '#bbbbbb',
+        buttonSize: 'medium',
+        buttonContent: 'Action Name',
+        buttonContentColor: '#000000',
+        buttonContentSize: 'medium',
+        buttonAction: ''
+      }
+      cards.value.push(tempCard);
+    };
+    const removeCard = () => {
+      //Implement remove from pinia as well.
+      cards.value.pop();
+      asduiStore.removeCardById(latestCardId.value);
+    };
+    const saveResults = () => {
+      asduiStore.saveCards();
       // this.asduiStore.saveImage(this.fileData);
-      this.isSaved = true;
-    }
-  }
+      isSaved.value = true;
+    };
+    return { cards, asduiStore, isSaved, latestCardId, latestImageId, latestButtonId, displayCards, addCard, removeCard, saveResults }
+  },
 }
 </script>
 

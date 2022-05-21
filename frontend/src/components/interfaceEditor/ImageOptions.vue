@@ -3,22 +3,29 @@
   <label for="file" class="upload-file ">Upload image</label>
   <input id="file" type="file" @change="onFileChange($event)">
   <label>Image size</label>
-  <select v-model="imageSize" name="imageSize" @click="changeImageSize($event)">
+  <select v-model="imageSize"
+          name="imageSize"
+          @click="changeImageSize($event)"
+          @change="updateImageStyle"
+          :value="size">
     <option v-for="size in sizes" :value="size">{{ size }}</option>
   </select>
 </template>
 
 <script>
 import {ref} from "vue";
+import {useAsduiStore} from "@/stores/asduiStore";
 
 export default {
   name: "ImageOptions",
-  setup() {
+  props: ["cardId", "imageId", "size", "url"],
+  setup(props) {
+    const asduiStore = useAsduiStore();
     const sizes = ref([
       'very-small', 'small', 'medium', 'large', 'very-large'
     ]);
-    const imageSize = ref(null);
-    const url = ref(null);
+    const imageSize = ref(props.size);
+    const url = ref(props.url);
     const changeImageSize = (event) => {
       if (imageSize.value) {
         let cards = document.getElementsByClassName('card-container');
@@ -58,7 +65,6 @@ export default {
         }
       }
     };
-
     const onFileChange = (event) => {
       const file = event.target.files[0];
       let cards = document.getElementsByClassName('card-container');
@@ -68,13 +74,16 @@ export default {
           let innerImage = card.querySelector('img.asdui-image-inner')
           innerImage.src = URL.createObjectURL(file);
           innerImage.parentElement.style.border = 'none';
+          this.url = file.name;
+          //TODO upload is initiated here -> filename + content sent to backend for keeping.
         }
       }
     }
-
-    return {sizes, url, onFileChange, imageSize, changeImageSize}
-  }
-
+    const updateImageStyle = () => {
+      asduiStore.updateImageStyleById(props.cardId, props.imageId, imageSize.value, url.value)
+    }
+    return {asduiStore, sizes, url, onFileChange, imageSize, changeImageSize, updateImageStyle}
+  },
 }
 </script>
 

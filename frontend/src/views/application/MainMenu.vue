@@ -4,10 +4,7 @@
     <asdui-button button-type="submit" button-text="Settings"/>
   </router-link>
   <div class="card-workspace">
-    <div v-if="!isLoaded">
-      <img src="@/assets/loaders/magicLoader.svg" alt="no image found">
-    </div>
-    <div v-for="card in cards">
+    <div v-for="card in displayCards">
       <component
           :is="card.component"
           :cardBackgroundColor="card.cardBackgroundColor"
@@ -25,7 +22,7 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {useAsduiStore} from "@/stores/asduiStore";
 import AsduiCard from "@/components/general/AsduiCard";
 import AsduiButton from "@/components/general/MenuButton";
@@ -40,24 +37,12 @@ export default {
     AsduiButton,
     AsduiCard,
   },
-  created() {
-    this.setIsLoaded()
-  },
   setup() {
-    const asduiStore = useAsduiStore()
-    const component = AsduiCard;
-    const isLoaded = false;
-    const cards = ref([])
-    return {asduiStore, cards, component, isLoaded}
-  },
-  methods: {
-    setIsLoaded() {
-      setTimeout(this.displayCards, 1000);
-      this.isLoaded = true;
-    },
-    displayCards() {
-      const returnedCards = this.asduiStore.getActiveUserInterface;
-      const thisCards = this.cards;
+    const asduiStore = useAsduiStore();
+    const cards = ref([]);
+    const displayCards = computed(() => {
+      const returnedCards = asduiStore.getActiveUserInterface;
+      const thisCards = cards.value;
       if (returnedCards.cards.length !== 0) {
         returnedCards.cards.forEach(card => {
           const tempCard = {
@@ -75,7 +60,9 @@ export default {
           thisCards.push(tempCard);
         })
       }
-    }
+      return thisCards;
+    })
+    return {asduiStore, cards, displayCards}
   }
 }
 </script>

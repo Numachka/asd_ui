@@ -4,7 +4,7 @@
       <p>Welcome back!</p>
       <i>Enter your credentials below</i>
       <i v-if="wrongCredential">The entered username or password is incorrect!
-        <b @click="wrongCredential=false">X</b></i>
+        <b @click="wrongCredential=false">Click to lose</b></i>
     </div>
     <form @submit.prevent="login">
       <label for="email">Email</label>
@@ -40,7 +40,6 @@ export default {
     const router = useRouter()
     const email = ref("")
     const password = ref("")
-
     let loginSuccessful = ref(false) /* When true will switch to the next page according to the user */
     let wrongCredential = ref(false)
 
@@ -48,16 +47,11 @@ export default {
   },
   methods: {
     async login() {
-      console.log("login")
       const response = await this.asduiStore.loginUser(this.email, this.password);
-      console.log(response)
       if (response) {
         await this.router.push({path: '/main-menu'});
       } else {
         this.wrongCredential = true
-        setTimeout(() => {
-          this.wrongCredential = false;
-        }, 5000)
       }
     }
   }

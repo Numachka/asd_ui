@@ -36,6 +36,7 @@ public class UserInterface {
     }
 
     public UserInterface(Long userID, Card card, Image image, Button button) {
+        this.ID = card.getId();
         this.user = userID;
         this.card = card;
         this.image = image;

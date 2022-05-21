@@ -15,28 +15,27 @@ export const useAsduiStore = defineStore({
                 phoneNumber: '',
             },
             userInterface: {
-                cards: [
-                    // example card object : {
-                    //     card: {
-                    //         id: '',
-                    //         backgroundColor: '',
-                    //     },
-                    //     image: {
-                    //         id: '',
-                    //         url: '',
-                    //         size: ''
-                    //     },
-                    //     button: {
-                    //         id: '',
-                    //         backgroundColor: '',
-                    //         size: '',
-                    //         content: '',
-                    //         contentColor: '',
-                    //         contentSize: '',
-                    //         contentAction: ''
-                    //     }
-                    // }
-                ]
+                //  EXAMPLE: {
+                //     card: {
+                //         cardId: '',
+                //         backgroundColor: '',
+                //     },
+                //     image: {
+                //         imageId: '',
+                //         url: '',
+                //         size: ''
+                //     },
+                //     button: {
+                //         buttonId: '',
+                //         backgroundColor: '',
+                //         size: '',
+                //         content: '',
+                //         contentColor: '',
+                //         contentSize: '',
+                //         contentAction: ''
+                //     }
+                // }
+                cards: []
             },
             userSettings: {
                 isActive: false
@@ -46,12 +45,6 @@ export const useAsduiStore = defineStore({
     getters: {
         getActiveUserInterface(state) {
             return state.userInterface;
-        },
-        getActiveUserSettings(state) {
-            return state.userSettings;
-        },
-        getActiveUserDetails(state) {
-            return state.user;
         }
     },
     actions: {
@@ -61,50 +54,42 @@ export const useAsduiStore = defineStore({
             if (!response) {
                 return false;
             } else {
-                const activeUserState = this;
-                spreadUserData(response);
+                const userInformation = response.user;
+                const userInterface = response.userInterface;
+                const userSetting = response.userSettings;
 
-                function spreadUserData(response) {
-                    const userInformation = response.user;
-                    const userInterface = response.userInterface;
-                    const userSetting = response.userSettings;
+                this.user.userID = userInformation.id
+                this.user.firstName = userInformation.firstName
+                this.user.lastName = userInformation.lastName
+                this.user.email = userInformation.email
+                this.user.phoneNumber = userInformation.phoneNumber
 
-                    let user = activeUserState.user;
-                    user.userID = userInformation.id
-                    user.firstName = userInformation.firstName
-                    user.lastName = userInformation.lastName
-                    user.email = userInformation.email
-                    user.phoneNumber = userInformation.phoneNumber
-
-                    let card = activeUserState.userInterface.cards;
-                    userInterface.forEach(uiElement => {
-                        const newCard = {
-                            card: {
-                                id: uiElement.card.id,
-                                backgroundColor: uiElement.card.backgroundColor,
-                            },
-                            image: {
-                                id: uiElement.image.id,
-                                url: userInformation.id + '-' + userInformation.firstName + userInformation.lastName + '/' + uiElement.image.url,
-                                size: uiElement.image.size
-                            },
-                            button: {
-                                id: uiElement.button.id,
-                                backgroundColor: uiElement.button.backgroundColor,
-                                size: uiElement.button.size,
-                                content: uiElement.button.content,
-                                contentColor: uiElement.button.contentColor,
-                                contentSize: uiElement.button.contentSize,
-                                contentAction: uiElement.button.contentAction
-                            }
+                for (let uiElement of userInterface) {
+                    this.userInterface.cards.push({
+                        card: {
+                            identifier: uiElement.card.id,
+                            backgroundColor: uiElement.card.backgroundColor,
+                        },
+                        image: {
+                            identifier: uiElement.image.id,
+                            url: uiElement.image.url,
+                            size: uiElement.image.size
+                        },
+                        button: {
+                            identifier: uiElement.button.id,
+                            backgroundColor: uiElement.button.backgroundColor,
+                            size: uiElement.button.size,
+                            content: uiElement.button.content,
+                            contentColor: uiElement.button.contentColor,
+                            contentSize: uiElement.button.contentSize,
+                            contentAction: uiElement.button.contentAction
                         }
-                        card.push(newCard);
                     })
-
-                    let settings = activeUserState.userSettings;
-                    settings.isActive = userSetting.isActive;
                 }
-                this.saveLocalState();
+
+                this.userSettings.isActive = userSetting.isActive;
+
+                // this.saveLocalState();
                 return true;
             }
         },
@@ -161,19 +146,18 @@ export const useAsduiStore = defineStore({
             if (!response) {
                 return false;
             } else {
-                console.log(response);
-                let tempCard = {
+                this.userInterface.cards.push({
                     card: {
-                        id: response.card.id,
+                        cardId: response.card.id,
                         backgroundColor: response.card.backgroundColor,
                     },
                     image: {
-                        id: response.image.id,
+                        imageId: response.image.id,
                         url: response.image.url,
                         size: response.image.size
                     },
                     button: {
-                        id: response.button.id,
+                        buttonId: response.button.id,
                         backgroundColor: response.button.backgroundColor,
                         size: response.button.size,
                         content: response.button.content,
@@ -181,37 +165,23 @@ export const useAsduiStore = defineStore({
                         contentSize: response.button.contentSize,
                         contentAction: response.button.contentAction
                     }
-                }
-                this.userInterface.cards.push(tempCard);
+                });
                 return response;
             }
         },
-        async saveCards(cards) {
-            const activeUserState = this;
+        async saveCards() {
+            const cards = this.userInterface.cards;
             cards.forEach(card => {
-                const tempCard = {
-                    card: {
-                        id: card.cardId,
-                        backgroundColor: card.cardBackgroundColor,
-                    },
-                    image: {
-                        id: card.imageId,
-                        url: card.imageUrl,
-                        size: card.imageSize,
-                    },
-                    button: {
-                        id: card.buttonId,
-                        backgroundColor: card.buttonBackgroundColor,
-                        size: card.buttonSize,
-                        content: card.buttonContent,
-                        contentColor: card.buttonContentColor,
-                        contentSize: card.buttonContentSize,
-                        contentAction: card.buttonAction
-                    }
+                card.user = this.user.userID
+                if (card.card.identifier < 0) {
+                    card.card.identifier = null;
                 }
-                activeUserState.userInterface.cards.push(tempCard);
-            })
-            await this.sendCardRequest();
+                /* Fix for id mismatching and un-definition.*/
+                card.card.id = card.card.identifier;
+                card.button.id = card.button.identifier;
+                card.image.id = card.image.identifier;
+            });
+            await this.sendCardRequest(cards);
         },
         async saveImage(file) {
             const formData = new FormData();
@@ -242,11 +212,8 @@ export const useAsduiStore = defineStore({
                     return false;
                 })
         },
-        async sendCardRequest() {
-            const cards = this.userInterface.cards;
-            cards.forEach(card => card.user = this.user.userID);
+        async sendCardRequest(cards) {
             const url = baseURL + postConstants.saveUI;
-
             return fetch(url, {
                 method: 'POST',
                 headers: {
@@ -370,6 +337,42 @@ export const useAsduiStore = defineStore({
         loadLocalState() {
             this.state = window.localStorage.getItem('asduiState');
         },
+        updateImageStyleById(cardId, id, size, url) {
+            this.userInterface.cards.forEach(card => {
+                if (card.card.identifier === cardId) {
+                    card.image.identifier = id
+                    card.image.size = size;
+                    card.image.url = url;
+                }
+            })
+        },
+        updateCardStyleById(cardId, backgroundColor) {
+            for (let card of this.userInterface.cards) {
+                if (card.card.identifier === cardId) {
+                    console.log("found!");
+                    card.card.backgroundColor = backgroundColor;
+                    break;
+                }
+            }
+        },
+        updateButtonStyleById(cardId, id, backgroundColor, size, content,
+                              contentColor, contentSize, contentAction) {
+            this.userInterface.cards.forEach(card => {
+                if (card.card.identifier === cardId) {
+                    card.button.identifier = id
+                    card.button.backgroundColor = backgroundColor;
+                    card.button.size = size;
+                    card.button.content = content;
+                    card.button.contentColor = contentColor;
+                    card.button.contentSize = contentSize;
+                    card.button.contentAction = contentAction;
+                }
+            })
+        },
+        removeCardById(cardId) {
+            //TODO implement this.
+            console.log(cardId);
+        }
     },
 })
 

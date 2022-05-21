@@ -2,8 +2,13 @@
   <i>Card</i>
   <div>
     <label>Background Color</label>
-    <select v-model="Color" name="colorPick" @click="changeColor($event)">
-      <option v-for="(color, colorName) in colors" :id="color" :value="color">
+    <select
+        v-model="color"
+        name="colorPick"
+        @click="changeColor($event)"
+        @change="updateCardStyle"
+        :value="backgroundColor">
+      <option v-for="(color, colorName) in colors" :id="color">
         {{ colorName }}
       </option>
     </select>
@@ -12,10 +17,13 @@
 
 <script>
 import {ref} from 'vue'
+import {useAsduiStore} from "@/stores/asduiStore";
 
 export default {
   name: "SettingsOptions",
-  setup() {
+  props: ["cardId", "backgroundColor"],
+  setup(props) {
+    const asduiStore = useAsduiStore();
     const colors = ref({
       "Blue Light": '#84c1ff',
       "Blue": '#0057e7',
@@ -39,19 +47,22 @@ export default {
       "Beige": '#faebd7',
       "Black": '#1e1f26',
     });
-    const color = ref(null);
+    const color = ref(props.backgroundColor);
     const changeColor = (event) => {
       if (color.value) {
         let cards = document.getElementsByClassName('card-container');
         for (let card of cards) {
-          if (card.contains(event.target) ) {
-            card.style.backgroundColor = color.value
+          if (card.contains(event.target)) {
+            card.style.backgroundColor = colors.value[color.value];
           }
         }
       }
     };
+    const updateCardStyle = () => {
+      asduiStore.updateCardStyleById(props.cardId, colors.value[color.value]);
+    };
 
-    return {Color: color, colors, changeColor}
+    return {color, colors, changeColor, asduiStore, updateCardStyle}
   }
 }
 </script>

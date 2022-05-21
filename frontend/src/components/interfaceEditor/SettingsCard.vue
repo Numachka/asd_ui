@@ -2,20 +2,38 @@
   <div class="cardWindow">
     <div class="card-container" @click.self="isCardTapped=!isCardTapped;" :style="calculateStyle">
       <div v-if="isCardTapped" class="settings card-settings">
-        <card-options/>
+        <card-options
+            :cardId="cardId"
+            :backgroundColor="cardBackgroundColor"/>
       </div>
       <div v-if="isUploadImageTapped" class="settings image-settings">
-        <image-options/>
+        <image-options
+            :cardId="cardId"
+            :imageId="imageId"
+            :size="imageSize"
+            :url="imageUrl"/>
       </div>
       <div v-if="isButtonTapped" class="settings button-settings">
-        <button-options/>
+        <button-options
+            :cardId="cardId"
+            :buttonId="buttonId"
+            :backgroundColor="buttonBackgroundColor"
+            :size="buttonSize"
+            :content="buttonContent"
+            :contentColor="buttonContentColor"
+            :contentSize="buttonContentSize"
+            :contentAction="buttonContentAction"/>
       </div>
 
       <card-image
+          :cardId="cardId"
+          :id="imageId"
           :url="imageUrl"
           :size="imageSize"
           @click="isUploadImageTapped=!isUploadImageTapped"/>
       <card-button
+          :cardId="cardId"
+          :id="buttonId"
           :backgroundColor="buttonBackgroundColor"
           :size="buttonSize"
           :content="buttonContent"
@@ -28,7 +46,8 @@
 </template>
 
 <script>
-import {ref} from 'vue'
+import {computed, ref} from 'vue'
+import {useAsduiStore} from "@/stores/asduiStore";
 import CardButton from "@/components/general/CardButton";
 import CardImage from "@/components/general/CardImage";
 import CardOptions from "@/components/interfaceEditor/CardOptions";
@@ -45,22 +64,22 @@ export default {
     ButtonOptions
   },
   props: [
-    "cardBackgroundColor", "imageUrl", "imageSize",
-    "buttonBackgroundColor", "buttonSize", "buttonContent",
+    "cardId", "cardBackgroundColor",
+    "imageId", "imageUrl", "imageSize",
+    "buttonId", "buttonBackgroundColor", "buttonSize", "buttonContent",
     "buttonContentColor", "buttonContentSize", "buttonContentAction"
   ],
-  computed: {
-    calculateStyle() {
-      return `background-color: ${this.cardBackgroundColor}`;
-    }
-  },
-  setup() {
+  setup(props) {
+    const asduiStore = useAsduiStore();
     const isUploadImageTapped = ref(false)
     const isButtonTapped = ref(false)
     const isCardTapped = ref(false)
     const headerText = ref("Enter Text");
+    const calculateStyle = computed(() => {
+      return `background-color: ${props.cardBackgroundColor}`;
 
-    return {isCardTapped, isUploadImageTapped, isButtonTapped, headerText}
+    })
+    return {asduiStore, isCardTapped, isUploadImageTapped, isButtonTapped, headerText, calculateStyle}
   }
 }
 </script>

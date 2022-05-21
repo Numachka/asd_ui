@@ -23,6 +23,7 @@ export default {
     AsduiButton
   },
   setup() {
+    /* Make small logo disappear when at the logged out page.*/
     onBeforeMount(() => {
       document.getElementsByClassName('logo')[0].style.display = "none";
     });

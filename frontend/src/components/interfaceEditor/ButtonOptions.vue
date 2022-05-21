@@ -1,43 +1,72 @@
 <template>
   <i>Button</i>
   <label>Background Color</label>
-  <select v-model="backgroundColor" name="colorPick" @click="changeBackgroundColor($event)">
+  <select
+      v-model="backgroundColor"
+      name="colorPick"
+      @click="changeBackgroundColor($event)"
+      @change="updateButtonStyle">
     <option v-for="(color, colorName) in colors" :id="color" :value="color">
       {{ colorName }}
     </option>
   </select>
 
   <label for="button-content">Content</label>
-  <input id="button-content" type="text" v-model="buttonContent" @keyup="changeButtonContent($event)">
+  <input
+      id="button-content"
+      type="text"
+      v-model="buttonContent"
+      @keyup="changeButtonContent($event)"
+      @change="updateButtonStyle">
 
   <label for="button-action">Action</label>
-  <input id="button-action" type="text" v-model="buttonAction" @keyup="changeButtonAction($event)">
+  <input
+      id="button-action"
+      type="text"
+      v-model="buttonAction"
+      @keyup="changeButtonAction($event)"
+      @change="updateButtonStyle">
 
   <label>Text Color</label>
-  <select v-model="contentColor" name="colorPick" @click="changeContentColor($event)">
-    <option v-for="(color, colorName) in colors" :id="color" :value="color">
+  <select
+      v-model="contentColor"
+      name="colorPick"
+      @click="changeContentColor($event)"
+      @change="updateButtonStyle">
+    <option v-for="(color, colorName) in colors" :id="color">
       {{ colorName }}
     </option>
   </select>
 
   <label>Content size</label>
-  <select v-model="contentSize" name="imageSize" @click="changeContentSize($event)">
-    <option v-for="size in sizes" :value="size"> {{ size }}</option>
+  <select
+      v-model="contentSize"
+      name="imageSize"
+      @click="changeContentSize($event)"
+      @change="updateButtonStyle">>
+    <option v-for="size in sizes"> {{ size }}</option>
   </select>
 
   <label>Button size</label>
-  <select v-model="buttonSize" name="imageSize" @click="changeButtonSize($event)">
-    <option v-for="size in sizes" :value="size"> {{ size }}</option>
+  <select
+      v-model="buttonSize"
+      name="imageSize"
+      @click="changeButtonSize($event)"
+      @change="updateButtonStyle">>
+    <option v-for="size in sizes"> {{ size }}</option>
   </select>
 </template>
 
 <script>
 import {ref} from 'vue';
+import {useAsduiStore} from "@/stores/asduiStore";
 
 export default {
   name: "ButtonOptions",
-
-  setup() {
+  props: ["cardId", "buttonId", "backgroundColor", "size", "content",
+    "contentColor", "contentSize", "contentAction"],
+  setup(props) {
+    const asduiStore = useAsduiStore();
     const colors = ref({
       "Blue Light": '#84c1ff',
       "Blue": '#0057e7',
@@ -83,10 +112,10 @@ export default {
         }
       }
     };
-    const backgroundColor = ref(null);
-    const contentColor = ref(null);
+    const backgroundColor = ref(props.backgroundColor);
+    const contentColor = ref(props.contentColor);
 
-    const buttonContent = ref("")
+    const buttonContent = ref(props.content);
     const changeButtonContent = (event) => {
       let cards = document.getElementsByClassName('card-container');
       for (let card of cards) {
@@ -97,16 +126,16 @@ export default {
       }
     }
 
-    const buttonAction = ref("")
+    const buttonAction = ref(props.contentAction)
     const changeButtonAction = (event) => {
-      //TODO connect to pinia.
+      // this.buttonAction = event;
     }
 
     const sizes = ref([
       'very-small', 'small', 'medium', 'large', 'very-large'
     ]);
-    const contentSize = ref(null);
-    const buttonSize = ref(null);
+    const contentSize = ref(props.contentSize);
+    const buttonSize = ref(props.size);
     const changeContentSize = (event) => {
       if (contentSize.value) {
         let cards = document.getElementsByClassName('card-container');
@@ -180,8 +209,15 @@ export default {
       }
     };
 
+    const updateButtonStyle = () => {
+      asduiStore.updateButtonStyleById(props.cardId, props.buttonId,
+          backgroundColor.value, buttonSize.value, buttonContent.value,
+          contentColor.value, contentSize.value, buttonAction.value);
+    }
 
     return {
+      updateButtonStyle,
+      asduiStore,
       contentColor,
       backgroundColor,
       changeContentColor,

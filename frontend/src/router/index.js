@@ -13,7 +13,6 @@ import Magic from "../views/userCreation/Register6_Magic";
 import Settings from "../views/settings/Settings";
 import Profile from "../views/settings/Settings1_Profile";
 import UserInterface from "../views/settings/Settings2_UserInterface";
-import Credits from "../views/settings/Settings1_Profile";
 
 
 const routes = [
@@ -56,7 +55,6 @@ const routes = [
     component: Settings,
     children: [
       {name:'Profile', path: 'profile', component: Profile},
-      {name:'Credits', path: 'credits', component: Credits},
       {name:'UserInterface', path: 'user-interface', component: UserInterface},
     ],
   },

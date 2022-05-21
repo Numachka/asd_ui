@@ -32,25 +32,22 @@ export default {
   },
   setup() {
     const asduiStore = useAsduiStore()
-
     let name = ref("")
     let email = ref("")
-
     let existingUserMessage = ref(false)
-    return {asduiStore, existingUserMessage, name, email}
-  },
-  methods: {
-    checkUsername() {
-      if (this.asduiStore.checkUsername(this.email)) {
-        this.existingUserMessage = true;
+    const checkUsername = () => {
+      if (asduiStore.checkUsername(email.value)) {
+        existingUserMessage.value = true;
         setTimeout(() => {
-          this.existingUserMessage = false
+          existingUserMessage.value = false
         }, 2000)
       } else {
-        router.push({name: 'Explanation', params: {name: this.name}})
+        router.push({name: 'Explanation', params: {name: name.value}})
       }
     }
-  }
+
+    return {asduiStore, existingUserMessage, name, email, checkUsername}
+  },
 }
 </script>
 
