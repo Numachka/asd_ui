@@ -2,7 +2,6 @@ package com.asdui.backend.controllers;
 
 import com.asdui.backend.models.db.*;
 import com.asdui.backend.models.responses.Credentials;
-import com.asdui.backend.models.responses.UserInterfacePackage;
 import com.asdui.backend.models.responses.UserPackage;
 import com.asdui.backend.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,17 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/asdui")
 @Slf4j
@@ -50,7 +44,8 @@ public class AccountController {
         return new ResponseEntity<>(returnedUser.isPresent(), HttpStatus.OK);
     }
 
-    @PostMapping("/register/details/create-user")
+//    @PostMapping("/register/details/create-user")
+    @RequestMapping(path="/register/details/create-user", method=RequestMethod.POST)
     public ResponseEntity<User> createUserInDatabase(@RequestBody User user) {
         try {
             val newUser = userRepository.save(new User(user));
@@ -58,8 +53,8 @@ public class AccountController {
             String root = Paths.get("").toAbsolutePath().toString();
             Path path = Files.createDirectories(Paths.get(root + "/backend/src/main/resources/userImages/"
                     + newUser.getID() + "-" + newUser.getFirstName() + newUser.getLastName())).toAbsolutePath();
-            Path source = Paths.get(root + "/backend/src/main/resources/userImages/0-admin/temp.svg");
-            Path destination = Paths.get(path + "/temp.svg");
+            Path source = Paths.get(root + "/backend/src/main/resources/userImages/0-admin/temp-woman.svg");
+            Path destination = Paths.get(path + "/temp-woman.svg");
             Files.copy(source, destination);
 
             log.info("Created user: " + newUser);
