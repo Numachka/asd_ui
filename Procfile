@@ -1,0 +1,1 @@
+web: java -jar target/asdui_backend-1.0.jar
